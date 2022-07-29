@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+}
+
+:root {
+    --background-app: rgb(21, 20, 20);
+}
+
+.container-master {
+    background-color: var(--background-app);
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
