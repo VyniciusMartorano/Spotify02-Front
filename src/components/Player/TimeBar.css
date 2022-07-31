@@ -1,0 +1,50 @@
+:root {
+    --current-time-bar-color: rgb(249, 249, 249);
+    --color-timebar: rgb(94, 94, 94);
+    
+}
+
+:root {
+    --hovered-progress-bar: rgb(29, 185, 84);
+}
+
+.time-bar-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 18px;
+    align-items: center;
+    justify-content: center;
+}
+
+.time-bar-text {
+    display: flex;
+    width: 30px;
+    height: 18px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: rgb(153, 167, 167);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.progress-container {
+    display: flex;
+    border-radius: 8px;
+    height: 4.5px;
+    width: 500px;
+    background-color: var(--color-timebar);
+}
+
+.progress-current-time {
+    display: flex;
+    border-radius: 4px;
+    background-color: var(--current-time-bar-color);
+
+}
+
+.progress-current-time:hover {
+    background-color: var(--hovered-progress-bar);
+}

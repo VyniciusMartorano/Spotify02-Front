@@ -1,0 +1,2 @@
+nome artista = font-family: 'PT Sans', sans-serif;
+nomeMusica = font-family: 'PT Sans Narrow', sans-serif;

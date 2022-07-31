@@ -1,0 +1,9 @@
+
+.icon-heart {
+    cursor: pointer;
+    color: var(--icon-not-hover);
+}
+
+.icon-heart:hover {
+    color: var(--icon-hovered);
+}
