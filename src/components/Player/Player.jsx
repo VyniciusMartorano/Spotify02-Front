@@ -1,24 +1,31 @@
-import React, { Component } from "react"
-import './Player.css'
+import React, { useRef, useState } from "react"
+import '../css/Player.css'
 import TimeBar from "./TimeBar"
-import IconPlayPause from "./IconPlayPause"
 import IconHeart from "./IconHeart"
 import VolumeBar from "./VolumeBar"
 import IconVolume from './IconVolume'
-import Audio from "./Audio"
 
 
 
-export default class Player extends Component {
-    constructor(props) {
-        super()
-        this.array = props.pp
-        this.Audio = new Audio()
-    }
+const Player = (props) => {
 
-    print = () => console.log(this.array)
+        let currentIndex = 0
+        let [isPlaying, setisPlaying] = useState(false)
+        const audioPlayer = useRef()
 
-    render() {
+
+        const playPauseMusic = () => {
+        if (isPlaying) {
+            audioPlayer.current.pause()
+            setisPlaying(false)
+        }
+        else {
+            audioPlayer.current.play()
+            setisPlaying(true)
+        }
+        console.log(props.musics, props.nome)
+        }
+
         return (
         <div className="player-container">
             <div className="box-player">
@@ -35,9 +42,13 @@ export default class Player extends Component {
                 </div>
                 <div id="center-item-player-bar" className="item-player">
                     <div className="player-buttons-container">
-                        <i onClick={this.Audio.playAudio} className="fa-solid fa-shuffle icon-button i-tiny"></i>
+                        <i className="fa-solid fa-shuffle icon-button i-tiny"></i>
                         <i className="fa-solid fa-backward-step icon-button i-normal"></i>
-                        <IconPlayPause/>
+                        {
+                        isPlaying ? <i onClick={playPauseMusic} className="fa-solid fa-circle-pause icon-button-pp i-larger"></i>:<i onClick={playPauseMusic} className="fa-solid fa-circle-play icon-button-pp i-larger"></i>
+                        }
+
+                        <audio ref={audioPlayer} src="Post Malone - Circles.mp3"/>
                         <i className="fa-solid fa-forward-step icon-button i-normal"></i>
                         <i className="fa-solid fa-repeat icon-button i-tiny"></i>
                     </div>
@@ -48,8 +59,9 @@ export default class Player extends Component {
                     <VolumeBar/>
                 </div>
             </div>
-            <Audio/>
+           
         </div>
         )
-    }
 }
+
+export default Player

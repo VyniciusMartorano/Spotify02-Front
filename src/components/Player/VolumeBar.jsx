@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import './VolumeBar.css'
+import '../css/VolumeBar.css'
 
 
 

@@ -11,7 +11,7 @@ export default class Audio extends Component {
 
     render () {
         return (
-            <audio id="audio" src="./PostMalone-Circles.mp4" ></audio>
+            <audio id="audio" autoPlay src="\PostMalone-Circles.mp4" ></audio>
         )
     }
 }

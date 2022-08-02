@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import './TimeBar.css'
+import '../css/TimeBar.css'
 
 
 export default class TimeBar extends Component {
