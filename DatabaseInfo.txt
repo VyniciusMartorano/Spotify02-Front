@@ -1,0 +1,18 @@
+
+
+Musics =>
+    -id 
+    -music_name
+    -artist
+    -genero
+    -path
+    -duration
+    -liked (true/false)
+
+
+Playlists => 
+    -id 
+    -name   
+    -qtd_tracks
+    -tracks
+

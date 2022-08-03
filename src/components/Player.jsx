@@ -6,15 +6,28 @@ import VolumeBar from "./VolumeBar"
 import IconVolume from './IconVolume'
 
 
-
 const Player = (props) => {
-
+        const queueMusics = props.queueMusics
         let currentIndex = 0
         let [isPlaying, setisPlaying] = useState(false)
+        let [currentMusic, setCurrentMusic] = useState({path:''})
+        const [timeMusic, setTimeMusic] = useState(0)
         const audioPlayer = useRef()
 
 
+        const setMusic = () => {
+            setCurrentMusic(
+                {
+                    path: queueMusics[currentIndex]
+                }
+            )
+
+            setTimeMusic(audioPlayer.current.duration)
+        }
+
+
         const playPauseMusic = () => {
+            setMusic()
         if (isPlaying) {
             audioPlayer.current.pause()
             setisPlaying(false)
@@ -23,7 +36,7 @@ const Player = (props) => {
             audioPlayer.current.play()
             setisPlaying(true)
         }
-        console.log(props.musics, props.nome)
+        console.log(audioPlayer.current.duration)
         }
 
         return (
@@ -48,11 +61,11 @@ const Player = (props) => {
                         isPlaying ? <i onClick={playPauseMusic} className="fa-solid fa-circle-pause icon-button-pp i-larger"></i>:<i onClick={playPauseMusic} className="fa-solid fa-circle-play icon-button-pp i-larger"></i>
                         }
 
-                        <audio ref={audioPlayer} src="Post Malone - Circles.mp3"/>
+                        <audio ref={audioPlayer} src={currentMusic.path}/>
                         <i className="fa-solid fa-forward-step icon-button i-normal"></i>
                         <i className="fa-solid fa-repeat icon-button i-tiny"></i>
                     </div>
-                    <TimeBar/>
+                    <TimeBar musicTime={timeMusic} />
                 </div>
                 <div id="right-item-player-bar" className="item-player">
                     <IconVolume/>

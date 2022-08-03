@@ -4,10 +4,10 @@ import "../css/HomePage.css"
 
 
 export default () => {
-    const musics = ['fsdfd', 'bfsdjf']
+    const musics = ['Post Malone - Circles.mp3']
     return (
         <section className="container-master">
-            <Player nome="bruno" musics={musics}></Player>
+            <Player queueMusics={musics}></Player>
         </section>
         
     )
