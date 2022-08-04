@@ -4,39 +4,38 @@ import TimeBar from "./TimeBar"
 import IconHeart from "./IconHeart"
 import VolumeBar from "./VolumeBar"
 import IconVolume from './IconVolume'
+import PlayerService from "./services/Player-service"
+import {Howl, Howler} from 'howler';
+
 
 
 const Player = (props) => {
-        const queueMusics = props.queueMusics
-        let currentIndex = 0
+        //const queueMusics = props.queueMusics
+        //let currentIndex = 0
         let [isPlaying, setisPlaying] = useState(false)
-        let [currentMusic, setCurrentMusic] = useState({path:''})
-        const [timeMusic, setTimeMusic] = useState(0)
+        let [currentMusic, setCurrentMusic] = useState({})
         const audioPlayer = useRef()
+        const PlayServ = new PlayerService()
+        const howlerPlayer = new Howl({src: "Post Malone - Circles.mp3"})
 
 
-        const setMusic = () => {
-            setCurrentMusic(
-                {
-                    path: queueMusics[currentIndex]
-                }
-            )
+        async function setMusic () {
+            const response = await PlayServ.get()
+            setCurrentMusic({...response[0]})
 
-            setTimeMusic(audioPlayer.current.duration)
         }
 
 
         const playPauseMusic = () => {
             setMusic()
         if (isPlaying) {
-            audioPlayer.current.pause()
+            howlerPlayer.pause()
             setisPlaying(false)
         }
         else {
-            audioPlayer.current.play()
+            howlerPlayer.play()
             setisPlaying(true)
         }
-        console.log(audioPlayer.current.duration)
         }
 
         return (
@@ -61,11 +60,11 @@ const Player = (props) => {
                         isPlaying ? <i onClick={playPauseMusic} className="fa-solid fa-circle-pause icon-button-pp i-larger"></i>:<i onClick={playPauseMusic} className="fa-solid fa-circle-play icon-button-pp i-larger"></i>
                         }
 
-                        <audio ref={audioPlayer} src={currentMusic.path}/>
+                        <audio ref={audioPlayer} src="../../../backend/musics-bd/Post Malone - Circles.mp3"/>
                         <i className="fa-solid fa-forward-step icon-button i-normal"></i>
                         <i className="fa-solid fa-repeat icon-button i-tiny"></i>
                     </div>
-                    <TimeBar musicTime={timeMusic} />
+                    <TimeBar musicTime={currentMusic.duration} />
                 </div>
                 <div id="right-item-player-bar" className="item-player">
                     <IconVolume/>
