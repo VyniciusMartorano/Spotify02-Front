@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import '../css/IconHeart.css'
+import '../assets/css/IconHeart.css'
 
 
 
@@ -8,7 +8,7 @@ import '../css/IconHeart.css'
 //<i class="fa-regular fa-heart i"></i>
 
 export default class IconHeart extends Component {
-
+/////////
     
     render () {
         return (

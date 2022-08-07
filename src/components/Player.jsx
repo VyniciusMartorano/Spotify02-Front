@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react"
-import '../css/Player.css'
+import '../assets/css/Player.css'
 import TimeBar from "./TimeBar"
 import IconHeart from "./IconHeart"
 import VolumeBar from "./VolumeBar"

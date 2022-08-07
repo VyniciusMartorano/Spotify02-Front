@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import '../css/TimeBar.css'
+import '../assets/css/TimeBar.css'
 
 
 export default (props) => {

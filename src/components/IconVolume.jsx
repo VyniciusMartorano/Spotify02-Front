@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import '../css/IconVolume.css'
+import '../assets/css/IconVolume.css'
 
 
 export default class IconVolume extends Component {

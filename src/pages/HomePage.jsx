@@ -1,6 +1,6 @@
 import React from "react"
 import Player from "../components/Player"
-import "../css/HomePage.css"
+import "../assets/css/HomePage.css"
 
 
 export default () => {
