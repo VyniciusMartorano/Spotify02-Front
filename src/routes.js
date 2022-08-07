@@ -2,15 +2,24 @@ import React from "react"
 import { Route, Routes, BrowserRouter } from "react-router-dom"
 import HomePage from "./pages/HomePage"
 
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+import store, { persistor } from './store'
 
-function App (props) {
+
+
+function App(props) {
     return (
-        <BrowserRouter>
-            <Routes>
-            <Route exact path="/" element={<HomePage/>} />
+        <Provider store={store} >
+            <PersistGate persistor={persistor} >
+                <BrowserRouter>
+                    <Routes>
+                        <Route exact path="/" element={<HomePage />} />
 
-            </Routes>
-        </BrowserRouter>
+                    </Routes>
+                </BrowserRouter>
+            </PersistGate>
+        </Provider>
     )
 }
 
