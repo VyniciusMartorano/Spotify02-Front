@@ -3,7 +3,6 @@ import '../assets/css/TimeBar.css'
 
 
 export default (props) => {
-    
     return (
         <div className="time-bar-container">
             <span className="time-bar-text">1:40</span>
@@ -13,5 +12,5 @@ export default (props) => {
             <span className="time-bar-text">{props.musicTime}</span>
         </div>
     )
-    
+
 }
