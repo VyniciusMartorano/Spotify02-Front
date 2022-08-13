@@ -8,13 +8,16 @@ import '../assets/css/IconHeart.css'
 //<i class="fa-regular fa-heart i"></i>
 
 export default class IconHeart extends Component {
-/////////
+    constructor (props) {
+        super(props)
+        this.liked = props.state
+        console.log(this.state)
+    }
     
     render () {
         return (
-            <div>
-                <i className="fa-regular fa-heart icon-heart"></i>
-                <i style={{display: 'none'}} className="fa-solid fa-heart icon-heart"></i>
+            <div>             
+               <i className={this.liked ? "fa-regular fa-heart icon-heart" : "fa-solid fa-heart icon-heart"}></i>  
             </div>
         )
     }

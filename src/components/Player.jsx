@@ -5,38 +5,53 @@ import IconHeart from "./IconHeart"
 import VolumeBar from "./VolumeBar"
 import IconVolume from './IconVolume'
 import PlayerService from "./services/Player-service"
-import {Howl, Howler} from 'howler';
 
 
 
 const Player = (props) => {
-        //const queueMusics = props.queueMusics
-        //let currentIndex = 0
-        let [isPlaying, setisPlaying] = useState(false)
-        let [currentMusic, setCurrentMusic] = useState({})
-        const audioPlayer = useRef()
+        const [isPlaying, setIsPlaying] = useState(false)
+        const [percentage, setPercentage] = useState(0)
+        const [duration, setDuration] = useState(0)
+        const [currentTime, setCurrentTime] = useState(0)
+        const [currentMusic, setCurrentMusic] = useState({liked:false})
+        const audioRef = useRef()
         const PlayServ = new PlayerService()
-        const howlerPlayer = new Howl({src: "Post Malone - Circles.mp3"})
 
 
-        async function setMusic () {
+        async function componentWillMount () {
             const response = await PlayServ.get()
-            setCurrentMusic({...response[0]})
-
+            setCurrentMusic(response[0])
         }
 
+        const onChange = (e) => {
+            const audio = audioRef.current
+            audio.currentTime = (audio.duration / 100) * e.target.value
+            setPercentage(e.target.value)
+        }
 
-        const playPauseMusic = () => {
-            setMusic()
-        if (isPlaying) {
-            howlerPlayer.pause()
-            setisPlaying(false)
+        const play = () => {
+            const audio = audioRef.current
+            audio.volume = 0.1
+        
+            if (!isPlaying) {
+              setIsPlaying(true)
+              audio.play()
+            }
+        
+            if (isPlaying) {
+              setIsPlaying(false)
+              audio.pause()
+            }
+          }
+
+        const getCurrDuration = (e) => {
+            const percent = ((e.currentTarget.currentTime / e.currentTarget.duration) * 100).toFixed(2)
+            const time = e.currentTarget.currentTime
+
+            setPercentage(+percent)
+            setCurrentTime(time.toFixed(2))
         }
-        else {
-            howlerPlayer.play()
-            setisPlaying(true)
-        }
-        }
+
 
         return (
         <div className="player-container">
@@ -49,22 +64,31 @@ const Player = (props) => {
                         <span className="autor-music-player">Post Malone</span>
                     </div>
                     <div className="fav-div-icon">
-                        <IconHeart/>
+                        <IconHeart state={currentMusic.liked}/>
                     </div>
                 </div>
                 <div id="center-item-player-bar" className="item-player">
                     <div className="player-buttons-container">
                         <i className="fa-solid fa-shuffle icon-button i-tiny"></i>
                         <i className="fa-solid fa-backward-step icon-button i-normal"></i>
-                        {
-                        isPlaying ? <i onClick={playPauseMusic} className="fa-solid fa-circle-pause icon-button-pp i-larger"></i>:<i onClick={playPauseMusic} className="fa-solid fa-circle-play icon-button-pp i-larger"></i>
-                        }
+                    
+                        <i onClick={play} className={isPlaying ? "fa-solid fa-circle-pause icon-button-pp i-larger" : "fa-solid fa-circle-play icon-button-pp i-larger"}/>
+                        
 
-                        <audio ref={audioPlayer} src="../../../backend/musics-bd/Post Malone - Circles.mp3"/>
+                        <audio ref={audioRef}
+                        onTimeUpdate={getCurrDuration}
+                        onLoadedData={(e) => {
+                            setDuration(e.currentTarget.duration.toFixed(2))
+                        }}
+                        src={currentMusic.file}
+                        />
                         <i className="fa-solid fa-forward-step icon-button i-normal"></i>
                         <i className="fa-solid fa-repeat icon-button i-tiny"></i>
                     </div>
-                    <TimeBar musicTime={currentMusic.duration} />
+                    <TimeBar 
+                    percentage={percentage} 
+                    onChange={onchange} 
+                    />
                 </div>
                 <div id="right-item-player-bar" className="item-player">
                     <IconVolume/>

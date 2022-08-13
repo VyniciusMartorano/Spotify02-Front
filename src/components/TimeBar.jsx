@@ -1,16 +1,59 @@
-import React, { Component } from "react"
+import {React, useState, useRef, useEffect} from "react"
 import '../assets/css/TimeBar.css'
+import '../assets/css/Thumb.css'
 
 
-export default (props) => {
+export default function TimeBar ({percentage = 0, onChange}){
+    const [position, setPosition] = useState(0)
+    const [marginLeft, setMarginLeft] = useState(0)
+    const [progressBarWidth, setprogressBarWidth] = useState(0)
+
+    const rangeRef = useRef()
+    const thumbRef = useRef()
+
+    useEffect(
+        () => {
+            const rangeWidth = rangeRef.current.getBoundingClientRect().width
+            const thumbWidth = thumbRef.current.getBoundingClientRect().width
+            const centerThumb = (thumbWidth / 100) * percentage * -1
+            const centerProgressBar = thumbWidth + (rangeWidth / 100) * percentage - (thumbWidth / 100) * percentage
+            setPosition(percentage)
+            setMarginLeft(centerThumb) 
+            setprogressBarWidth(centerProgressBar)
+        }, [percentage]
+    )
+
     return (
-        <div className="time-bar-container">
-            <span className="time-bar-text">1:40</span>
-            <div className="progress-container">
-                <div style={{width: "240px"}} className="progress-current-time"></div>
+        <div className="slider-container">
+            <div className="progress-bar-cover" style={
+                {width: `${progressBarWidth}px`}
+            }>
             </div>
-            <span className="time-bar-text">{props.musicTime}</span>
+            <div
+            className="thumb"
+            ref={thumbRef}
+            style={{
+                left: `${position}%`,
+                marginLeft: `${marginLeft}px`
+            }}
+            ></div>
+
+            <input type="range" 
+            value={position}
+            ref={rangeRef}
+            step='0.01'
+            className="range"
+            onChange={onChange}
+            />
+
         </div>
+        // <div className="time-bar-container">
+        //     <span className="time-bar-text">1:40</span>
+        //     <div className="progress-container">
+        //         <div style={{width: "240px"}} className="progress-current-time"></div>
+        //     </div>
+        //     <span className="time-bar-text">{props.musicTime}</span>
+        // </div>
     )
 
 }
