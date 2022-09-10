@@ -1,5 +1,5 @@
 import {React, useState, useRef, useEffect} from "react"
-import '../assets/css/TimeBar.css'
+import '../assets/css/Slider.css'
 import '../assets/css/Thumb.css'
 
 

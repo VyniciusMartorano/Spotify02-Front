@@ -1,0 +1,80 @@
+:root {
+    --current-time-bar-color: rgb(249, 249, 249);
+    --color-timebar: rgb(94, 94, 94);
+    
+}
+
+.slider-container {
+  --thumb-width: 10px;
+  --thumb-height: 10px;
+  --progress-bar-height: 4px;
+  position: relative;
+  width: 100%;
+}
+
+.range::-webkit-slider-thumb {
+  width: var(--thumb-width);
+  height: var(--thumb-height);
+
+  background: #350f2d;
+  border: 1px solid #000000;
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+.thumb {
+  width: var(--thumb-width);
+  height: var(--thumb-height);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.753);
+  z-index: 3;
+  background: rgb(255, 255, 255);
+  position: absolute;
+  border-radius: 50%;
+  top: 50%;
+  transform: translate(0%, -50%);
+  user-select: none; /*  Prevent Accidentally highlighting the number while sliding the cursor  */
+}
+
+
+  
+.slider-container::before {
+  content: '';
+  background-color: var(--color-timebar);
+  width: 99%;
+  height: calc(var(--progress-bar-height) - 1px);
+  display: block;
+  position: absolute;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+
+  .progress-bar-cover {
+  background-color: var(--current-time-bar-color);
+  width: 0%;
+  height: var(--progress-bar-height);
+  display: block;
+  position: absolute;
+  border-radius: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  user-select: none;
+  /* pointer-events: none; */
+}
+
+
+.range {
+  -webkit-appearance: none;
+  background-color: rgba(240, 9, 9, 0.397);
+  height: 10px;
+  width: 100%;
+  cursor: pointer;
+  opacity: 0;
+  margin: 0 auto;
+}
+

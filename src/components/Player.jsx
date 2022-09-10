@@ -1,59 +1,53 @@
 import React, { useRef, useState } from "react"
 import '../assets/css/Player.css'
-import TimeBar from "./TimeBar"
+import Slider from "./Slider"
 import IconHeart from "./IconHeart"
 import VolumeBar from "./VolumeBar"
 import IconVolume from './IconVolume'
-import PlayerService from "./services/Player-service"
+import song from './Guns N Roses - Patience (Official Music Video).mp3'
+// import PlayerService from "./services/Player-service"
 
 
 
-const Player = (props) => {
-        const [isPlaying, setIsPlaying] = useState(false)
-        const [percentage, setPercentage] = useState(0)
-        const [duration, setDuration] = useState(0)
-        const [currentTime, setCurrentTime] = useState(0)
-        const [currentMusic, setCurrentMusic] = useState({liked:false})
-        const audioRef = useRef()
-        const PlayServ = new PlayerService()
+const Player = (music) => {
+    const [percentage, setPercentage] = useState(0)
+    const [isPlaying, setIsPlaying] = useState(false)
+    const [duration, setDuration] = useState(0)
+    const [currentTime, setCurrentTime] = useState(0)
+  
+    const audioRef = useRef()
+  
+    const onChange = (e) => {
+      const audio = audioRef.current
+      audio.currentTime = (audio.duration / 100) * e.target.value
+      setPercentage(e.target.value)
+    }
+  
+    const play = () => {
+      const audio = audioRef.current
+      audio.volume = 1
+  
+      if (!isPlaying) {
+        setIsPlaying(true)
+        audio.play()
+      }
+  
+      if (isPlaying) {
+        setIsPlaying(false)
+        audio.pause()
+      }
+    }
+  
+    const getCurrDuration = (e) => {
+      const percent = ((e.currentTarget.currentTime / e.currentTarget.duration) * 100).toFixed(2)
+      const time = e.currentTarget.currentTime
+  
+      setPercentage(+percent)
+      setCurrentTime(time.toFixed(2))
+    }
 
 
-        async function componentWillMount () {
-            const response = await PlayServ.get()
-            setCurrentMusic(response[0])
-        }
-
-        const onChange = (e) => {
-            const audio = audioRef.current
-            audio.currentTime = (audio.duration / 100) * e.target.value
-            setPercentage(e.target.value)
-        }
-
-        const play = () => {
-            const audio = audioRef.current
-            audio.volume = 0.1
-        
-            if (!isPlaying) {
-              setIsPlaying(true)
-              audio.play()
-            }
-        
-            if (isPlaying) {
-              setIsPlaying(false)
-              audio.pause()
-            }
-          }
-
-        const getCurrDuration = (e) => {
-            const percent = ((e.currentTarget.currentTime / e.currentTarget.duration) * 100).toFixed(2)
-            const time = e.currentTarget.currentTime
-
-            setPercentage(+percent)
-            setCurrentTime(time.toFixed(2))
-        }
-
-
-        return (
+    return (
         <div className="player-container">
             <div className="box-player">
                 <div id="left-item-player-bar" className="item-player">
@@ -64,7 +58,7 @@ const Player = (props) => {
                         <span className="autor-music-player">Post Malone</span>
                     </div>
                     <div className="fav-div-icon">
-                        <IconHeart state={currentMusic.liked}/>
+                        <IconHeart state={true}/>
                     </div>
                 </div>
                 <div id="center-item-player-bar" className="item-player">
@@ -73,21 +67,22 @@ const Player = (props) => {
                         <i className="fa-solid fa-backward-step icon-button i-normal"></i>
                     
                         <i onClick={play} className={isPlaying ? "fa-solid fa-circle-pause icon-button-pp i-larger" : "fa-solid fa-circle-play icon-button-pp i-larger"}/>
-                        
-
-                        <audio ref={audioRef}
-                        onTimeUpdate={getCurrDuration}
-                        onLoadedData={(e) => {
-                            setDuration(e.currentTarget.duration.toFixed(2))
-                        }}
-                        src={currentMusic.file}
-                        />
                         <i className="fa-solid fa-forward-step icon-button i-normal"></i>
                         <i className="fa-solid fa-repeat icon-button i-tiny"></i>
                     </div>
-                    <TimeBar 
+                    
+                    <audio
+                    ref={audioRef}
+                    onTimeUpdate={getCurrDuration}
+                    onLoadedData={(e) => {
+                    setDuration(e.currentTarget.duration.toFixed(2))
+                    }}
+                    src={song}
+                    />
+
+                    <Slider 
                     percentage={percentage} 
-                    onChange={onchange} 
+                    onChange={onChange} 
                     />
                 </div>
                 <div id="right-item-player-bar" className="item-player">
@@ -95,9 +90,9 @@ const Player = (props) => {
                     <VolumeBar/>
                 </div>
             </div>
-           
+        
         </div>
-        )
+    )
 }
 
 export default Player
