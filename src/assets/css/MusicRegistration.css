@@ -1,0 +1,78 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+}
+:root {
+    --title-page: 'roboto';
+}
+
+
+body {
+    background-color: rgb(6, 6, 6);
+}
+
+.page-title {
+    font: 32px var(--title-page);
+    color: white;
+    text-align: center;
+    padding: 15px;
+
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.form-box {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    border: 1px solid white;
+
+    padding: 20px;
+}
+
+
+.text-input {
+    width: 300px;
+    height: 30px;
+    padding-left: 10px;
+    border-radius: 4px;
+    font-family: 'poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: rgb(29, 185, 84);
+}
+
+.text-input:hover {
+    border: 2px solid white;
+}
+
+.label {
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-family: 'roboto';
+
+}
+
+.dropdown {
+    width: 300px;
+    height: 20px;
+    border-radius: 4px;
+    font-family: 'poppins', sans-serif;
+}
+
+
+.button-choice {
+    width: 90px;
+    height: 25px;
+    border-radius: 4px;
+}
+

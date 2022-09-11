@@ -72,17 +72,17 @@ const Player = (music) => {
                     </div>
                     
                     <audio
-                    ref={audioRef}
-                    onTimeUpdate={getCurrDuration}
-                    onLoadedData={(e) => {
-                    setDuration(e.currentTarget.duration.toFixed(2))
-                    }}
-                    src={song}
+                      ref={audioRef}
+                      onTimeUpdate={getCurrDuration}
+                      onLoadedData={(e) => {
+                      setDuration(e.currentTarget.duration.toFixed(2))
+                      }}
+                      src={song}
                     />
 
                     <Slider 
-                    percentage={percentage} 
-                    onChange={onChange} 
+                      percentage={percentage} 
+                      onChange={onChange} 
                     />
                 </div>
                 <div id="right-item-player-bar" className="item-player">

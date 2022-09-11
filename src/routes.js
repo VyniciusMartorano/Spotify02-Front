@@ -1,6 +1,7 @@
 import React from "react"
 import { Route, Routes, BrowserRouter } from "react-router-dom"
-import HomePage from "./pages/HomePage"
+import HomePage  from "./pages/HomePage"
+import MusicRegistration  from "./pages/MusicRegistration"
 
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
@@ -15,6 +16,7 @@ function App(props) {
                 <BrowserRouter>
                     <Routes>
                         <Route exact path="/" element={<HomePage />} />
+                        <Route exact path="/addmusic" element={<MusicRegistration />} />
 
                     </Routes>
                 </BrowserRouter>
