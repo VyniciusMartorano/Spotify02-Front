@@ -61,37 +61,13 @@ function MusicRegistration () {
                         IdforSelectLabel="downloadMode" 
                         optionLabel="option"
                         optionValue="id"
-                        
                         data={[
-                            {id: 0, option: 'Não'},
-                            {id: 1, option: 'Sim'}
+                            {id: 0, option: 'Por arquivo'},
+                            {id: 1, option: 'Por link'}
                     ]}
                     />
-                    <h1 className="label">
-                        <InputMusic props={downloadMode} />
-                    </h1>
-
-                    {/* {
-                        downloadMode == 0 && (
-                        <div>
-                            <label htmlFor="file" className="label">File</label>
-                            <input type="file" name="file" id="file"
-                            />
-                        </div>
-                        )
-                        
-                    }
-                    {
-                        downloadMode == 1 && (
-                            <div>
-                                <label htmlFor="dowloadMusic" className="label">
-                                    Baixar Música
-                                </label>
-                                <input type="text" name="url" id="dowloadMusic" />
-                            </div>
-                            )
-                    }  */}
-                    <h1 className="label">fdsf{downloadMode}</h1>
+                    
+                    <InputMusic props={downloadMode} />
 
                 </form>
             </section>
