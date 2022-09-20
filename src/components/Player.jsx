@@ -9,7 +9,7 @@ import song from './Guns N Roses - Patience (Official Music Video).mp3'
 
 
 
-const Player = (music) => {
+const Player = () => {
     const [percentage, setPercentage] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
     const [duration, setDuration] = useState(0)
@@ -66,7 +66,12 @@ const Player = (music) => {
                         <i className="fa-solid fa-shuffle icon-button i-tiny"></i>
                         <i className="fa-solid fa-backward-step icon-button i-normal"></i>
                     
-                        <i onClick={play} className={isPlaying ? "fa-solid fa-circle-pause icon-button-pp i-larger" : "fa-solid fa-circle-play icon-button-pp i-larger"}/>
+                        <i onClick={play} 
+                        className={isPlaying 
+                          ? "fa-solid fa-circle-pause icon-button-pp i-larger" 
+                          : "fa-solid fa-circle-play icon-button-pp i-larger"}
+                        />
+
                         <i className="fa-solid fa-forward-step icon-button i-normal"></i>
                         <i className="fa-solid fa-repeat icon-button i-tiny"></i>
                     </div>
@@ -74,8 +79,9 @@ const Player = (music) => {
                     <audio
                       ref={audioRef}
                       onTimeUpdate={getCurrDuration}
-                      onLoadedData={(e) => {
-                      setDuration(e.currentTarget.duration.toFixed(2))
+                      onLoadedData={
+                        (e) => {
+                          setDuration(e.currentTarget.duration.toFixed(2))
                       }}
                       src={song}
                     />

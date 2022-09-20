@@ -10,7 +10,9 @@ function Dropdown({IdforSelectLabel, data, optionValue, optionLabel, downloadMod
     )
 
     return (
-        <select onChange={(e) => downloadMode(e.target.value)} className="dropdown"  id={IdforSelectLabel}>
+        <select onChange={(e) => {
+            downloadMode(e.target.value)
+            }} className="dropdown"  id={IdforSelectLabel}>
             {options}
         </select>
     )

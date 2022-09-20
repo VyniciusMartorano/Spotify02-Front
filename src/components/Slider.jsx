@@ -47,13 +47,6 @@ export default function TimeBar ({percentage = 0, onChange}){
             />
 
         </div>
-        // <div className="time-bar-container">
-        //     <span className="time-bar-text">1:40</span>
-        //     <div className="progress-container">
-        //         <div style={{width: "240px"}} className="progress-current-time"></div>
-        //     </div>
-        //     <span className="time-bar-text">{props.musicTime}</span>
-        // </div>
     )
 
 }
