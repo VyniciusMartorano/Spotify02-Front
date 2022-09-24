@@ -34,7 +34,6 @@ body {
     flex-direction: column;
     width: 500px;
     border: 1px solid white;
-
     padding: 20px;
 }
 
@@ -45,9 +44,9 @@ body {
     padding-left: 10px;
     border-radius: 4px;
     font-family: 'poppins', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    color: rgb(29, 185, 84);
+    font-weight: 600;
+    font-size: 11px;
+    color: rgb(5, 92, 36);
 }
 
 .text-input:hover {
@@ -76,3 +75,38 @@ body {
     border-radius: 4px;
 }
 
+
+.inp-music-container {
+    display: flex;
+    margin-top: 5px;
+    flex-direction: column;
+}
+
+.input-file-mode {
+    color: white;
+}
+
+
+.input-music-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.button-download {
+    margin: 5px 0px 0px 10px;
+    width: 100px;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.button-download:hover {
+    background-color: rgb(122, 181, 143);
+    border: 1px solid rgb(87, 220, 87);
+    transition: .4s ease;
+    padding: 3px;
+}
+
+.disabled {
+    pointer-events: none;
+    background-color: rgb(153, 151, 151);
+}

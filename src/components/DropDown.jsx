@@ -2,7 +2,7 @@ import React from "react"
 
 
 
-function Dropdown({IdforSelectLabel, data, optionValue, optionLabel, downloadMode}) {
+function Dropdown({IdforSelectLabel, data, optionValue, optionLabel, onChange}) {
     const options = data.map(
         item => {
             return <option key={item[optionValue]} value={item[optionValue]}>{item[optionLabel]}</option>
@@ -11,7 +11,7 @@ function Dropdown({IdforSelectLabel, data, optionValue, optionLabel, downloadMod
 
     return (
         <select onChange={(e) => {
-            downloadMode(e.target.value)
+            onChange(e.target.value)
             }} className="dropdown"  id={IdforSelectLabel}>
             {options}
         </select>

@@ -15,12 +15,12 @@
 //     }
 
 //     async post (music) {
-//         const response = await axios.post(`${this.url}/musics`, music)
+//         const response = await axios.post(`${this.url}/musics/`, music)
 //         return response
 //     }
 
 //     delete (music) {
-//         const response = axios.delete(`${this.url}/${music.id}`)
+//         const response = axios.delete(`${this.url}/${music.id}/`)
 //         return response
 //     }
 // } 
