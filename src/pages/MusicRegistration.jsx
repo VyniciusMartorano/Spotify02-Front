@@ -1,5 +1,4 @@
-import React from "react"
-import { useState } from "react"
+import React, { useState } from "react"
 import './../assets/css/MusicRegistration.css'
 import Dropdown from "../components/DropDown"
 import InputMusic from "../components/InputMusic"
@@ -8,37 +7,51 @@ import listHaveEmptyItem from "../utils/isEmpty"
 import {ToastContainer, toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 import CustomMessage from "../utils/CustomMensageToast"
+import getFileExtension from "../utils/getFileExtension"
 
 
 function MusicRegistration () {
     const [responseIsLoading, SetResponseIsLoading] = useState(false)
-    const [downloadMode, setDownloadMode] = useState(false)
+    const [downloadMode, setDownloadMode] = useState(0)
 
     const [nameMusic, setNameMusic] = useState('')
     const [artist, setArtist] = useState(0)
     const [genero, setGenero] = useState(0)
-    const [music, setMusic] = useState('')
+    const [music_url, setMusicUrl] = useState(null)
+    const [music_file, setMusicFile] = useState(null)
+    const [image, setImage] = useState('')
 
     const MusicRegServ = new MusicRegistrationService()
+
+    const ACCEPTED_MUSIC_EXTENSIONS = ['mp3', 'mp4', 'wav']
     
 
     const artists = [
         {id: 0, name: 'Nenhum'},
-        {id: 1, name: 'Matue'},
-        {id: 2, name: 'Zé Ramalho'}
+        {id: 1, name: 'Post Malone'},
     ]
 
     const generos = [
         {id: 0, name: 'Nenhum'},
-        {id: 2, name: 'Pop'},
-        {id: 3, name: 'Trap'},
-        {id: 1, name: 'Mpb'},
+        {id: 1, name: 'Pop'},
+        {id: 2, name: 'Mpb'},
     ]
 
     const allFieldsAreFilled = () => {
-        const formFields = [nameMusic, artist, genero, music]
+        const formFields = [nameMusic, artist, genero, (downloadMode ? music_url : music_file)]
         if (listHaveEmptyItem(formFields)) return false
         else return true
+    }
+
+    const musicFormatIsValid = () => {
+        if (
+            !ACCEPTED_MUSIC_EXTENSIONS.includes(
+            getFileExtension(music_file[0].name)
+            )
+        ) {
+            return false
+        }
+        return true
     }
 
     const addToasMessage = (type, title, bodyMsg) => {
@@ -57,36 +70,37 @@ function MusicRegistration () {
             return
         }
 
+        if (!musicFormatIsValid()) {
+            addToasMessage('error', 'Formato de música inválido ', `Formatos aceitos: ${ACCEPTED_MUSIC_EXTENSIONS}`)
+            return 
+        }
+        
+        SetResponseIsLoading(true)
         const formData = new FormData()
         formData.append("name_music", nameMusic)
         formData.append("artist_id", artist)
         formData.append("genero_id", genero)
-        formData.append("music", downloadMode ? music : music[0])
+        formData.append('image', image)
 
+        if (music_url) formData.append("music_url", music_url)
+        else if (music_file) formData.append("music_file", music_file[0])
+        
+        
+    
         MusicRegServ.insertMusic(formData).then(
             () => {
-                addToasMessage('success','Sucesso','A música foi enviada com sucesso')
-            }
-        )
-
-    }
-
-    const downloadMusic = () => {
-        SetResponseIsLoading(true)
-        MusicRegServ.DownloadUrlMusic(music).then(
-            (response) => {
-                console.log(response.data.status)
                 SetResponseIsLoading(false)
+                addToasMessage('success','Sucesso', 'A música foi enviada com sucesso')
             },
-            (erro) => {
-                SetResponseIsLoading(false)    
-                console.log(erro.response.data)
+            (error) => {
+                SetResponseIsLoading(false)  
+                addToasMessage('info','Erro!',error.response.data)
             }
         )
+
     }
 
-    
-    
+
     return (
         <div>
             <ToastContainer/>
@@ -123,8 +137,11 @@ function MusicRegistration () {
                     <input 
                         type="file" 
                         id="image" 
-                        src="" 
-                        alt="" 
+                        className="input-file-mode"
+                        onChange={(e) => setImage(
+                            e.target.files[0] ? e.target.files[0] : ''
+                            ) }
+                        accept="image/*"
                     />
 
                     <label htmlFor="downloadMode" className="label">Música</label>
@@ -146,19 +163,23 @@ function MusicRegistration () {
                     <div className={downloadMode == 1 ? 'input-music-container' : ''}>
                         <InputMusic 
                             downloadMode={downloadMode} 
-                            onChange={(value) => setMusic(value)}
+                            onChange={
+                                (value) => {
+                                if (typeof value == typeof ''){
+                                    setMusicUrl(value)
+                                    setMusicFile(null)
+                                }
+                                else {          
+                                    setMusicFile(value)
+                                    setMusicUrl(null)
+                                }
+                            }
+                            }
                         />
 
                         {
-                            downloadMode == 1 && (
-                            <button onClick={downloadMusic} 
-                            className={`button-download ${responseIsLoading ? "disabled" : ""}`}>Baixar</button>
-                            )
-                        }
-                        {
-                    
                             <button onClick={saveMusic} 
-                            className={`button-download`}>Baixar</button>
+                            className={`button-download ${responseIsLoading ? "disabled" : ""}`}>Salvar Música</button>
                         }
                     </div>
 
