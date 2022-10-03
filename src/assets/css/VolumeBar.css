@@ -1,20 +1,80 @@
+:root {
+    --current-time-bar-color: rgb(249, 249, 249);
+    --color-timebar: rgb(94, 94, 94);
+    
+}
 
-
-
-.volume-container {
-    display: flex;
+.volume-bar-container {
+    --thumb-volume-width: 10px;
+    --thumb-volume-height: 10px;
+    --progress-bar-height: 4px;
+    position: relative;
     width: 120px;
-    height: 4px;
-    border-radius: 8px;
-    background-color: var(--color-timebar);
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.286);
+}
 
+.range-volume::-webkit-slider-thumb-volume {
+    width: var(--thumb-volume-width);
+    height: var(--thumb-volume-height);
+    border: 1px solid #000000;
+    border-radius: 50%;
+    -webkit-appearance: none;
+}
+
+.thumb-volume {
+    display: block;
+    width: var(--thumb-volume-width);
+    height: var(--thumb-volume-height);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.753);
+    z-index: 3;
+    background: rgb(255, 255, 255);
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    transform: translate(0%, -50%);
+    user-select: none; /*  Prevent Accidentally highlighting the number while sliding the cursor  */
 }
 
 
-.nivel-volume {
-    display: flex;
-    border-radius: 4px;
-    background-color: var(--current-time-bar-color);
+  /* background */
+.volume-bar-container::before {
+    content: '';
+    background-color: var(--color-timebar);
+    width: 100%;
+    height: calc(var(--progress-bar-height) );
+    display: block;
+    position: absolute;
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+
+.progress-bar-cover {
+    width: 0%;
+    height: var(--progress-bar-height);
+    display: block;
+    position: absolute;
+    border-radius: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    user-select: none;
+    /* pointer-events: none; */
+}
+
+.progress-bar-cover:hover {
+    background-color: rgb(27, 196, 88);
+}
+
+
+.range-volume {
+    -webkit-appearance: none;
+    height: 10px;
+    width: 100%;
+    opacity: 0;
+    margin: 0 auto;
+    cursor: pointer;
 }
 

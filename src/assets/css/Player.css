@@ -13,7 +13,7 @@
     left: 0;
     width: 100%;
     height: 100px;
-    background-color: rgba(24, 24, 24);
+    background-color: rgba(0, 0, 0);
 }
 
 .box-player {
@@ -97,6 +97,13 @@
     color: var(--icon-not-hover);
 }
 
+#icon-btn-active {
+    color: rgb(27, 196, 88);
+}
+
+#icon-btn-active:hover {
+    color: rgb(72, 211, 123);
+}
 
 .icon-button:hover {
     color: var(--icon-hovered);
@@ -146,4 +153,8 @@
     align-items: center;
     justify-content: center;
     
+}
+
+.shuffle-mode-style-active {
+    color: rgb(27, 196, 88);
 }

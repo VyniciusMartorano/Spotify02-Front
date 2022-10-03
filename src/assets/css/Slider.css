@@ -15,8 +15,6 @@
 .range::-webkit-slider-thumb {
   width: var(--thumb-width);
   height: var(--thumb-height);
-
-  background: #350f2d;
   border: 1px solid #000000;
   border-radius: 50%;
   cursor: pointer;
@@ -53,7 +51,7 @@
 }
 
 
-  .progress-bar-cover {
+.progress-bar-cover {
   background-color: var(--current-time-bar-color);
   width: 0%;
   height: var(--progress-bar-height);
@@ -70,7 +68,6 @@
 
 .range {
   -webkit-appearance: none;
-  background-color: rgba(240, 9, 9, 0.397);
   height: 10px;
   width: 100%;
   cursor: pointer;

@@ -80,11 +80,10 @@ function MusicRegistration () {
         formData.append("name_music", nameMusic)
         formData.append("artist_id", artist)
         formData.append("genero_id", genero)
-        formData.append('image', image)
+        formData.append("imagep", image)
 
         if (music_url) formData.append("music_url", music_url)
         else if (music_file) formData.append("music_file", music_file[0])
-        
         
     
         MusicRegServ.insertMusic(formData).then(

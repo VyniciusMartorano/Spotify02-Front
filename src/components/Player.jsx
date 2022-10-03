@@ -5,7 +5,7 @@ import IconHeart from "./IconHeart"
 import VolumeBar from "./VolumeBar"
 import IconVolume from './IconVolume'
 import song from './Guns N Roses - Patience (Official Music Video).mp3'
-// import PlayerService from "./services/Player-service"
+
 
 
 
@@ -13,14 +13,24 @@ const Player = () => {
     const [percentage, setPercentage] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
     const [duration, setDuration] = useState(0)
+    const [isLiked, setIsLiked] = useState(false)
     const [currentTime, setCurrentTime] = useState(0)
+    const [shuffleMode, setShuffleMode] = useState(true)
+    const [repeatMode, setRepeatMode] = useState(true)
+    const [volume, setVolume] = useState(50)
   
     const audioRef = useRef()
   
-    const onChange = (e) => {
+    const onChangeMusic = (e) => {
       const audio = audioRef.current
       audio.currentTime = (audio.duration / 100) * e.target.value
       setPercentage(e.target.value)
+    }
+
+    const onChangeVolume = (e) => {
+      const audio = audioRef.current
+      audio.volume = e.target.value
+      setVolume(e.target.value) 
     }
   
     const play = () => {
@@ -58,12 +68,21 @@ const Player = () => {
                         <span className="autor-music-player">Post Malone</span>
                     </div>
                     <div className="fav-div-icon">
-                        <IconHeart state={true}/>
+                        <IconHeart 
+                          onChange={(value) => setIsLiked(value)}
+                          liked={isLiked}
+                        />
                     </div>
                 </div>
                 <div id="center-item-player-bar" className="item-player">
                     <div className="player-buttons-container">
-                        <i className="fa-solid fa-shuffle icon-button i-tiny"></i>
+                        <i 
+                          onClick={() => setShuffleMode(!shuffleMode)} 
+                          id={`${shuffleMode ? 'icon-btn-active' : ''}`}
+                          className={
+                            `fa-solid fa-shuffle icon-button i-tiny ${shuffleMode ? ' shuffle-mode-style-active': ''}`
+                            }>
+                        </i>
                         <i className="fa-solid fa-backward-step icon-button i-normal"></i>
                     
                         <i onClick={play} 
@@ -73,7 +92,11 @@ const Player = () => {
                         />
 
                         <i className="fa-solid fa-forward-step icon-button i-normal"></i>
-                        <i className="fa-solid fa-repeat icon-button i-tiny"></i>
+                        <i
+                          onClick={() => setRepeatMode(!repeatMode)}
+                          id={`${repeatMode ? 'icon-btn-active' : ''}`}
+                          className={`fa-solid fa-repeat icon-button i-tiny`}>
+                        </i>
                     </div>
                     
                     <audio
@@ -88,12 +111,12 @@ const Player = () => {
 
                     <Slider 
                       percentage={percentage} 
-                      onChange={onChange} 
+                      onChange={onChangeMusic} 
                     />
                 </div>
                 <div id="right-item-player-bar" className="item-player">
                     <IconVolume/>
-                    <VolumeBar/>
+                    <VolumeBar percentage={volume} onChange={onChangeVolume} />
                 </div>
             </div>
         
