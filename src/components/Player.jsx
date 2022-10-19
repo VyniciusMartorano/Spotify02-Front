@@ -16,8 +16,8 @@ const Player = () => {
     const [isLiked, setIsLiked] = useState(false)
     const [currentTime, setCurrentTime] = useState(0)
     const [shuffleMode, setShuffleMode] = useState(true)
-    const [repeatMode, setRepeatMode] = useState(true)
-    const [volume, setVolume] = useState(50)
+    const [repeatMode, setRepeatMode] = useState(false)
+    const [volume, setVolume] = useState(0.5)
   
     const audioRef = useRef()
   
@@ -27,11 +27,12 @@ const Player = () => {
       setPercentage(e.target.value)
     }
 
-    const onChangeVolume = (e) => {
+    const onChangeVolume = () => {
       const audio = audioRef.current
-      audio.volume = e.target.value
-      setVolume(e.target.value) 
+      audio.volume = volume / 100
     }
+
+  
   
     const play = () => {
       const audio = audioRef.current
@@ -102,10 +103,7 @@ const Player = () => {
                     <audio
                       ref={audioRef}
                       onTimeUpdate={getCurrDuration}
-                      onLoadedData={
-                        (e) => {
-                          setDuration(e.currentTarget.duration.toFixed(2))
-                      }}
+                      onLoadedData={e => setDuration(e.currentTarget.duration.toFixed(2))}
                       src={song}
                     />
 
@@ -116,7 +114,12 @@ const Player = () => {
                 </div>
                 <div id="right-item-player-bar" className="item-player">
                     <IconVolume/>
-                    <VolumeBar percentage={volume} onChange={onChangeVolume} />
+                    <VolumeBar
+                      onChange={value => {
+                        setVolume(value)
+                        onChangeVolume()
+                      }}
+                    />
                 </div>
             </div>
         

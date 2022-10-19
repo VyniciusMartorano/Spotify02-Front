@@ -36,6 +36,11 @@
     padding: 5px;
     border-radius: 50%;
     background-color: rgb(18, 18, 18);
+    cursor: pointer;
+}
+
+.icon-profile-container:hover {
+    background-color: rgb(23, 23, 23);
 }
 
 .home-btn-box {
@@ -43,12 +48,18 @@
     align-items: center;
     justify-content: center;
     height: 51px;
-    width: 57.4px;
+    width: 57.93px;
     font-size: 20px;
     border-radius: 50%;
     background-color: rgb(18, 18, 18);
-    color: white;
+    color: rgb(191, 188, 188);
     margin-right: 10px;
+}
+
+.home-btn-box:hover {
+    color: white;
+    background-color: rgb(20, 20, 20);
+    cursor: pointer;
 }
 
 .search-box {
@@ -62,7 +73,7 @@
     align-items: center;
     justify-content: center;
     height: 51px;
-    width: 51px;
+    width: 64.05px;
     font-size: 20px;
     border-radius: 50% 0% 0% 50%;
     background-color: rgb(18, 18, 18);

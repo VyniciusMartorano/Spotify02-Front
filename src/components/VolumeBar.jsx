@@ -1,54 +1,32 @@
 import '../assets/css/VolumeBar.css'
-import {React, useState, useRef, useEffect} from "react"
+import { React, useRef } from "react"
 
 
-export default function VolumeBar ({percentage = 0, onChange}){
-    const [position, setPosition] = useState(0)
-    const [marginLeft, setMarginLeft] = useState(0)
-    const [progressBarWidth, setprogressBarWidth] = useState(0)
+const VolumeBar = ({ onChange }) =>  {
 
-    const volumeBarRef = useRef()
-    const thumbRef = useRef()
-
-    useEffect(
-        () => {
-            const rangeWidth = volumeBarRef.current.getBoundingClientRect().width
-            const thumbWidth = thumbRef.current.getBoundingClientRect().width
-            const centerThumb = (thumbWidth / 100) * percentage * -1
-            const centerProgressBar = thumbWidth + (rangeWidth / 100) * percentage - (thumbWidth / 100) * percentage
-            setPosition(percentage)
-            setMarginLeft(centerThumb) 
-            setprogressBarWidth(centerProgressBar)
-        }, [percentage]
-    )
+    const volumeRef = useRef()
+ 
+    const slider = (value) => {
+        const valPercent = (value / volumeRef.current.max) * 100
+        volumeRef.current.style.background = `linear-gradient(to right, rgb(249,249,249) ${valPercent}%, rgb(94, 94, 94) ${valPercent}%)`
+        onChange(value)
+        
+    }
 
     return (
         <div className="volume-bar-container">
-            <div className="progress-bar-cover" style={
-                {width: `${progressBarWidth}px`}
-            }>
-            </div>
-            <div
-            className="thumb-volume"
-            ref={thumbRef}
-            style={{
-                left: `${position}%`,
-                marginLeft: `${marginLeft}px`
-            }}
-            ></div>
-
             <input 
+                id='range-volume'
+                ref={volumeRef}
                 type="range" 
-                value={position}
-                ref={volumeBarRef}  
-                step='0.01'
-                className="range-volume"
-                onChange={onChange}
+                
+                onInput={e => slider(e.target.value)}
                 min={0}
                 max={100}
             />
-
         </div>
     )
-
 }
+
+
+export default VolumeBar

@@ -20,16 +20,34 @@ function MusicRegistration () {
     const [music_url, setMusicUrl] = useState(null)
     const [music_file, setMusicFile] = useState(null)
     const [image, setImage] = useState('')
+    const [artists, setArtists] = useState([])
 
     const MusicRegServ = new MusicRegistrationService()
 
     const ACCEPTED_MUSIC_EXTENSIONS = ['mp3', 'mp4', 'wav']
     
 
-    const artists = [
-        {id: 0, name: 'Nenhum'},
-        {id: 1, name: 'Post Malone'},
-    ]
+    const getArtists = () => {
+        MusicRegServ.getArtists().then(
+            (response) => {
+                setArtists(response.data)
+            },
+            (error) => {
+                addToasMessage('error', 'Houve um erro ao recuperar os artistas', error.response.data)
+            }
+
+        )
+    }
+
+
+
+    // getArtists()
+
+    // const artists = [
+    //     {id: 0, name: 'Nenhum'},
+    //     {id: 1, name: 'Post Malone'},
+    // ]
+
 
     const generos = [
         {id: 0, name: 'Nenhum'},
@@ -38,7 +56,7 @@ function MusicRegistration () {
     ]
 
     const allFieldsAreFilled = () => {
-        const formFields = [nameMusic, artist, genero, (downloadMode ? music_url : music_file)]
+        const formFields = [nameMusic, artist, genero, ((downloadMode == 1) ? music_url : music_file)]
         if (listHaveEmptyItem(formFields)) return false
         else return true
     }
@@ -70,17 +88,21 @@ function MusicRegistration () {
             return
         }
 
-        if (!musicFormatIsValid()) {
-            addToasMessage('error', 'Formato de música inválido ', `Formatos aceitos: ${ACCEPTED_MUSIC_EXTENSIONS}`)
-            return 
+        if(music_file) {
+            if (!musicFormatIsValid()) {
+                addToasMessage('error', 'Formato de música inválido ', `Formatos aceitos: ${ACCEPTED_MUSIC_EXTENSIONS}`)
+                return 
+            }
         }
-        
+        console.log('Music File: ', music_file)
+        console.log('Music url: ', music_url)
+
         SetResponseIsLoading(true)
         const formData = new FormData()
         formData.append("name_music", nameMusic)
         formData.append("artist_id", artist)
         formData.append("genero_id", genero)
-        formData.append("imagep", image)
+        formData.append("image", image)
 
         if (music_url) formData.append("music_url", music_url)
         else if (music_file) formData.append("music_file", music_file[0])
@@ -164,11 +186,11 @@ function MusicRegistration () {
                             downloadMode={downloadMode} 
                             onChange={
                                 (value) => {
-                                if (typeof value == typeof ''){
+                                if (typeof value == typeof '') {
                                     setMusicUrl(value)
                                     setMusicFile(null)
                                 }
-                                else {          
+                                else {        
                                     setMusicFile(value)
                                     setMusicUrl(null)
                                 }

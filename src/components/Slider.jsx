@@ -1,6 +1,5 @@
 import {React, useState, useRef, useEffect} from "react"
 import '../assets/css/Slider.css'
-import '../assets/css/Thumb.css'
 
 
 export default function TimeBar ({percentage = 0, onChange}){

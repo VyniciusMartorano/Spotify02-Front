@@ -13,6 +13,10 @@ class MusicRegistrationService {
     insertMusic(music){
         return axios.post(`${this.apiUrl}api/musics/insert_music/`, music, { "Content-Type": "multipart/form-data" })
     }
+
+    getArtists() {
+        return axios.get(`${this.apiUrl}api/artist/`)
+    }
     
 }
 

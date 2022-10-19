@@ -8,6 +8,7 @@ export default function () {
   return (
     <section className="container-master">
       <TopBar/>
+      
       <Player/>
     </section>
   )

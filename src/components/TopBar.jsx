@@ -4,7 +4,7 @@ import profileImg from "./Victor 3x4-small.png"
 
 
 const TopBar = () => {
-
+    
 
     return (
         <header className="top-bar-container">
@@ -24,7 +24,6 @@ const TopBar = () => {
                         type="text" 
                         name="" 
                         className="input-search"
-                        id="" 
                     />
                     <div className="icon-remove-text-box">
 
