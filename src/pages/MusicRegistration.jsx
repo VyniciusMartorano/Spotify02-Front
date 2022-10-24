@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { Component } from "react"
 import './../assets/css/MusicRegistration.css'
 import Dropdown from "../components/DropDown"
 import InputMusic from "../components/InputMusic"
@@ -10,61 +10,63 @@ import CustomMessage from "../utils/CustomMensageToast"
 import getFileExtension from "../utils/getFileExtension"
 
 
-function MusicRegistration () {
-    const [responseIsLoading, SetResponseIsLoading] = useState(false)
-    const [downloadMode, setDownloadMode] = useState(0)
+class MusicRegistration extends Component {
+    constructor(props) {
+        super(props)
 
-    const [nameMusic, setNameMusic] = useState('')
-    const [artist, setArtist] = useState(0)
-    const [genero, setGenero] = useState(0)
-    const [music_url, setMusicUrl] = useState(null)
-    const [music_file, setMusicFile] = useState(null)
-    const [image, setImage] = useState('')
-    const [artists, setArtists] = useState([])
+        this.state = {
+            nameMusic: '',
+            responseIsLoading: false,
+            downloadMode: 0,
+            artist: 0,
+            genero: 0,
+            music_url: null,
+            music_file: null,
+            image: '',
+            artists: [],
+            generos: [],
+        }
 
-    const MusicRegServ = new MusicRegistrationService()
+        this.ACCEPTED_MUSIC_EXTENSIONS = ['mp3', 'mp4', 'wav']
+        this.MusicRegServ = new MusicRegistrationService()
+    }
+   
 
-    const ACCEPTED_MUSIC_EXTENSIONS = ['mp3', 'mp4', 'wav']
-    
+    componentDidMount() {
+        this.setArtists()
+        this.setGeneros()
+    }
 
-    const getArtists = () => {
-        MusicRegServ.getArtists().then(
-            (response) => {
-                setArtists(response.data)
-            },
-            (error) => {
-                addToasMessage('error', 'Houve um erro ao recuperar os artistas', error.response.data)
-            }
+    setArtists () {
+        this.MusicRegServ.getArtists().then(
+            (response) => this.setState({artists: response.data, artist: response.data[0].id}),
+            (error) => this.addToastMessage('error', 'Houve um erro ao recuperar os artistas', error.response.data)
+        )
+    }
 
+    async setGeneros () {
+        await this.MusicRegServ.getGeneros().then(
+            (response) =>  this.setState({generos: response.data, genero: response.data[0].id}),
+            (error) => this.addToastMessage('error', 'Houve um erro ao recuperar os gêneros', error.response.data)
         )
     }
 
 
-
-    // getArtists()
-
-    // const artists = [
-    //     {id: 0, name: 'Nenhum'},
-    //     {id: 1, name: 'Post Malone'},
-    // ]
-
-
-    const generos = [
-        {id: 0, name: 'Nenhum'},
-        {id: 1, name: 'Pop'},
-        {id: 2, name: 'Mpb'},
-    ]
-
-    const allFieldsAreFilled = () => {
-        const formFields = [nameMusic, artist, genero, ((downloadMode == 1) ? music_url : music_file)]
+    allFieldsAreFilled  () {
+        const formFields = [
+            this.state.nameMusic, 
+            this.state.artist, 
+            this.state.genero, 
+            ((this.state.downloadMode == 1) ? this.state.music_url : this.state.music_file)
+        ]
         if (listHaveEmptyItem(formFields)) return false
         else return true
     }
 
-    const musicFormatIsValid = () => {
+    musicFormatIsValid () {
         if (
-            !ACCEPTED_MUSIC_EXTENSIONS.includes(
-            getFileExtension(music_file[0].name)
+            !this.ACCEPTED_MUSIC_EXTENSIONS.includes(
+            getFileExtension(this.state.music_file[0].name)
             )
         ) {
             return false
@@ -72,7 +74,7 @@ function MusicRegistration () {
         return true
     }
 
-    const addToasMessage = (type, title, bodyMsg) => {
+    addToastMessage (type, title, bodyMsg) {
         toast[type](
             <CustomMessage 
                 title={title}
@@ -82,132 +84,134 @@ function MusicRegistration () {
         )
     }
 
-    const saveMusic = () => {
-        if (!allFieldsAreFilled()) {
-            addToasMessage('error', 'Existem campos incompletos', 'Preencha todos os campos e tente novamente')
+
+    saveMusic = () => {
+        if (!this.allFieldsAreFilled()) {
+            this.addToastMessage('error', 'Existem campos incompletos', 'Preencha todos os campos e tente novamente')
             return
         }
 
-        if(music_file) {
-            if (!musicFormatIsValid()) {
-                addToasMessage('error', 'Formato de música inválido ', `Formatos aceitos: ${ACCEPTED_MUSIC_EXTENSIONS}`)
+        if(this.state.music_file) {
+            if (!this.musicFormatIsValid()) {
+                this.addToastMessage('error', 'Formato de música inválido ', `Formatos aceitos: ${this.ACCEPTED_MUSIC_EXTENSIONS}`)
                 return 
             }
         }
-        console.log('Music File: ', music_file)
-        console.log('Music url: ', music_url)
 
-        SetResponseIsLoading(true)
+        this.setState({responseIsLoading: true})
+
         const formData = new FormData()
-        formData.append("name_music", nameMusic)
-        formData.append("artist_id", artist)
-        formData.append("genero_id", genero)
-        formData.append("image", image)
+        formData.append("name_music", this.state.nameMusic)
+        formData.append("artist_id", this.state.artist)
+        formData.append("genero_id", this.state.genero)
+        formData.append("image", this.state.image)
 
-        if (music_url) formData.append("music_url", music_url)
-        else if (music_file) formData.append("music_file", music_file[0])
+        if (this.state.music_url) formData.append("music_url", this.state.music_url)
+        else if (this.state.music_file) formData.append("music_file", this.state.music_file[0])
         
     
-        MusicRegServ.insertMusic(formData).then(
-            () => {
-                SetResponseIsLoading(false)
-                addToasMessage('success','Sucesso', 'A música foi enviada com sucesso')
-            },
-            (error) => {
-                SetResponseIsLoading(false)  
-                addToasMessage('info','Erro!',error.response.data)
-            }
+        this.MusicRegServ.insertMusic(formData).then(
+            () => this.addToastMessage('success','Sucesso', 'A música foi salva com sucesso')
+            ,
+            (error) => this.addToastMessage('info','Atenção!', error.response.data)
+            
+        ).finally(
+            () => this.setState({responseIsLoading: false})
         )
 
     }
 
-
-    return (
-        <div>
-            <ToastContainer/>
-            <h1 className="page-title">Bem vindo a o cadastro de musicas do Spotify 2</h1>
-            <section className="container">
-                <div className="form-box">
-                    <label htmlFor="name" className="label">Nome</label>
-                    <input 
-                        id="name" 
-                        type="text" 
-                        className="text-input"
-                        value={nameMusic} 
-                        onChange={(e) => setNameMusic(e.target.value)}
-                    />
-                    <label htmlFor="artist" className="label">Artistas</label>
-                    <Dropdown 
-                        IdforSelectLabel="artist" 
-                        data={artists}
-                        optionLabel="name"
-                        optionValue="id"
-                        onChange={(value) => setArtist(value)}
-                    />
-
-                    <label className="label" htmlFor="genero">Genero</label>
-                    <Dropdown 
-                        IdforSelectLabel="genero" 
-                        data={generos}
-                        optionLabel="name"
-                        optionValue="id"
-                        onChange={(value) => setGenero(value)}
-                    />
-
-                    <label htmlFor="image" className="label">Imagem</label>
-                    <input 
-                        type="file" 
-                        id="image" 
-                        className="input-file-mode"
-                        onChange={(e) => setImage(
-                            e.target.files[0] ? e.target.files[0] : ''
-                            ) }
-                        accept="image/*"
-                    />
-
-                    <label htmlFor="downloadMode" className="label">Música</label>
-                    <Dropdown 
-                        onChange={(value) => setDownloadMode(value)}
-                        IdforSelectLabel="downloadMode" 
-                        optionLabel="option"
-                        optionValue="id"
-                        data={[
-                            {id: 0, option: 'Por arquivo'},
-                            {id: 1, option: 'Por link'}
-                        ]}
-                    />
-
-                    <label htmlFor="music" className="label label-input-file">
-                            {downloadMode == 1 ? 'Digite a url da música' : 'Enviar arquivo' }
-                    </label>
-
-                    <div className={downloadMode == 1 ? 'input-music-container' : ''}>
-                        <InputMusic 
-                            downloadMode={downloadMode} 
-                            onChange={
-                                (value) => {
-                                if (typeof value == typeof '') {
-                                    setMusicUrl(value)
-                                    setMusicFile(null)
-                                }
-                                else {        
-                                    setMusicFile(value)
-                                    setMusicUrl(null)
-                                }
-                            }
-                            }
+    render () {
+        return (
+            <div>
+                <ToastContainer/>
+                <h1 className="page-title">Bem vindo a o cadastro de musicas do Spotify 2</h1>
+                <section className="container">
+                    <div className="form-box">
+                        <label htmlFor="name" className="label">Nome</label>
+                        <input 
+                            id="name" 
+                            type="text" 
+                            className="text-input"
+                            value={this.state.nameMusic} 
+                            onChange={(e) => this.setState({nameMusic: e.target.value})}
                         />
-
-                        {
-                            <button onClick={saveMusic} 
-                            className={`button-download ${responseIsLoading ? "disabled" : ""}`}>Salvar Música</button>
-                        }
+                        <label htmlFor="artist" className="label">Artistas</label>
+                        <Dropdown 
+                            IdforSelectLabel="artist" 
+                            data={this.state.artists}
+                            optionLabel="name"
+                            optionValue="id"
+                            onChange={(value) => this.setState({artist: value})}
+                        />
+    
+                        <label className="label" htmlFor="genero">Genero</label>
+                        <Dropdown 
+                            IdforSelectLabel="genero" 
+                            data={this.state.generos}
+                            optionLabel="descricao"
+                            optionValue="id"
+                            onChange={(value) => this.setState({genero: value})}
+                        />
+    
+                        <label htmlFor="image" className="label">Imagem</label>
+                        <input 
+                            type="file" 
+                            id="image" 
+                            className="input-file-mode"
+                            onChange={(e) => this.setState({image: e.target.files[0] ? e.target.files[0] : ''}) }
+                            accept="image/*"
+                        />
+    
+                        <label htmlFor="downloadMode" className="label">Música</label>
+                        <Dropdown 
+                            onChange={(value) => this.setState({downloadMode: value})}
+                            IdforSelectLabel="downloadMode" 
+                            optionLabel="option"
+                            optionValue="id"
+                            data={[
+                                {id: 0, option: 'Por arquivo'},
+                                {id: 1, option: 'Por link'}
+                            ]}
+                        />
+    
+                        <label htmlFor="music" className="label label-input-file">
+                                {this.state.downloadMode == 1 ? 'Digite a url da música' : 'Enviar arquivo' }
+                        </label>
+    
+                        <div className={this.state.downloadMode == 1 ? 'input-music-container' : ''}>
+                            <InputMusic 
+                                downloadMode={this.state.downloadMode} 
+                                onChange={
+                                    (value) => {
+                                    if (typeof value == typeof '') {
+                                        this.setState({music_url: value})
+                                        this.setState({music_file: null})
+                                    }
+                                    else {        
+                                        this.setState({music_file: value})
+                                        this.setState({music_url: null})
+                                    }
+                                }
+                                }
+                            />
+    
+                        
+                            <button 
+                                onClick={this.saveMusic} 
+                                className={`button-download ${this.state.responseIsLoading ? "disabled" : ""}`}
+                            >
+                                Salvar Música
+                            </button>
+                        
+                        </div>
+    
                     </div>
-
-                </div>
-            </section>
-        </div>
-    )
+                </section>
+            </div>
+        )
+    }
+    
 }
 
 export default MusicRegistration

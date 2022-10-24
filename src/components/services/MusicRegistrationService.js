@@ -17,6 +17,10 @@ class MusicRegistrationService {
     getArtists() {
         return axios.get(`${this.apiUrl}api/artist/`)
     }
+
+    getGeneros() {
+        return axios.get(`${this.apiUrl}api/genero/`)
+    }
     
 }
 

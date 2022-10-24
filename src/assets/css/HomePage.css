@@ -12,8 +12,15 @@
 
 .container-master {
     background-color: var(--background-app);
-    position: relative;
     display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100vh;
+}
+
+#mid-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
 }
