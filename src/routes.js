@@ -1,6 +1,7 @@
 import React from "react"
 import { Route, Routes, BrowserRouter } from "react-router-dom"
 import HomePage  from "./pages/HomePage"
+import Login  from "./pages/Login"
 import MusicRegistration  from "./pages/MusicRegistration"
 
 import { Provider } from 'react-redux'
@@ -15,7 +16,8 @@ function App(props) {
             <PersistGate persistor={persistor} >
                 <BrowserRouter>
                     <Routes>
-                        <Route exact path="/" element={<HomePage />} />
+                        <Route exact path="/" element={<Login />} />
+                        <Route exact path="/home" element={<HomePage />} />
                         <Route exact path="/addmusic" element={<MusicRegistration />} />
 
                     </Routes>
