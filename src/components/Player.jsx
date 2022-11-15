@@ -4,7 +4,6 @@ import Slider from "./Slider"
 import IconHeart from "./IconHeart"
 import VolumeBar from "./VolumeBar"
 import IconVolume from './IconVolume'
-import song from './Guns N Roses - Patience (Official Music Video).mp3'
 
 
 
@@ -104,7 +103,7 @@ const Player = () => {
                       ref={audioRef}
                       onTimeUpdate={getCurrDuration}
                       onLoadedData={e => setDuration(e.currentTarget.duration.toFixed(2))}
-                      src={song}
+                      src={require('./../utils/teste.mp3')}
                     />
 
                     <Slider 

@@ -1,0 +1,200 @@
+:root {
+    --background-login: rgb(249,249,249);
+}
+
+
+#container-login {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--background-login);
+}
+
+#container-image {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 101px;
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 50px;
+}
+
+.img-logo-login {
+    display: flex;
+    width: 182px;
+    height: 56px;
+    user-select: none;
+    user-zoom: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+}
+
+
+.line-login {
+    display: flex;
+    height: 1px;
+    width: 100%;
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.119);
+    /* background-color: black; */
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.041);
+}
+
+
+.main-container-login {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+#form-login-container {
+    display: flex;
+    width: 450px;
+    flex-direction: column;
+    background-color: white;
+}
+
+
+.label-input {
+    margin-bottom: 5px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-transform: none;
+    letter-spacing: normal;
+    color: black;
+    font-weight: 700;
+}
+
+.input-login {
+    height: 52px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.500);
+    box-shadow: inset 0 0 0 1.3px rgba(0, 0, 0, 0.065);
+    border-radius: 4px;
+    padding: 14px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+
+
+.input-login:hover {
+    border: 1px solid rgba(0, 0, 0, 0.900);
+}
+
+.input-login:focus {
+    border: 3px solid black;
+}
+
+.label-remember {
+    font-family: Helvetica, Arial, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    color: inherit;
+    -webkit-box-align: center;
+    align-items: center;
+    text-decoration: none;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+
+.label-remember:hover:not([disabled]) {
+    text-decoration: underline;
+}
+
+#rememberme-container {
+    margin-bottom: 20px;
+}
+
+#remember-text-checkbox {
+    margin-left: 5px;
+    font-family: Helvetica, Arial, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+}
+
+
+.btn {
+    border-radius: 500px;
+    font-size: inherit;
+    padding: 14px 32px;
+    user-select: none;
+    height: 55px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    transition: ease 0.5s;
+    cursor: pointer;
+
+}
+
+.btn:hover {
+    
+    background-color: transparent;
+}
+
+.btn-login {
+    background-color: #18b04d;
+}
+
+.btn-login:hover {
+    border: 3px solid #1ed760;
+} 
+
+#strong {
+    background-color: rgba(0, 0, 0, 0.299);
+}
+
+
+.btn-inscrever-se {
+    background-color: transparent;
+    color: rgba(10, 10, 10, 0.5);
+    border: 1px solid rgba(10, 10, 10, 0.500);
+    box-shadow: inset 0 0 0 1.3px rgba(0, 0, 0, 0.065);
+}
+
+.btn-inscrever-se:hover {
+    color: rgba(10, 10, 10, 0.8);
+    border: 1px solid rgba(10, 10, 10, 0.800);
+    box-shadow: inset 0 0 0 1.3px rgba(0, 0, 0, 0.125);
+}
+
+
+.sem-conta-h3 {
+    margin-top: 30px;
+    font-family: Helvetica, Arial, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    text-align: center;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    padding-bottom: 20px;
+    color: inherit;
+    font-weight: 800;
+    user-select: none;
+}
+
+#checkbox:checked {
+
+    background-color: #1ed760;
+}
