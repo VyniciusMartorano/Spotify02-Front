@@ -105,11 +105,14 @@ const Player = () => {
                       onLoadedData={e => setDuration(e.currentTarget.duration.toFixed(2))}
                       src={require('./../utils/teste.mp3')}
                     />
-
-                    <Slider 
-                      percentage={percentage} 
-                      onChange={onChangeMusic} 
-                    />
+                    <div id="slider-container-external">
+                      <span className="span-time-slider">0:30</span>
+                      <Slider
+                        percentage={percentage}
+                        onChange={onChangeMusic}
+                      />
+                      <span className="span-time-slider">2:45</span>
+                    </div>
                 </div>
                 <div id="right-item-player-bar" className="item-player">
                     <IconVolume/>

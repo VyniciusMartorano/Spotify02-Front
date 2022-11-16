@@ -14,6 +14,12 @@ class LeftBar extends Component {
         return (
             <section id="left-bar-container">
                 <div id="top-side-left-bar-container">
+                    <span id="your-library" className="left-bar-item-nav">
+                       <div id="add-playlist-icon" className="icon-left-bar ">
+                            <i className="fa-solid fa-plus add-playlist-icon"></i>
+                       </div>
+                       <h3 className="text-item-nav">Sua Biblioteca</h3>
+                   </span>
                    <span className="left-bar-item-nav">
                        <div id="add-playlist-icon" className="icon-left-bar ">
                             <i className="fa-solid fa-plus add-playlist-icon"></i>

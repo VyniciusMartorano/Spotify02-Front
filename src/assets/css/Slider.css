@@ -10,6 +10,8 @@
   --progress-bar-height: 4px;
   position: relative;
   width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .range::-webkit-slider-thumb {

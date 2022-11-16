@@ -1,12 +1,33 @@
 import { Component, React } from "react"
 import '../assets/css/MainContent.css'
+import MusicRegistrationService from "./services/MainContentService"
+
 
 
 class MainContent extends Component {
     constructor(props) {
         super(props)
+
+        this.MainContServ = new MusicRegistrationService()
+
+    }   
+ 
+    componentDidMount() {  
+        this.getDefaultPlaylists()
     }
 
+    getDefaultPlaylists() {
+        this.MainContServ.getDefaultPlaylists().then(
+            ({ data }) => this.playlists = data
+        )
+    }
+
+    getPlaylistsByUser() {
+        this.MainContServ.getPlaylistsByUser(this.user.id).then(
+            ({ data }) => this.playlists += data
+        )
+    }
+    
 
 
     render() {
@@ -21,9 +42,10 @@ class MainContent extends Component {
                                 width={"195px"}
                                 height={"195px"}
                                 src={require('./this-is-drake.jpg')} 
-                                alt="" />
-                                <span className="title-card-main-container">This Is Drake</span>
-                                <p className="subtitle-card-main-container">Os maiores sucessos e as novidades mais esperadas</p>
+                                alt="" 
+                            />
+                            <span className="title-card-main-container">This Is Drake</span>
+                            <p className="subtitle-card-main-container">Os maiores sucessos e as novidades mais esperadas</p>
                         </div>
                         <div className="card-main-container">    
                             <img 
@@ -31,42 +53,15 @@ class MainContent extends Component {
                                 width={"195px"}
                                 height={"195px"}
                                 src={require('./this-is-drake.jpg')} 
-                                alt="" />
-                                <span className="title-card-main-container">This Is Drake</span>
-                                <p className="subtitle-card-main-container">Os maiores sucessos e as novidades mais esperadas</p>
-                        </div>
-                        <div className="card-main-container">    
-                            <img 
-                                className="img-card"
-                                width={"195px"}
-                                height={"195px"}
-                                src={require('./this-is-drake.jpg')} 
-                                alt="" />
-                                <span className="title-card-main-container">This Is Drake</span>
-                                <p className="subtitle-card-main-container">Os maiores sucessos e as novidades mais esperadas</p>
-                        </div>
-                        <div className="card-main-container">    
-                            <img 
-                                className="img-card"
-                                width={"195px"}
-                                height={"195px"}
-                                src={require('./this-is-drake.jpg')} 
-                                alt="" />
-                                <span className="title-card-main-container">This Is Drake</span>
-                                <p className="subtitle-card-main-container">Os maiores sucessos e as novidades mais esperadas</p>
-                        </div>
-                        <div className="card-main-container">    
-                            <img 
-                                className="img-card"
-                                width={"195px"}
-                                height={"195px"}
-                                src={require('./this-is-drake.jpg')} 
-                                alt="" />
-                                <span className="title-card-main-container">This Is Drake</span>
-                                <p className="subtitle-card-main-container">Os maiores sucessos e as novidades mais esperadas</p>
+                                alt="" 
+                            />
+                            <span className="title-card-main-container">This Is Drake</span>
+                            <p className="subtitle-card-main-container">Os maiores sucessos e as novidades mais esperadas</p>
                         </div>
                     </div>
                 </div>
+            
+
             </section>
         )
     }
