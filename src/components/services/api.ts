@@ -10,8 +10,8 @@ class Api {
     axios: Axios
     constructor() {
         this.API_core = `http://127.0.0.1:10000/`
-        // this.axios = new Axios({headers: {'Authorization': `Bearer ${this.token}`}})
         this.axios = new Axios()
+        // this.axios = new Axios({headers: {'Authorization': `Bearer ${this.token}`}})
     }
 
 

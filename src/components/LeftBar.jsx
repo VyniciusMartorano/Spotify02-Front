@@ -1,12 +1,24 @@
 import { Component, React } from "react"
 import '../assets/css/LeftBar.css'
+import LeftBarService from './services/LeftBarService'
 
 
 class LeftBar extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {}
+        this.state = {playlists: []}
+        this.LeftBarServ = new LeftBarService()
+    }
+
+    componentDidMount() {
+        this.getPlaylists()
+    }
+
+    getPlaylists() {
+        this.LeftBarServ.getPlaylists().then(
+            ({ data }) => this.setState({playlists: data})
+        )
     }
 
 
@@ -46,12 +58,17 @@ class LeftBar extends Component {
                 </div>
                 <div className="line"></div>
                 <div id="bottom-side-left-bar-container">
-                    <div className="item-left-bar-playlist">
-                        <span>Rock Forever</span>
-                    </div>
-                    <div className="item-left-bar-playlist">
-                        <span>TRAP 2022 - SÓ AS BRABA</span>
-                    </div>
+
+                    {
+                        this.state.playlists.map(
+                            (item) => (
+                            <div key={item.id} className="item-left-bar-playlist">
+                                <span>{item.title}</span>
+                            </div>)
+                        )
+                    }
+                    
+                    
                 </div>
             </section>
         )

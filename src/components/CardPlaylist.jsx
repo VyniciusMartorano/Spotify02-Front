@@ -1,6 +1,5 @@
 import React from "react"
-// import Api from './services/api.ts'
-
+''
 
 const Card = ({ title, description, thumbnail }) => {
     const url = `http://127.0.0.1:10000`

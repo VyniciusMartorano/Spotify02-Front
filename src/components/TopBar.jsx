@@ -1,6 +1,5 @@
 import React from "react"
 import "./../assets/css/TopBar.css"
-import profileImg from "./Victor 3x4-small.png"
 
 
 const TopBar = () => {
@@ -16,7 +15,7 @@ const TopBar = () => {
                     <i className="fa-solid fa-house"></i>
                 </div>
 
-                <div className="search-box">
+                <form className="search-box">
                     <div className="icon-search-box">
                         <i className="fa-solid fa-magnifying-glass"></i>
                     </div>
@@ -24,15 +23,16 @@ const TopBar = () => {
                         type="text" 
                         name="" 
                         className="input-search"
+                        placeholder="O que você quer ouvir?"
                     />
                     <div className="icon-remove-text-box">
 
                     </div>
-                </div>
+                </form>
             </div>
             <div className="icon-profile-container">
                 <img 
-                    src={profileImg} 
+                    src={require('./../utils/images/Victor 3x4-small.png')} 
                     alt=""
                     className="img-profile" 
                 />
