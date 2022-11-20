@@ -67,13 +67,14 @@
     overflow: hidden;
 }
 
-.search-box:hover  {
+
+/* seleciona o elemento pai quando um elemento filho for selecionado */
+.search-box:focus-within {
     border: 2.5px solid white;
 }
 
-.search-box:focus {
-    border: 2.5px solid white;
-}
+
+
 
 .icon-search-box {
     display: flex;
@@ -93,13 +94,22 @@
     background-color: rgb(18, 18, 18);
     color: white;
     font-size: 1.04em;
+    letter-spacing: 0.5px;
 }
+
 
 .icon-remove-text-box {
     display: flex;
+    align-items: center;
+    justify-content: left;
     width: 51px;
     height: 51px;
     background-color: rgb(18, 18, 18);
+}
+
+.icon-remove-text {
+    color: white;
+    font-size: 25px;
 }
 
 .img-profile {
@@ -107,3 +117,5 @@
     width: 35px;
     height: 35px;
 }
+
+
