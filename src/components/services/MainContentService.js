@@ -4,16 +4,17 @@ import Api from "./api.ts"
 
 
 
-class MusicRegistrationService {
+class MainContentService {
     
     constructor() {
         this.api = new Api()
     }
     
-    
-    getDefaultPlaylists() {
-        return axios.post(`${this.api.API_core}api/playlist/retrieve_playlists/`, {isDefault: 1})
+    getPlaylistsByGroups() {
+        return axios.get(`${this.api.API_core}api/playlist/retrieve_playlists_by_groups/`)
     }
+
+    
 
     getPlaylistsByUser(user_id) {
         return axios.post(`${this.api.API_core}api/playlist/retrieve_playlists/`, {user_id})
@@ -23,4 +24,4 @@ class MusicRegistrationService {
 }
 
 
-export default MusicRegistrationService
+export default MainContentService

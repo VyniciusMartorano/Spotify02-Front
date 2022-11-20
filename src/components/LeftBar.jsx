@@ -16,7 +16,12 @@ class LeftBar extends Component {
                 <div id="top-side-left-bar-container">
                     <span id="your-library" className="left-bar-item-nav">
                        <div id="add-playlist-icon" className="icon-left-bar ">
-                            <i className="fa-solid fa-plus add-playlist-icon"></i>
+                            <img
+                                width={27}
+                                height={27} 
+                                src={require('../utils/images/icone_biblioteca.png')} 
+                                alt="" 
+                            />
                        </div>
                        <h3 className="text-item-nav">Sua Biblioteca</h3>
                    </span>

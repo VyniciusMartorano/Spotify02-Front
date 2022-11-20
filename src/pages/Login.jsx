@@ -64,7 +64,7 @@ class Login extends Component {
                 <ToastContainer/>
                 <header className="header-login-container">
                     <div id="container-image">
-                        <img src={require('./../utils/logo.png')} className="img-logo-login" alt="" />                        
+                        <img src={require('./../utils/images/logo.png')} className="img-logo-login" alt="" />                        
                     </div>
                     <div className="line-login"></div>
                 </header>

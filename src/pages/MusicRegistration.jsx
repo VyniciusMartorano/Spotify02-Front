@@ -134,7 +134,7 @@ class MusicRegistration extends Component {
                             type="text" 
                             className="text-input"
                             value={this.state.nameMusic} 
-                            onChange={(e) => this.setState({nameMusic: e.target.value})}
+                            onChange={({ target }) => this.setState({nameMusic: target.value})}
                         />
                         <label htmlFor="artist" className="label">Artistas</label>
                         <Dropdown 
@@ -159,7 +159,7 @@ class MusicRegistration extends Component {
                             type="file" 
                             id="image" 
                             className="input-file-mode"
-                            onChange={(e) => this.setState({image: e.target.files[0] ? e.target.files[0] : ''}) }
+                            onChange={({ target }) => this.setState({image: target.files[0] ? target.files[0] : ''}) }
                             accept="image/*"
                         />
     

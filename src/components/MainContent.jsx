@@ -1,67 +1,39 @@
 import { Component, React } from "react"
 import '../assets/css/MainContent.css'
-import MusicRegistrationService from "./services/MainContentService"
-
+import MainContentService from "./services/MainContentService"
+import RowPlaylists from "./RowPlaylist"
 
 
 class MainContent extends Component {
     constructor(props) {
         super(props)
-
-        this.MainContServ = new MusicRegistrationService()
-
+        this.MainContServ = new MainContentService()
+        this.state = {playlists: []}
     }   
  
-    componentDidMount() {  
-        this.getDefaultPlaylists()
+    async componentDidMount() {  
+        console.log('qaa')
+        await this.getPlaylistsByGroups()
     }
 
-    getDefaultPlaylists() {
-        this.MainContServ.getDefaultPlaylists().then(
-            ({ data }) => this.playlists = data
+
+    async getPlaylistsByGroups() {
+        await this.MainContServ.getPlaylistsByGroups().then(
+            ({ data }) => this.setState({playlists: data})
         )
     }
 
-    getPlaylistsByUser() {
-        this.MainContServ.getPlaylistsByUser(this.user.id).then(
-            ({ data }) => this.playlists += data
-        )
-    }
-    
 
 
     render() {
         return (
             <section id="main-content-container" >
-                <div className="row-main-container">
-                    <h3 className="h3-main-container-title-row">Tocados recentemente</h3>
-                    <div className="container-cards">
-                        <div className="card-main-container">    
-                            <img 
-                                className="img-card"
-                                width={"195px"}
-                                height={"195px"}
-                                src={require('./this-is-drake.jpg')} 
-                                alt="" 
-                            />
-                            <span className="title-card-main-container">This Is Drake</span>
-                            <p className="subtitle-card-main-container">Os maiores sucessos e as novidades mais esperadas</p>
-                        </div>
-                        <div className="card-main-container">    
-                            <img 
-                                className="img-card"
-                                width={"195px"}
-                                height={"195px"}
-                                src={require('./this-is-drake.jpg')} 
-                                alt="" 
-                            />
-                            <span className="title-card-main-container">This Is Drake</span>
-                            <p className="subtitle-card-main-container">Os maiores sucessos e as novidades mais esperadas</p>
-                        </div>
-                    </div>
-                </div>
-            
-
+                {
+                    this.state.playlists.map(
+                        (item) => <RowPlaylists key={item.id} title={item.title} playlists={item.playlists} />
+                    )
+                
+                }
             </section>
         )
     }
