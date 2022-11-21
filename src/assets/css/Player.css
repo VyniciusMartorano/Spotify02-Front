@@ -168,4 +168,5 @@
     font-family: Helvetica, sans-serif;
     font-size: 0.83em;
     font-weight: 500;
+    user-select: none;
 }

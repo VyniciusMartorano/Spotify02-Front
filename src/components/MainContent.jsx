@@ -12,7 +12,6 @@ class MainContent extends Component {
     }   
  
     async componentDidMount() {  
-        console.log('qaa')
         await this.getPlaylistsByGroups()
     }
 
