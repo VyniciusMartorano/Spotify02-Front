@@ -60,7 +60,7 @@ class Login extends Component {
 
     render() {
         return (
-            <div id="container-login">
+            <div id="container-login" >
                 <ToastContainer/>
                 <header className="header-login-container">
                     <div id="container-image">

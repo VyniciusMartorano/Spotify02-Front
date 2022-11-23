@@ -4,7 +4,7 @@ import Api from "./api.ts"
 
 
 
-class MainContentService {
+class PlaylistsContentService {
     
     constructor() {
         this.api = new Api()
@@ -24,4 +24,4 @@ class MainContentService {
 }
 
 
-export default MainContentService
+export default PlaylistsContentService
