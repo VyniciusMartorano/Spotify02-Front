@@ -1,5 +1,5 @@
 import axios from "axios"
-import Api from "./api.ts"
+import Api from "./api"
 
 
 

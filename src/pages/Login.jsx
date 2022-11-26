@@ -15,7 +15,6 @@ class Login extends Component {
             password: null,
         }
         this.LogServ = new LoginService()
-
     }
 
     handleChange(event, func) {
