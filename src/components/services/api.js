@@ -3,14 +3,20 @@ import axios from "axios"
 
 
 
-const api = axios.create({
-  baseURL: process.env.REACT_APP_API_CORE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
-  },
-})
+class api {
 
+  constructor() {
+    
+    this.axios = axios.create({
+      baseURL: process.env.REACT_APP_API_CORE_URL,
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    })
+  }
+
+}
 // Api.interceptors.request.use(async config => {
 //   const token = getToken()
 //   if (token) {
