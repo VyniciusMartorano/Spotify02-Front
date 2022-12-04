@@ -8,8 +8,8 @@ class LoginService {
     }
     
     
-    Logar({ user, password }) {
-        return this.api.axios.post(`user/`, {user, password})
+    Logar({ username, password }) {
+        return this.api.axios.post(`token/`, {username, password})
     }
     
 }

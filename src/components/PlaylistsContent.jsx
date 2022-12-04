@@ -22,8 +22,6 @@ class PlaylistsContent extends Component {
         )
     }
 
-
-
     render() {
         return (
                 <div>
@@ -31,7 +29,6 @@ class PlaylistsContent extends Component {
                         this.state.playlists.map(
                             (item) => <RowPlaylists key={item.id} title={item.title} playlists={item.playlists} />
                         )
-                    
                     }
                 </div>
 

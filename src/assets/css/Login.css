@@ -75,6 +75,7 @@
     letter-spacing: normal;
     color: black;
     font-weight: 700;
+    user-select: none;
 }
 
 .input-login {
@@ -195,6 +196,10 @@
 }
 
 #checkbox:checked {
-
     background-color: #1ed760;
+}
+
+.disabled {
+    pointer-events: none;
+    background-color: rgb(153, 151, 151);
 }

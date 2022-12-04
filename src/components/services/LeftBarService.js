@@ -12,7 +12,7 @@ class LeftBarService {
 
     
     getPlaylists() {
-        return axios.get(`${this.api.API_core}api/playlist/`)
+        return this.api.axios.get(`api/playlist/`)
 
     }
     

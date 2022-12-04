@@ -3,10 +3,9 @@ import { Navigate, Route } from "react-router-dom"
 
 
 
-
  function PrivateRoute ({ children }) {
-    const tokenIsValid = false
-
+    const tokenIsValid = true
+    
     return tokenIsValid ? children : <Navigate to="/login" />
 }
 

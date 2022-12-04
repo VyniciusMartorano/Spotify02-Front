@@ -1,9 +1,12 @@
 import { Component, React } from "react"
 import './../assets/css/Login.css'
 import listHaveEmptyItem from "../utils/isEmpty"
-import CustomMessage from "../utils/CustomMensageToast"
-import {ToastContainer, toast} from "react-toastify"
+import { ToastContainer } from "react-toastify"
 import LoginService from "../components/services/LoginService"
+import { Navigate } from "react-router-dom"
+import addToastMessage from "../components/addToastMessage"
+import { setToken, setTokenIsValid } from "../components/services/auth"
+
 
 
 
@@ -13,6 +16,8 @@ class Login extends Component {
         this.state = {
             login: null,
             password: null,
+            loginIsValid: false,
+            inPromise: false,
         }
         this.LogServ = new LoginService()
     }
@@ -23,16 +28,6 @@ class Login extends Component {
         }
     }
 
-
-    addToastMessage (type, title, bodyMsg) {
-        toast[type](
-            <CustomMessage 
-                title={title}
-                bodyMsg={bodyMsg} 
-            />,
-            {autoClose: 3000}
-        )
-    }
 
 
     formIsValid(){
@@ -46,14 +41,22 @@ class Login extends Component {
 
     sendForm = () => {
         if (!this.formIsValid()) {
-            this.addToastMessage('error', 'Existem campos incompletos', 'Preencha todos os campos e tente novamente')
+            addToastMessage('error', 'Existem campos incompletos', 'Preencha todos os campos e tente novamente')
+            return
         }
 
-        this.LogServ.Logar({user: this.state.login, password: this.state.password}).then(
-            (response) => {
-                console.log(response)
-            }
-        )
+        this.setState({inPromise: true})
+        this.LogServ.Logar({username: this.state.login, password: this.state.password}).then(
+            ({ data }) => {
+                addToastMessage('success', 'Sucesso!', 'Login realizado com sucesso')
+                setToken(data.access)
+                
+                this.setState({loginIsValid: true})                
+            },
+            () => addToastMessage('error', 'Erro!', 'Ocorreu um erro ao fazer login')
+            ).finally(
+                () => this.setState({inPromise: false})
+            )
     }
 
 
@@ -61,6 +64,8 @@ class Login extends Component {
         return (
             <div id="container-login" >
                 <ToastContainer/>
+                {this.state.loginIsValid && (<Navigate to={'/'} state={{fromLogin: true}} />)}
+
                 <header className="header-login-container">
                     <div id="container-image">
                         <img src={require('./../utils/images/logo.png')} className="img-logo-login" alt="" />                        
@@ -69,7 +74,7 @@ class Login extends Component {
                 </header>
                 
                 <main className="main-container-login">
-                    <div id="form-login-container">
+                    <div id="form-login-container" action="off">
                         <label 
                             htmlFor="email" 
                             className="label-input"
@@ -88,6 +93,7 @@ class Login extends Component {
                         </label>
                         <input 
                             className="input-login" 
+                            autoComplete="off"
                             onKeyUp={e => this.handleChange(e, this.sendForm)} 
                             onChange={e => this.setState({password: e.target.value})} 
                             type="password" 
@@ -103,7 +109,7 @@ class Login extends Component {
                         </div>
                         <button 
                             onClick={this.sendForm} 
-                            className="btn btn-login">Entrar
+                            className={`btn btn-login ${this.state.inPromise ? 'disabled':''}`}>Entrar
                         </button>
                         <div id="strong" className="line-login"></div>
                         <h3 className="sem-conta-h3">Não tem uma conta?</h3>

@@ -1,16 +1,23 @@
 import React, { Component } from "react"
 import "./../assets/css/TopBar.css"
+import { Navigate } from "react-router-dom" 
+import { setTokenIsValid, doLogout} from "./services/auth"
 
 
 class TopBar extends Component {
     constructor(props) {
         super(props)
-        this.state = {filter: ''}
+        this.state = {filter: '', logout: false}
     }   
 
 
     limpaFiltro() {
         this.setState({filter: ''})
+    }
+
+    logout() {
+        doLogout()
+        this.setState({logout: true})
     }
 
     render() {
@@ -49,8 +56,10 @@ class TopBar extends Component {
                         src={require('./../utils/images/Victor 3x4-small.png')} 
                         alt=""
                         className="img-profile" 
+                        onClick={() => this.logout()}
                     />
                 </div>
+                {this.state.logout && (<Navigate to="/login"/>)}
             </header>
         )
     }

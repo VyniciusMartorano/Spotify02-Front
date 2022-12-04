@@ -1,5 +1,5 @@
 import axios from "axios"
-// import { getToken } from "./auth"
+import { getToken } from "./auth"
 
 
 
@@ -12,18 +12,11 @@ class api {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
+        Authorization: `Bearer ${getToken()}` 
       },
     })
+    //definir interceptor para refresh token
   }
-
 }
-// Api.interceptors.request.use(async config => {
-//   const token = getToken()
-//   if (token) {
-//     config.headers.Authorization = `Bearer ${token}`
-//   }
-//   return config
-// })
-
 
 export default api
