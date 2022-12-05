@@ -20,32 +20,38 @@ class LeftBar extends Component {
             ({ data }) => this.setState({playlists: data})
         )
     }
-
+    changeMidComponentTo(keyComponent) {
+        this.props.changeMidComponentTo(keyComponent)
+    }
 
     render() {
         return (
             <section id="left-bar-container">
                 <div id="top-side-left-bar-container">
-                    <span id="your-library" className="left-bar-item-nav">
+                    <span id="your-library"  className="left-bar-item-nav">
                        <div id="add-playlist-icon" className="icon-left-bar ">
                             <img
+                                onClick={() => this.changeMidComponentTo('myLibrary')}
                                 width={27}
                                 height={27} 
                                 src={require('../utils/images/icone_biblioteca.png')} 
                                 alt="" 
                             />
                        </div>
-                       <h3 className="text-item-nav">Sua Biblioteca</h3>
+                       <h3 onClick={() => this.changeMidComponentTo('myLibrary')} className="text-item-nav">Sua Biblioteca</h3>
                    </span>
                    <span className="left-bar-item-nav">
                        <div id="add-playlist-icon" className="icon-left-bar ">
-                            <i className="fa-solid fa-plus add-playlist-icon"></i>
+                            <i 
+                                onClick={() => this.changeMidComponentTo('createPlaylist')} 
+                                className="fa-solid fa-plus add-playlist-icon">
+                            </i>
                        </div>
-                       <h3 className="text-item-nav">Criar playlist</h3>
+                       <h3 onClick={() => this.changeMidComponentTo('createPlaylist')} className="text-item-nav">Criar playlist</h3>
                    </span>
                    <span className="left-bar-item-nav">
                        <div id="bookmark" className="icon-left-bar ">
-                            <i className="fa-solid fa-bookmark bookmark"></i>
+                            <i className="fa-solid fa-bookmark bookmark" ></i>
                        </div>
                        <h3 className="text-item-nav">Seus episódios</h3>
                    </span>

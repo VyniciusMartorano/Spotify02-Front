@@ -1,6 +1,6 @@
 
-const switchBetweenComponents = (enumComponents = {}, indexComponent) => {
-    return enumComponents[indexComponent]
+const switchBetweenComponents = (enumComponents = {}, keyComponent) => {
+    return enumComponents[keyComponent]
 } 
 
 export default switchBetweenComponents

@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify"
 import LoginService from "../components/services/LoginService"
 import { Navigate } from "react-router-dom"
 import addToastMessage from "../components/addToastMessage"
-import { setToken, setTokenIsValid } from "../components/services/auth"
+import { setToken, setRefreshToken } from "../components/services/auth"
 
 
 
@@ -50,7 +50,7 @@ class Login extends Component {
             ({ data }) => {
                 addToastMessage('success', 'Sucesso!', 'Login realizado com sucesso')
                 setToken(data.access)
-                
+                setRefreshToken(data.refresh)
                 this.setState({loginIsValid: true})                
             },
             () => addToastMessage('error', 'Erro!', 'Ocorreu um erro ao fazer login')

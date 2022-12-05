@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import "./../assets/css/TopBar.css"
 import { Navigate } from "react-router-dom" 
-import { setTokenIsValid, doLogout} from "./services/auth"
+import { doLogout} from "./services/auth"
 
 
 class TopBar extends Component {
@@ -10,14 +10,17 @@ class TopBar extends Component {
         this.state = {filter: '', logout: false}
     }   
 
-
     limpaFiltro() {
         this.setState({filter: ''})
+        
     }
 
     logout() {
         doLogout()
         this.setState({logout: true})
+    }
+    changeMidComponentTo(keyComponent) {
+        this.props.changeMidComponentTo(keyComponent)
     }
 
     render() {
@@ -28,7 +31,7 @@ class TopBar extends Component {
                 <div className="search-container">
     
                     <div className="home-btn-box">
-                        <i className="fa-solid fa-house"></i>
+                        <i className="fa-solid fa-house" onClick={() => this.changeMidComponentTo('playlists')}></i>
                     </div>
     
                     <form className="search-box">

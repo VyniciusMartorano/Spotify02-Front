@@ -12,27 +12,38 @@ import switchBetweenComponents from '../utils/SwitchBetweenComp'
 
 
 const enumComponents = {
-  0: (<PlaylistsContent/>)
+  playlists: (<PlaylistsContent/>),
+  myLibrary: (<h1 style={{color: 'white'}}>My Library</h1>),
+  createPlaylist: (<h1 style={{color: 'white'}}>Create Playlist</h1>)
 }
 
 export default class HomePage extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+        component: 'playlists',
+    }
+  }
+
   //comportamento de rederizar 2x é culpa do redux
   //https://cursos.alura.com.br/forum/topico-metodo-render-sendo-chamado-duas-vezes-75241
 
-  componentDidMount() {
-    console.log(this.context.router)
+
+
+  changeMidComponentTo(keyComponent) {
+    console.log(keyComponent)
+    this.setState({component: keyComponent})
   }
-
-
 
   render() {
     return (
       <section className="container-master">
-        <TopBar/>
+        <TopBar changeMidComponentTo={(keyComp) => this.changeMidComponentTo(keyComp)} />
         <main id='mid-content'>
-          <LeftBar/>
+          <LeftBar changeMidComponentTo={(keyComp) => this.changeMidComponentTo(keyComp)}/>
           <section id="main-content-container" >
-            {switchBetweenComponents(enumComponents, 0)}
+            {switchBetweenComponents(enumComponents, this.state.component)}
           </section>
         </main>
         <Player/>
