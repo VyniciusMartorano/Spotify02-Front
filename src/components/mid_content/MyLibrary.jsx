@@ -15,6 +15,7 @@ class MyLibrary extends Component {
 
     componentDidMount() {
         this.getUser()
+        this.getPlaylists()
     }
 
     getUser() {
@@ -24,12 +25,19 @@ class MyLibrary extends Component {
         )
     }
 
+    getPlaylists() {
+        this.LibServ.getPlaylistsByGroups().then(
+            ({ data }) => console.log(data),
+            () => addToastMessage('error', 'Erro!', 'Ocorreu um erro ao buscar as playlists!')
+        )
+    }
+
     render() {
         return (
             <div>
                 {
                     this.state.playlists.map(
-                        (item) => <RowPlaylists key={item.id} title={null} playlists={item.playlists} />
+                        (item, index) => <RowPlaylists key={index} title={null} playlists={item.playlists} />
                     )
                 }
                 <ToastContainer/>

@@ -13,7 +13,7 @@ class LibraryService {
     }
 
     getPlaylistsByGroups() {
-        return this.api.axios.get(`api/playlist/retrieve_playlists_by_groups/`)
+        return this.api.axios.post(`api/playlist/retieve_playlist_from_library_by_user/`, {})
     }
 
 }
