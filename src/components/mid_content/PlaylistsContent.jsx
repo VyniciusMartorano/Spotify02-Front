@@ -1,7 +1,7 @@
 import { Component, React } from "react"
-import '../assets/css/PlaylistsContent.css'
-import PlaylistsContentService from "./services/PlaylistsContentService"
-import RowPlaylists from "./RowPlaylist"
+import '../../assets/css/PlaylistsContent.css'
+import PlaylistsContentService from "../services/PlaylistsContentService"
+import RowPlaylists from "../RowPlaylist"
 
 
 class PlaylistsContent extends Component {

@@ -6,7 +6,7 @@ const RowPlaylists = ({ title, playlists }) => {
 
     return (
         <div className="row-main-container">
-        <h3 className="h3-main-container-title-row">{ title }</h3>
+        { title != null && (<h3 className="h3-main-container-title-row">{ title }</h3>)}
         <div className="container-cards">
         {
             playlists.map((item) => (
