@@ -76,27 +76,33 @@ const Player = () => {
                 </div>
                 <div id="center-item-player-bar" className="item-player">
                     <div className="player-buttons-container">
-                        <i 
-                          onClick={() => setShuffleMode(!shuffleMode)} 
-                          id={`${shuffleMode ? 'icon-btn-active' : ''}`}
-                          className={
-                            `fa-solid fa-shuffle icon-button i-tiny ${shuffleMode ? ' shuffle-mode-style-active': ''}`
-                            }>
-                        </i>
-                        <i className="fa-solid fa-backward-step icon-button i-normal"></i>
+                        <div className=" icon-button i-tiny">
+                          <i
+                            onClick={() => setShuffleMode(!shuffleMode)}
+                            id={`${shuffleMode ? 'icon-btn-active' : ''}`}
+                            className={
+                              `fa-solid fa-shuffle ${shuffleMode ? ' shuffle-mode-style-active': ''}`
+                              }>
+                          </i>
+                        </div>
+                        <div className="icon-button i-normal"><i className="fa-solid fa-backward-step"></i></div>
                     
-                        <i onClick={play} 
-                        className={isPlaying 
-                          ? "fa-solid fa-circle-pause icon-button-pp i-larger" 
-                          : "fa-solid fa-circle-play icon-button-pp i-larger"}
-                        />
+                        <div className="icon-button-pp i-larger">
+                          <i onClick={play}
+                          className={isPlaying
+                            ? "fa-solid fa-circle-pause"
+                            : "fa-solid fa-circle-play"}
+                          />
+                        </div>
 
-                        <i className="fa-solid fa-forward-step icon-button i-normal"></i>
-                        <i
-                          onClick={() => setRepeatMode(!repeatMode)}
-                          id={`${repeatMode ? 'icon-btn-active' : ''}`}
-                          className={`fa-solid fa-repeat icon-button i-tiny`}>
-                        </i>
+                        <div><i className="fa-solid fa-forward-step icon-button i-normal"></i></div>
+                        <div className="icon-button i-tiny">
+                          <i
+                            onClick={() => setRepeatMode(!repeatMode)}
+                            id={`${repeatMode ? 'icon-btn-active' : ''}`}
+                            className={`fa-solid fa-repeat`}>
+                          </i>
+                        </div>
                     </div>
                     
                     <audio

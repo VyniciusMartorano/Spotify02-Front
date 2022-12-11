@@ -7,11 +7,11 @@ import '../assets/css/IconHeart.css'
 export default function IconHeart ({ liked, onChange }) {
 
     return (
-        <div>             
+        <div className="icon-heart">             
             <i 
             className={liked ? 
-                "fa-solid fa-heart icon-heart"
-                : "fa-regular fa-heart icon-heart" 
+                "fa-solid fa-heart"
+                : "fa-regular fa-heart " 
             }
             onClick={() => onChange(!liked)}
             >

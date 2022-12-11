@@ -7,10 +7,9 @@ import { ToastContainer } from "react-toastify"
 
 
 class MyLibrary extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
         this.LibServ = new LibraryService()
-        this.state = {playlists: []}
+        this.state = {playlists: [[]]}
     }   
 
     componentDidMount() {
@@ -27,7 +26,10 @@ class MyLibrary extends Component {
 
     getPlaylists() {
         this.LibServ.getPlaylistsByGroups().then(
-            ({ data }) => console.log(data),
+            ({ data }) => {
+                console.log(data)
+                this.setState({playlists: data})
+            },
             () => addToastMessage('error', 'Erro!', 'Ocorreu um erro ao buscar as playlists!')
         )
     }
@@ -35,9 +37,14 @@ class MyLibrary extends Component {
     render() {
         return (
             <div>
-                {
+                {/* {
                     this.state.playlists.map(
                         (item, index) => <RowPlaylists key={index} title={null} playlists={item.playlists} />
+                    )
+                } */}
+                {
+                    this.state.playlists[0].map(
+                        (item, index) => <h1 key={index}>{item[0]}</h1>
                     )
                 }
                 <ToastContainer/>
