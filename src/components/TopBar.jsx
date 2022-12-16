@@ -31,12 +31,12 @@ class TopBar extends Component {
                 <div className="search-container">
     
                     <div className="home-btn-box">
-                        <i className="fa-solid fa-house" onClick={() => this.changeMidComponentTo('playlists')}></i>
+                        <i className="fa-solid fa-house icon" onClick={() => this.changeMidComponentTo('playlists')}></i>
                     </div>
     
                     <form className="search-box">
                         <div className="icon-search-box">
-                            <i className="fa-solid fa-magnifying-glass"></i>
+                            <i className="fa-solid icon fa-magnifying-glass"></i>
                         </div>
                         <input 
                             type="text" 

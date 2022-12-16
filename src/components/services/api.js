@@ -26,6 +26,7 @@ class api {
         }
         else if ((error.response.status === 403 && getToken())) {
           //mandar pro login
+          return Promise.error.reject()
         }
       }
      )

@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify"
 import LoginService from "../components/services/LoginService"
 import { Navigate } from "react-router-dom"
 import addToastMessage from "../components/addToastMessage"
-import { setToken, setRefreshToken } from "../components/services/auth"
+import { setToken, setRefreshToken, getToken } from "../components/services/auth"
 
 
 
@@ -18,8 +18,14 @@ class Login extends Component {
             password: null,
             loginIsValid: false,
             inPromise: false,
+            isLogged: false,
         }
         this.LogServ = new LoginService()
+    }
+    componentDidMount() {
+        if (getToken()) {
+            this.setState({isLogged: true})
+        }
     }
 
     handleChange(event, func) {
@@ -27,8 +33,6 @@ class Login extends Component {
             func()
         }
     }
-
-
 
     formIsValid(){
         const formFields = [this.state.login, this.state.password]
@@ -64,7 +68,8 @@ class Login extends Component {
         return (
             <div id="container-login" >
                 <ToastContainer/>
-                {this.state.loginIsValid && (<Navigate to={'/'} state={{fromLogin: true}} />)}
+                {this.state.loginIsValid || this.state.isLogged ? (<Navigate to={'/'} state={{fromLogin: true}} />) : ''}
+             
 
                 <header className="header-login-container">
                     <div id="container-image">

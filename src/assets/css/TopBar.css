@@ -1,4 +1,6 @@
-
+.icon {
+    caret-color: transparent;
+}
 
 .top-bar-container {
     display: flex;

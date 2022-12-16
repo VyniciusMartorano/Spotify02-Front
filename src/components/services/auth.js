@@ -19,12 +19,12 @@ export const refreshToken = async (error) => {
     await axios.post(process.env.REACT_APP_API_CORE_URL + 'token/refresh/', {refresh: refresh_token}).then(
         ({ data }) => {
             setToken(data.access)
-            // Fazer algo caso seja feito o refresh token
-            return resolve(data)
+                // Fazer algo caso seja feito o refresh token
+                return Promise.resolve(data)
         },
         (error) => {
-            //jogar o usuario pro login
-            reject(error)
+            doLogout()
+            return Promise.reject(error)
         }
     )
 }

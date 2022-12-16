@@ -1,10 +1,10 @@
 import React from "react"
 import { Navigate, Route } from "react-router-dom"
-
+import { getToken } from "./services/auth"
 
 
  function PrivateRoute ({ children }) {
-    const tokenIsValid = true
+    const tokenIsValid = getToken() != undefined
     
     return tokenIsValid ? children : <Navigate to="/login" />
 }
