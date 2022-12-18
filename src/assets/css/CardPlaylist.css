@@ -59,19 +59,18 @@
     height: 55px;
     background-color: rgb(30, 215, 96);
     cursor: default;
+    transition: 0.4s ease;
 }
 
 .btn-play-playlist:hover {
-    width: 57px;
-    height: 57px;
+    width: 56px;
+    height: 56px;
     background-color: rgb(31, 223, 100);
 }
 
-
-
 .icon-play-playlist {
     display: flex;
-    font-size: 22px;
+    font-size: 21px;
     color: black;
 }
 

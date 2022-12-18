@@ -3,24 +3,40 @@ import "./../assets/css/TopBar.css"
 import { Navigate } from "react-router-dom" 
 import { doLogout} from "./services/auth"
 
-
 class TopBar extends Component {
     constructor(props) {
         super(props)
         this.state = {filter: '', logout: false}
+        this.currentComponent = ''
     }   
-
-    limpaFiltro() {
-        this.setState({filter: ''})
-        
+ 
+    componentDidUpdate() {
+        this.setFilterComponent()
     }
 
+    limpaFiltro = () => this.setState({filter: ''})
+    
+    
     logout() {
         doLogout()
         this.setState({logout: true})
     }
-    changeMidComponentTo(keyComponent) {
-        this.props.changeMidComponentTo(keyComponent)
+
+    changeMidComponentTo = (keyComponent) =>this.props.changeMidComponentTo(keyComponent)
+
+    setFilterComponent = () => {
+        if (this.state.filter.length == 1) {
+            if (this.currentComponent == 'search') return
+
+            this.currentComponent = 'search'
+            this.changeMidComponentTo('search')
+        }
+        else if (this.state.filter.length == 0) {
+            if (this.currentComponent == 'playlists') return
+
+            this.currentComponent = 'playlists'
+            this.changeMidComponentTo('playlists')
+        }    
     }
 
     render() {
@@ -48,8 +64,8 @@ class TopBar extends Component {
                         />
                         <div className="icon-remove-text-box">
                             {
-                                this.state.filter ? (<i onClick={() => this.limpaFiltro()} className="fa-solid fa-xmark icon-remove-text"></i>) : ''
-
+                                this.state.filter && (<i onClick={() => this.limpaFiltro()
+                               } className="fa-solid fa-xmark icon-remove-text"></i>) 
                             }
                         </div>
                     </form>

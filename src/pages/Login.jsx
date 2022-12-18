@@ -68,7 +68,7 @@ class Login extends Component {
         return (
             <div id="container-login" >
                 <ToastContainer/>
-                {this.state.loginIsValid || this.state.isLogged ? (<Navigate to={'/'} state={{fromLogin: true}} />) : ''}
+                {(this.state.loginIsValid || this.state.isLogged) && (<Navigate to={'/'} state={{fromLogin: true}} />)}
              
 
                 <header className="header-login-container">

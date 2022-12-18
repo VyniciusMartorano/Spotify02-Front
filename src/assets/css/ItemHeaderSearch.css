@@ -1,0 +1,31 @@
+.item-header-search {
+    display: flex;
+    height: min-content;
+    border-radius: 20px;
+    color: white;
+    padding: 8px 12px 8px 12px;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    margin-right: 10px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 0.95em;
+    transition: 0.2s ease;
+    cursor: ba;
+}
+
+.item-header-search:hover {
+    background-color: rgb(94,94,94);
+}
+.item-header-search:active {
+    background-color: rgb(84,84,84);
+}
+
+.inactive {
+    background-color: rgb(40,40,40);
+}
+
+.item-search-active {
+    background-color: white;
+    color: black;
+}

@@ -4,38 +4,34 @@ import TopBar from '../components/TopBar'
 import LeftBar from '../components/LeftBar'
 import PlaylistsContent from '../components/mid_content/PlaylistsContent'
 import '../assets/css/HomePage.css'
-import addToastMessage from '../components/addToastMessage'
 import { ToastContainer } from "react-toastify"
 import { Component } from 'react'
 import switchBetweenComponents from '../utils/SwitchBetweenComp'
 import MyLibrary from '../components/mid_content/MyLibrary'
+import Search from '../components/mid_content/Search'
 
 
 
 const enumComponents = {
   playlists: <PlaylistsContent/>,
   myLibrary: <MyLibrary/>,
-  createPlaylist: (<h1 style={{color: 'white'}}>Create Playlist</h1>)
+  createPlaylist: (<h1 style={{color: 'white', userSelect: 'none'}}>Create Playlist</h1>),
+  search: (<Search/>),
 }
 
 export default class HomePage extends Component {
-
   constructor(props) {
     super(props)
     this.state = {
-        component: 'playlists',
+        component: 'search',
     }
   }
 
-  //comportamento de rederizar 2x é culpa do redux
-  //https://cursos.alura.com.br/forum/topico-metodo-render-sendo-chamado-duas-vezes-75241
-
-
-
   changeMidComponentTo(keyComponent) {
-    console.log(keyComponent)
     this.setState({component: keyComponent})
   }
+
+
 
   render() {
     return (
@@ -44,7 +40,7 @@ export default class HomePage extends Component {
         <main id='mid-content'>
 
           <LeftBar changeMidComponentTo={(keyComp) => this.changeMidComponentTo(keyComp)}/>
-          <section id="main-content-container" >
+          <section id="main-content-container">
             {switchBetweenComponents(enumComponents, this.state.component)}
           </section>
           

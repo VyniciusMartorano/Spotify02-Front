@@ -29,7 +29,7 @@ class LeftBar extends Component {
             <section id="left-bar-container">
                 <div id="top-side-left-bar-container">
                     <span id="your-library"  className="left-bar-item-nav">
-                       <div id="add-playlist-icon" className="icon-left-bar ">
+                       <div id="my-library-icon" className="icon-left-bar ">
                             <img
                                 onClick={() => this.changeMidComponentTo('myLibrary')}
                                 width={27}

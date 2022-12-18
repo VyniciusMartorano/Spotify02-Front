@@ -62,6 +62,10 @@
     cursor: pointer;
 }
 
+.home-btn-box:active > .icon {
+    font-size: 0.999em;
+}
+
 .search-box {
     display: flex;
     width: 100%;    
@@ -107,11 +111,14 @@
     width: 51px;
     height: 51px;
     background-color: rgb(18, 18, 18);
+    caret-color: transparent;
 }
 
 .icon-remove-text {
     color: white;
     font-size: 25px;
+    caret-color: transparent;
+    cursor: pointer;
 }
 
 .img-profile {

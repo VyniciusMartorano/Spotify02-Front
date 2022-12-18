@@ -107,7 +107,14 @@
     padding: 2px;
     cursor: pointer;
     user-select: none;
+    transition: .5 ease;
 }
+
+
+.left-bar-item-nav:active {
+    padding-right: 10px;
+}
+
 
 .left-bar-item-nav:hover > .text-item-nav  {
     color: white;

@@ -27,7 +27,7 @@ class PlaylistsContent extends Component {
                 <div>
                     {
                         this.state.playlists.map(
-                            (item) => <RowPlaylists key={item.id} title={item.title} playlists={item.playlists} />
+                            (item) => <RowPlaylists key={item.id} title={item.title} playlists={item.playlists} mode={'home'} />
                         )
                     }
                 </div>

@@ -1,0 +1,15 @@
+
+
+#header-filters-box {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    height: 40px;
+    margin-top: 20px;
+}
+
+#search-box-section {
+    display: flex;
+    width: 1000px;
+    height: 100%;
+}

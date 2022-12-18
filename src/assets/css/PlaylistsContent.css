@@ -16,9 +16,15 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 420px;
     padding-top: 25px;
+}
 
+.home-heigth {
+    height: 420px;
+}
+
+.library-heigth {
+    height: 370px;
 }
 
 .h3-main-container-title-row {
