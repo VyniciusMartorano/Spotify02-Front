@@ -1,7 +1,10 @@
 import React, { Component } from "react"
 import './../../assets/css/Search.css'
 import { Item } from "../ItemHeaderSearch"
-
+import ItemAlbum from "./searched_itens/ItemAlbum"
+import ItemArtist from "./searched_itens/ItemArtist"
+import ItemMusic from "./searched_itens/ItemMusic"
+import ItemPlaylist from "./searched_itens/ItemPlaylist"
 
 
 
@@ -18,13 +21,28 @@ class Search extends Component {
             {id: 3, description: 'Álbuns'}, 
             {id: 4, description: 'Artistas'}
         ]
-        enumFilters = {
-            1: 'musics',
-            2: 'playlists',
-            3: 'albuns',
-            4: 'artists'
+        this.enumFilters = {
+            MUSIC: 1,
+            PLAYLIST: 2,
+            ALBUM: 3,
+            ARTIST: 4
         }
     }
+
+    switchBetweenComponents(activeId, props) {
+        switch (activeId) {
+            case this.enumFilters.MUSIC:
+                return <ItemMusic music={props} />
+            case this.enumFilters.PLAYLIST:
+                return <ItemPlaylist playlist={props} />
+            case this.enumFilters.ALBUM:
+                return <ItemAlbum album={props} />
+            case this.enumFilters.ARTIST:
+                return <ItemArtist artist={props} />
+        }
+    }
+
+    
 
     render() {
         return (
@@ -39,9 +57,9 @@ class Search extends Component {
                         />)}
                 </div>
                 <div id="content-search">   
-                        {this.state.results.map(
-                            (item) =>
-                        )}
+                    {this.state.results.map(
+                        (item) => this.switchBetweenComponents(this.state.activeId, item)
+                    )}
                 </div>
             </div>
         )

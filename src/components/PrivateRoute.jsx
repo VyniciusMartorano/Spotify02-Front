@@ -4,7 +4,7 @@ import { getToken } from "./services/auth"
 
 
  function PrivateRoute ({ children }) {
-    const tokenIsValid = getToken() != undefined
+    const tokenIsValid = getToken() ? true : false
     
     return tokenIsValid ? children : <Navigate to="/login" />
 }
