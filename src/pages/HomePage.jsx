@@ -1,6 +1,6 @@
 import React from 'react'
 import Player from '../components/Player'
-import TopBar from '../components/TopBar'
+import TopBar from '../components/top_bar/TopBar'
 import LeftBar from '../components/LeftBar'
 import PlaylistsContent from '../components/mid_content/PlaylistsContent'
 import '../assets/css/HomePage.css'

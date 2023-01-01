@@ -2,7 +2,6 @@
 .icon-heart {
     cursor: pointer;
     color: var(--icon-not-hover);
-    caret-color: transparent;
 }
 
 .icon-heart:hover {

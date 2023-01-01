@@ -10,6 +10,12 @@
 
 #search-box-section {
     display: flex;
+    flex-direction: column;
     width: 1000px;
     height: 100%;
+}
+
+#content-search {
+    display: flex;
+    margin-top: 50px;
 }

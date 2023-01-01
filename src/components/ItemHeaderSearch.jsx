@@ -1,7 +1,5 @@
 import React from "react"
 import './../assets/css/ItemHeaderSearch.css'
-import { useState } from "react"
-
 
 
 const Item = ({ item, activeId, onClick }) => {

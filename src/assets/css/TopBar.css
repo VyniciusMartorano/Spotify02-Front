@@ -1,6 +1,4 @@
-.icon {
-    caret-color: transparent;
-}
+
 
 .top-bar-container {
     display: flex;
@@ -111,13 +109,11 @@
     width: 51px;
     height: 51px;
     background-color: rgb(18, 18, 18);
-    caret-color: transparent;
 }
 
 .icon-remove-text {
     color: white;
     font-size: 25px;
-    caret-color: transparent;
     cursor: pointer;
 }
 

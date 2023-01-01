@@ -83,7 +83,6 @@
     align-items: center;
     justify-content: center;
     color: var(--icon-hovered);
-    caret-color: transparent;
 }
 
 
@@ -94,7 +93,6 @@
     align-items: center;
     justify-content: center;
     color: var(--icon-not-hover);
-    caret-color: transparent;
 }
 
 #icon-btn-active {

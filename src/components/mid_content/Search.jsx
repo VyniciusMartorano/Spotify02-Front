@@ -5,8 +5,8 @@ import ItemAlbum from "./searched_itens/ItemAlbum"
 import ItemArtist from "./searched_itens/ItemArtist"
 import ItemMusic from "./searched_itens/ItemMusic"
 import ItemPlaylist from "./searched_itens/ItemPlaylist"
-
-
+import { connect } from "react-redux"
+import { actInserirTexto } from "../../store/actions/actInserirTexto"
 
 class Search extends Component {
     constructor(props) {
@@ -42,9 +42,12 @@ class Search extends Component {
         }
     }
 
-    
 
     render() {
+        console.log(this.props)
+        const {texto} = this.props
+
+        // const { texto } = this.props
         return (
             <div id="search-box-section">
                 <div id="header-filters-box">
@@ -57,14 +60,35 @@ class Search extends Component {
                         />)}
                 </div>
                 <div id="content-search">   
-                    {this.state.results.map(
-                        (item) => this.switchBetweenComponents(this.state.activeId, item)
-                    )}
+                    {
+                    this.state.results.map((item) => this.switchBetweenComponents(this.state.activeId, item))
+                    }
+                    <button onClick={() => {
+                        const {dispatch} = this.props
+                        dispatch(actInserirTexto({texto: 'botao 1'}))
+                    }} style={{color: 'black'}}>botao 1</button>
+
+                    <button onClick={() => {
+                        const {dispatch} = this.props
+                        dispatch(actInserirTexto({texto: 'botao 2'}))
+                    }} style={{color: 'black'}}>botao 2</button>
+
+
+                    <h1 style={{color: 'black', backgroundColor: 'white'}}>
+                    {texto}
+
+                    </h1>
                 </div>
             </div>
         )
     }
 
 }
+const mapStateToProps = (state) => {
+    return ({
+        texto: state.myReducer.texto
+    })
+}
 
-export default Search
+
+export default connect(mapStateToProps  )(Search)

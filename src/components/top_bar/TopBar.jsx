@@ -1,17 +1,36 @@
 import React, { Component } from "react"
-import "./../assets/css/TopBar.css"
+import "./../../assets/css/TopBar.css"
 import { Navigate } from "react-router-dom" 
-import { doLogout} from "./services/auth"
+import { doLogout} from "../services/auth"
+import Service from "./Service"
+
 
 class TopBar extends Component {
     constructor(props) {
         super(props)
-        this.state = {filter: '', logout: false}
+
+        this.state = {
+            filter: '', 
+            logout: false
+        }
+
         this.currentComponent = ''
+        this.user = {}
+        this.Serv = new Service()
     }   
- 
+    
+    componentDidMount() {
+        this.getUser()
+    }
+
     componentDidUpdate() {
         this.setFilterComponent()
+    }
+
+    async getUser() {
+        await this.Serv.getUser().then(
+            ({ data }) => this.user = data
+        )
     }
 
     limpaFiltro = () => this.setState({filter: ''})
@@ -72,7 +91,7 @@ class TopBar extends Component {
                 </div>
                 <div className="icon-profile-container">
                     <img 
-                        src={require('./../utils/images/Victor 3x4-small.png')} 
+                        src={this.user.image} 
                         alt=""
                         className="img-profile" 
                         onClick={() => this.logout()}
