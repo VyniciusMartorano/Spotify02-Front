@@ -3,6 +3,8 @@ import "./../../assets/css/TopBar.css"
 import { Navigate } from "react-router-dom" 
 import { doLogout} from "../services/auth"
 import Service from "./Service"
+import { connect } from "react-redux"
+import { actInsertTextSearch, actRefreshResultsOfSearch } from "../../store/actions/searchActions"
 
 
 class TopBar extends Component {
@@ -10,7 +12,6 @@ class TopBar extends Component {
         super(props)
 
         this.state = {
-            filter: '', 
             logout: false
         }
 
@@ -44,18 +45,28 @@ class TopBar extends Component {
     changeMidComponentTo = (keyComponent) =>this.props.changeMidComponentTo(keyComponent)
 
     setFilterComponent = () => {
-        if (this.state.filter.length == 1) {
+        if (this.props.text_filter.length == 1) {
             if (this.currentComponent == 'search') return
 
             this.currentComponent = 'search'
             this.changeMidComponentTo('search')
         }
-        else if (this.state.filter.length == 0) {
+        else if (this.props.text_filter.length == 0) {
             if (this.currentComponent == 'playlists') return
 
             this.currentComponent = 'playlists'
             this.changeMidComponentTo('playlists')
         }    
+    }
+
+    setValueOfSearch(value) {
+        
+        this.props.dispatch(actInsertTextSearch({text_filter: value}))
+    }
+
+    searchResults(filter) {
+        console.log(filter)
+        this.Serv
     }
 
     render() {
@@ -78,8 +89,8 @@ class TopBar extends Component {
                             name="" 
                             className="input-search"
                             placeholder="O que você quer ouvir?"
-                            value={this.state.filter}
-                            onChange={({ target }) => this.setState({filter: target.value})}
+                            value={this.props.text_filter}
+                            onChange={({ target }) => this.setValueOfSearch(target.value)}
                         />
                         <div className="icon-remove-text-box">
                             {
@@ -102,5 +113,11 @@ class TopBar extends Component {
         )
     }
 }
+const mapStateToProps = (state)  => {
+    return ({
+        text_filter: state.searchReducer.text_filter
+    })
+}
 
-export default TopBar
+
+export default connect(mapStateToProps)(TopBar)

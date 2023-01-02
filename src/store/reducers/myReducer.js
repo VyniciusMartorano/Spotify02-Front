@@ -2,7 +2,7 @@ import { INSERIR } from "../actions/actionTypes"
 
 
 const initialState = {
-    texto: 'gfdg'
+    texto: ''
 }
 
 

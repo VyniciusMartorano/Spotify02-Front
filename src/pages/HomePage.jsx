@@ -16,7 +16,7 @@ const enumComponents = {
   playlists: <PlaylistsContent/>,
   myLibrary: <MyLibrary/>,
   createPlaylist: (<h1 style={{color: 'white', userSelect: 'none'}}>Create Playlist</h1>),
-  search: (<Search/>),
+  search: <Search/>,
 }
 
 export default class HomePage extends Component {
