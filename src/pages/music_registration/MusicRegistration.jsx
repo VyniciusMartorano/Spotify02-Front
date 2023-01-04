@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import './../../assets/css/MusicRegistration.css'
 import Dropdown from "../../components/DropDown"
 import InputMusic from "../../components/InputMusic"
-import MusicRegistrationService from "./MusicRegistrationService"
+import MusicRegistrationService from "./Service"
 import listHaveEmptyItem from "../../utils/isEmpty"
 import {ToastContainer, toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'

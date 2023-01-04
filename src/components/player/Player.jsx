@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react"
-import '../assets/css/Player.css'
-import Slider from "./Slider"
-import IconHeart from "./IconHeart"
-import VolumeBar from "./VolumeBar"
-import IconVolume from './IconVolume'
+import '../../assets/css/Player.css'
+import Slider from "../Slider"
+import IconHeart from "../IconHeart"
+import VolumeBar from "../VolumeBar"
+import IconVolume from '../IconVolume'
 
 
 
@@ -109,7 +109,7 @@ const Player = () => {
                       ref={audioRef}
                       onTimeUpdate={getCurrDuration}
                       onLoadedData={e => setDuration(e.currentTarget.duration.toFixed(2))}
-                      src={require('./../utils/teste.mp3')}
+                      src={require('./../../utils/teste.mp3')}
                     />
                     <div id="slider-container-external">
                       <span className="span-time-slider">0:30</span>

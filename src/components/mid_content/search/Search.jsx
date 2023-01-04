@@ -1,13 +1,14 @@
 import React, { Component } from "react"
-import './../../assets/css/Search.css'
-import { Item } from "../ItemHeaderSearch"
-import ItemAlbum from "./searched_itens/ItemAlbum"
-import ItemArtist from "./searched_itens/ItemArtist"
-import ItemMusic from "./searched_itens/ItemMusic"
-import ItemPlaylist from "./searched_itens/ItemPlaylist"
+import './../../../assets/css/Search.css'
+import { Item } from "../../ItemHeaderSearch"
+import ItemAlbum from "../searched_itens/ItemAlbum"
+import ItemArtist from "../searched_itens/ItemArtist"
+import ItemMusic from "../searched_itens/ItemMusic"
+import ItemPlaylist from "../searched_itens/ItemPlaylist"
 import { connect } from "react-redux"
-import SEARCH_OPTIONS from "../../utils/enumSearchOptions"
-import { actSetOptionSearch } from "../../store/actions/searchActions"
+import SEARCH_OPTIONS from "../../../utils/enumSearchOptions"
+import { actSetOptionSearch } from "../../../store/actions/searchActions"
+
 
 class Search extends Component {
     constructor(props) {

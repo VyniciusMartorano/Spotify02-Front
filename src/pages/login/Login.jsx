@@ -1,11 +1,11 @@
 import { Component, React } from "react"
-import './../assets/css/Login.css'
-import listHaveEmptyItem from "../utils/isEmpty"
+import './../../assets/css/Login.css'
+import listHaveEmptyItem from "../../utils/isEmpty"
 import { ToastContainer } from "react-toastify"
-import LoginService from "../components/services/LoginService"
+import LoginService from "./Service"
 import { Navigate } from "react-router-dom"
-import addToastMessage from "../components/addToastMessage"
-import { setToken, setRefreshToken, getToken } from "../components/services/auth"
+import addToastMessage from "../../components/addToastMessage"
+import { setToken, setRefreshToken, getToken } from "../../components/services/auth"
 
 
 
@@ -73,7 +73,7 @@ class Login extends Component {
 
                 <header className="header-login-container">
                     <div id="container-image">
-                        <img src={require('./../utils/images/logo.png')} className="img-logo-login" alt="" />                        
+                        <img src={require('./../../utils/images/logo.png')} className="img-logo-login" alt="" />                        
                     </div>
                     <div className="line-login"></div>
                 </header>

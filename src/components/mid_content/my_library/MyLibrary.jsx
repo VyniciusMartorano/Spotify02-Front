@@ -1,7 +1,7 @@
 import { Component, React } from "react"
-import LibraryService from "../services/LibraryService"
-import RowPlaylists from "../RowPlaylist"
-import addToastMessage from './../addToastMessage'
+import LibraryService from "./Service"
+import RowPlaylists from "../../RowPlaylist"
+import addToastMessage from '../../addToastMessage'
 import { ToastContainer } from "react-toastify"
 import { connect } from "react-redux"
 

@@ -8,8 +8,8 @@ import getPrivateRoute from './components/PrivateRoute'
 import getDefaultRoute from "./utils/getDefaultRoute"
 
 import MusicRegistration  from "./pages/music_registration/MusicRegistration"
-import Login  from "./pages/Login"
-import HomePage  from "./pages/HomePage"
+import Login  from "./pages/login/Login"
+import HomePage  from "./pages/homepage/HomePage"
 
 
 

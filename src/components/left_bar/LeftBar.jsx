@@ -1,8 +1,8 @@
 import { Component, React } from "react"
-import '../assets/css/LeftBar.css'
-import LeftBarService from './services/LeftBarService'
-import { enumComponents } from "../utils/enumComponents"
-import { actChangeMidComponent } from "../store/actions/coreActions"
+import '../../assets/css/LeftBar.css'
+import LeftBarService from './Service'
+import { enumComponents } from "../../utils/enumComponents"
+import { actChangeMidComponent } from "../../store/actions/coreActions"
 import { connect } from "react-redux"
 
 
@@ -38,7 +38,7 @@ class LeftBar extends Component {
                                 onClick={() => this.changeMidComponentTo(enumComponents.MY_LIBRARY)}
                                 width={27}
                                 height={27} 
-                                src={require('../utils/images/icone_biblioteca.png')} 
+                                src={require('../../utils/images/icone_biblioteca.png')} 
                                 alt="" 
                             />
                        </div>
