@@ -7,7 +7,7 @@ import store, { persistor } from './store'
 import getPrivateRoute from './components/PrivateRoute'
 import getDefaultRoute from "./utils/getDefaultRoute"
 
-import MusicRegistration  from "./pages/MusicRegistration"
+import MusicRegistration  from "./pages/music_registration/MusicRegistration"
 import Login  from "./pages/Login"
 import HomePage  from "./pages/HomePage"
 

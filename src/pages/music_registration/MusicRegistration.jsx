@@ -1,13 +1,13 @@
 import React, { Component } from "react"
-import './../assets/css/MusicRegistration.css'
-import Dropdown from "../components/DropDown"
-import InputMusic from "../components/InputMusic"
-import MusicRegistrationService from "../components/services/MusicRegistrationService"
-import listHaveEmptyItem from "../utils/isEmpty"
+import './../../assets/css/MusicRegistration.css'
+import Dropdown from "../../components/DropDown"
+import InputMusic from "../../components/InputMusic"
+import MusicRegistrationService from "./MusicRegistrationService"
+import listHaveEmptyItem from "../../utils/isEmpty"
 import {ToastContainer, toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
-import CustomMessage from "../utils/CustomMensageToast"
-import getFileExtension from "../utils/getFileExtension"
+import CustomMessage from "../../utils/CustomMensageToast"
+import getFileExtension from "../../utils/getFileExtension"
 
 
 class MusicRegistration extends Component {
