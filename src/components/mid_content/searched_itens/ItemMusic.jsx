@@ -15,7 +15,7 @@ const ItemMusic = ({ music }) => {
                 <div className="btn-play-box">
                     <i onClick={() => startMusic()} className={`fa fa-play`}></i>
                 </div>
-                <img src={item} alt="" />
+                <img src="" alt="" />
                 <div className="box-description-item-searched">
                     <h3>{music.title}</h3>
                     <span>{music.subtitle}</span>

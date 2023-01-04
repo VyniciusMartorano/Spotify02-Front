@@ -63,7 +63,7 @@ class TopBar extends Component {
 
     searchResults(){
         this.Serv.search(this.props.text_filter, this.props.optionSearch).then(
-            ({ data }) => this.props.dispatch(actRefreshResultsOfSearch(data)),
+            ({ data }) => this.props.dispatch(actRefreshResultsOfSearch({search_results: data})),
             () => addToastMessage('error', 'Erro!', `Ocorreu um erro ao buscar pelo termo "${text_filter}"`)
         )
     }

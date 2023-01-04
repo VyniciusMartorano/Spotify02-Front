@@ -7,7 +7,7 @@ import ItemMusic from "./searched_itens/ItemMusic"
 import ItemPlaylist from "./searched_itens/ItemPlaylist"
 import { connect } from "react-redux"
 import SEARCH_OPTIONS from "../../utils/enumSearchOptions"
-
+import { actSetOptionSearch } from "../../store/actions/searchActions"
 
 class Search extends Component {
     constructor(props) {
@@ -25,13 +25,13 @@ class Search extends Component {
     switchBetweenComponents(activeId, props) {
         switch (activeId) {
             case SEARCH_OPTIONS.MUSIC:
-                return <ItemMusic music={props} />
+                return <ItemMusic key={props.id} music={props} />
             case SEARCH_OPTIONS.PLAYLIST:
-                return <ItemPlaylist playlist={props} />
+                return <ItemPlaylist key={props.id} playlist={props} />
             case SEARCH_OPTIONS.ALBUM:
-                return <ItemAlbum album={props} />
+                return <ItemAlbum key={props.id} album={props} />
             case SEARCH_OPTIONS.ARTIST:
-                return <ItemArtist artist={props} />
+                return <ItemArtist key={props.id} artist={props} />
         }
     }
 
@@ -46,15 +46,11 @@ class Search extends Component {
                             key={item.id} 
                             item={item}
                             activeId={this.props.optionSearch}
-                            onClick={(id) => this.setState({activeId: id})} 
+                            onClick={(id) => this.props.dispatch(actSetOptionSearch({optionSearch: id}))} 
                         />)}
                 </div>
                 <div id="content-search">   
-                    {this.props.search_results.map((item) => this.switchBetweenComponents(this.props.optionSearch, item))}
-
-                    <h1 style={{color: 'black', backgroundColor : 'white'}}>
-                        {this.props.text_filter}
-                    </h1>
+                    {this.props.search_results.map((item) => this.switchBetweenComponents(this.props.optionSearch, item))}                    
                 </div>
             </div>
         )

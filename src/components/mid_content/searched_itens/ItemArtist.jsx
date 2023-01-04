@@ -3,7 +3,7 @@ import React, { useState } from "react"
 
 const ItemArtist = ({ artist }) => {
     const [isPlaying, setIsPlaying] = useState(false)
-
+    console.log(artist)
 
     const startMusic = () => {
 
