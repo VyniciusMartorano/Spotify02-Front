@@ -39,14 +39,14 @@ class MusicRegistration extends Component {
 
     setArtists () {
         this.MusicRegServ.getArtists().then(
-            (response) => this.setState({artists: response.data, artist: response.data[0].id}),
+            ({ data }) => this.setState({artists: data, artist: data[0].id}),
             (error) => this.addToastMessage('error', 'Houve um erro ao recuperar os artistas', error.response.data)
         )
     }
 
     async setGeneros () {
         await this.MusicRegServ.getGeneros().then(
-            (response) =>  this.setState({generos: response.data, genero: response.data[0].id}),
+            ({ data }) =>  this.setState({generos: data, genero: data[0].id}),
             (error) => this.addToastMessage('error', 'Houve um erro ao recuperar os gêneros', error.response.data)
         )
     }
@@ -111,8 +111,7 @@ class MusicRegistration extends Component {
         
     
         this.MusicRegServ.insertMusic(formData).then(
-            () => this.addToastMessage('success','Sucesso', 'A música foi salva com sucesso')
-            ,
+            () => this.addToastMessage('success','Sucesso', 'A música foi salva com sucesso'),
             (error) => this.addToastMessage('info','Atenção!', error.response.data)
             
         ).finally(

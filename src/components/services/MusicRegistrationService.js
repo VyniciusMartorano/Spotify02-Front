@@ -1,25 +1,25 @@
-import axios from "axios"
-
+import api from "./api"
 
 class MusicRegistrationService {
-    
-    apiUrl = `http://127.0.0.1:10000/`
+    constructor() {
+        this.api = new api()
+    }
     
     
     DownloadUrlMusic(url) {
-        return axios.post(`${this.apiUrl}api/musics/download_music_by_url/`, {url})
+        return this.api.axios.post(`api/musics/download_music_by_url/`, {url})
     }
     
     insertMusic(music){
-        return axios.post(`${this.apiUrl}api/musics/insert_music/`, music, { "Content-Type": "multipart/form-data" })
+        return this.api.axios.post(`api/musics/insert_music/`, music, { "Content-Type": "multipart/form-data" })
     }
 
     getArtists() {
-        return axios.get(`${this.apiUrl}api/artist/`)
+        return this.api.axios.get(`api/artist/`)
     }
 
     getGeneros() {
-        return axios.get(`${this.apiUrl}api/genero/`)
+        return this.api.axios.get(`api/genero/`)
     }
     
 }
