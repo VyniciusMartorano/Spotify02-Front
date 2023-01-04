@@ -25,7 +25,7 @@ class HomePage extends Component {
         <TopBar changeMidComponentTo={(keyComp) => this.props.dispatch(actChangeMidComponent({midComponentActiveId: keyComp}))} />
         <main id='mid-content'>
 
-          <LeftBar changeMidComponentTo={(keyComp) => this.props.dispatch(actChangeMidComponent({midComponentActiveId: keyComp}))}/>
+          <LeftBar />
           <section id="main-content-container">
             {switchBetweenComponents(COMPONENTS, this.props.midComponentActiveId)}
           </section>

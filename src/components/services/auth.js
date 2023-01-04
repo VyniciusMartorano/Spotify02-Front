@@ -23,6 +23,7 @@ export const refreshToken = async (error) => {
             return Promise.resolve(data)
         },
         (error) => {
+            //usar state redux aqui pra quando o token expirar
             doLogout()
             return Promise.reject(error)
         }
