@@ -8,6 +8,7 @@ import { actInsertTextSearch, actRefreshResultsOfSearch } from "../../store/acti
 import { enumComponents } from "../../utils/enumComponents"
 import addToastMessage from "../addToastMessage"
 import { ToastContainer } from "react-toastify"
+import { actChangeMidComponent } from "../../store/actions/coreActions"
 
 
 class TopBar extends Component {
@@ -45,13 +46,13 @@ class TopBar extends Component {
             if (this.currentComponent == enumComponents.SEARCH) return
 
             this.currentComponent = enumComponents.SEARCH
-            this.props.changeMidComponentTo(enumComponents.SEARCH)
+            this.changeMidComponentTo(enumComponents.SEARCH)
         }
         else if (this.props.text_filter.length == 0) {
             if (this.currentComponent == enumComponents.PLAYLISTS) return
 
             this.currentComponent = enumComponents.PLAYLISTS
-            this.props.changeMidComponentTo(enumComponents.PLAYLISTS)
+            this.changeMidComponentTo(enumComponents.PLAYLISTS)
         }    
     }
 
@@ -80,8 +81,8 @@ class TopBar extends Component {
                     <div className="left-side-bar">
                     </div>
                     <div className="search-container">
-                        <div className="home-btn-box">
-                            <i className="fa-solid fa-house icon" onClick={() => this.changeMidComponentTo(enumComponents.PLAYLISTS)}></i>
+                        <div className="home-btn-box"  onClick={() => this.changeMidComponentTo(enumComponents.PLAYLISTS)}>
+                            <i className="fa-solid fa-house icon"></i>
                         </div>
                         <form className="search-box">
                             <div className="icon-search-box">
