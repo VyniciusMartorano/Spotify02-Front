@@ -3,7 +3,7 @@ import LibraryService from "../services/LibraryService"
 import RowPlaylists from "../RowPlaylist"
 import addToastMessage from './../addToastMessage'
 import { ToastContainer } from "react-toastify"
-
+import { connect } from "react-redux"
 
 
 class MyLibrary extends Component {
@@ -48,4 +48,10 @@ class MyLibrary extends Component {
 
 }
 
-export default MyLibrary
+const mapStateToProps = (state) => {
+    return ({
+        state
+    })
+}
+
+export default connect(mapStateToProps)(MyLibrary)

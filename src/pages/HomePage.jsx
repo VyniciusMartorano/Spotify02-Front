@@ -2,46 +2,32 @@ import React from 'react'
 import Player from '../components/Player'
 import TopBar from '../components/top_bar/TopBar'
 import LeftBar from '../components/LeftBar'
-import PlaylistsContent from '../components/mid_content/PlaylistsContent'
 import '../assets/css/HomePage.css'
 import { ToastContainer } from "react-toastify"
 import { Component } from 'react'
 import switchBetweenComponents from '../utils/SwitchBetweenComp'
-import MyLibrary from '../components/mid_content/MyLibrary'
-import Search from '../components/mid_content/Search'
+import { connect } from 'react-redux'
+import { enumComponents, COMPONENTS } from '../utils/enumComponents'
+import { actChangeMidComponent } from '../store/actions/coreActions'
 
 
 
-const enumComponents = {
-  playlists: <PlaylistsContent/>,
-  myLibrary: <MyLibrary/>,
-  createPlaylist: (<h1 style={{color: 'white', userSelect: 'none'}}>Create Playlist</h1>),
-  search: <Search/>,
-}
 
-export default class HomePage extends Component {
+
+class HomePage extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-        component: 'search',
-    }
   }
-
-  changeMidComponentTo(keyComponent) {
-    this.setState({component: keyComponent})
-  }
-
-
 
   render() {
     return (
       <section className="container-master">
-        <TopBar changeMidComponentTo={(keyComp) => this.changeMidComponentTo(keyComp)} />
+        <TopBar changeMidComponentTo={(keyComp) => this.props.dispatch(actChangeMidComponent({midComponentActiveId: keyComp}))} />
         <main id='mid-content'>
 
-          <LeftBar changeMidComponentTo={(keyComp) => this.changeMidComponentTo(keyComp)}/>
+          <LeftBar changeMidComponentTo={(keyComp) => this.props.dispatch(actChangeMidComponent({midComponentActiveId: keyComp}))}/>
           <section id="main-content-container">
-            {switchBetweenComponents(enumComponents, this.state.component)}
+            {switchBetweenComponents(COMPONENTS, this.props.midComponentActiveId)}
           </section>
           
         </main>
@@ -52,3 +38,13 @@ export default class HomePage extends Component {
   }
 
 }
+
+const mapStateToProps = (state) => {
+
+  return ({
+      user: state.coreReducer.user,
+      midComponentActiveId: state.coreReducer.midComponentActiveId
+    })
+}
+
+export default connect(mapStateToProps)(HomePage)

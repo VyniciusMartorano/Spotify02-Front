@@ -13,8 +13,8 @@ class Service {
         return await this.api.axios.get(`api/user/`)
     }
 
-    async search(filter) {
-        return await this.api.axios.post(`api/`)
+    async search(filter, optionSearch) {
+        return await this.api.axios.post(`api/search/`, {filter, optionSearch})
     }
 
     

@@ -2,6 +2,7 @@ import { Component, React } from "react"
 import '../../assets/css/PlaylistsContent.css'
 import PlaylistsContentService from "../services/PlaylistsContentService"
 import RowPlaylists from "../RowPlaylist"
+import { connect } from "react-redux"
 
 
 class PlaylistsContent extends Component {
@@ -38,4 +39,4 @@ class PlaylistsContent extends Component {
 
 }
 
-export default PlaylistsContent
+export default connect()(PlaylistsContent)

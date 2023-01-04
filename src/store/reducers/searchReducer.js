@@ -1,20 +1,23 @@
-import { INSERT_TEXT_IN_SEARCH, REFRESH_RESULTS_OF_SEARCH } from "../actions/actionTypes"
-
+import { INSERT_TEXT_IN_SEARCH, REFRESH_RESULTS_OF_SEARCH, SET_OPTION_SEARCH } from "../actions/actionTypes"
+import SEARCH_OPTIONS from "../../utils/enumSearchOptions"
 
 const initialState = {
     text_filter: '',
-    search_results: []
+    search_results: [],
+    optionSearch: SEARCH_OPTIONS.MUSIC
 }
 
 
 const searchReducer = (state = initialState, action)  => {
     switch (action.type) {
         case INSERT_TEXT_IN_SEARCH:
-            return {text_filter: action.payload.text_filter}
+            return {...state, text_filter: action.payload.text_filter}
         
         case REFRESH_RESULTS_OF_SEARCH:
-            return {search_results: action.payload.search_results}
+            return {...state, search_results: action.payload.search_results}
 
+        case SET_OPTION_SEARCH:
+            return {...state, optionSearch: action.payload.optionSearch}
         default:
             return state
     }

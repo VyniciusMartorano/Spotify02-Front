@@ -1,7 +1,7 @@
 import { Component, React } from "react"
 import '../assets/css/LeftBar.css'
 import LeftBarService from './services/LeftBarService'
-
+import { enumComponents } from "../utils/enumComponents"
 
 class LeftBar extends Component {
     constructor(props) {
@@ -20,9 +20,6 @@ class LeftBar extends Component {
             ({ data }) => this.setState({playlists: data})
         )
     }
-    changeMidComponentTo(keyComponent) {
-        this.props.changeMidComponentTo(keyComponent)
-    }
 
     render() {
         return (
@@ -31,23 +28,28 @@ class LeftBar extends Component {
                     <span id="your-library"  className="left-bar-item-nav">
                        <div id="my-library-icon" className="icon-left-bar ">
                             <img
-                                onClick={() => this.changeMidComponentTo('myLibrary')}
+                                onClick={() => this.props.changeMidComponentTo(enumComponents.MY_LIBRARY)}
                                 width={27}
                                 height={27} 
                                 src={require('../utils/images/icone_biblioteca.png')} 
                                 alt="" 
                             />
                        </div>
-                       <h3 onClick={() => this.changeMidComponentTo('myLibrary')} className="text-item-nav">Sua Biblioteca</h3>
+                       <h3 onClick={() => this.props.changeMidComponentTo(enumComponents.MY_LIBRARY)} className="text-item-nav">Sua Biblioteca</h3>
                    </span>
                    <span className="left-bar-item-nav">
                        <div id="add-playlist-icon" className="icon-left-bar ">
                             <i 
-                                onClick={() => this.changeMidComponentTo('createPlaylist')} 
+                                onClick={() => this.props.changeMidComponentTo(enumComponents.CREATE_PLAYLIST)} 
                                 className="fa-solid fa-plus add-playlist-icon">
                             </i>
                        </div>
-                       <h3 onClick={() => this.changeMidComponentTo('createPlaylist')} className="text-item-nav">Criar playlist</h3>
+                       <h3 
+                            onClick={() => this.props.changeMidComponentTo(enumComponents.CREATE_PLAYLIST)} 
+                            className="text-item-nav"
+                        >
+                            Criar playlist
+                        </h3>
                    </span>
                    <span className="left-bar-item-nav">
                        <div id="bookmark" className="icon-left-bar ">
@@ -73,7 +75,6 @@ class LeftBar extends Component {
                             </div>)
                         )
                     }
-                    
                     
                 </div>
             </section>

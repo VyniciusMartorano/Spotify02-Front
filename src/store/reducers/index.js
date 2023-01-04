@@ -1,12 +1,11 @@
-import { combineReducers } from "redux";
-import myReducer from "./myReducer";
-import searchReducer from "./searchReducer";
-
+import { combineReducers } from "redux"
+import searchReducer from "./searchReducer"
+import coreReducer from "./coreReducer"
 
 
 const rootReducer = combineReducers({
-    myReducer,
-    searchReducer
+    searchReducer,
+    coreReducer
 })
 
 

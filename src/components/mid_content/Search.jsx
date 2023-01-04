@@ -6,39 +6,31 @@ import ItemArtist from "./searched_itens/ItemArtist"
 import ItemMusic from "./searched_itens/ItemMusic"
 import ItemPlaylist from "./searched_itens/ItemPlaylist"
 import { connect } from "react-redux"
-import { actInserirTexto } from "../../store/actions/actInserirTexto"
-// import { actInsertTextSearch } from "../../store/actions/searchActions"
+import SEARCH_OPTIONS from "../../utils/enumSearchOptions"
+
 
 class Search extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            activeId: 1,
-            results: []
-        }
+
         this.headerFilters = [
-            {id: 1, description: 'Músicas'}, 
-            {id: 2, description: 'Playlists'}, 
-            {id: 3, description: 'Álbuns'}, 
-            {id: 4, description: 'Artistas'}
+            {id: SEARCH_OPTIONS.MUSIC, description: 'Músicas'}, 
+            {id: SEARCH_OPTIONS.PLAYLIST, description: 'Playlists'}, 
+            {id: SEARCH_OPTIONS.ALBUM, description: 'Álbuns'}, 
+            {id: SEARCH_OPTIONS.ARTIST, description: 'Artistas'}
         ]
-        this.enumFilters = {
-            MUSIC: 1,
-            PLAYLIST: 2,
-            ALBUM: 3,
-            ARTIST: 4
-        }
+
     }
 
     switchBetweenComponents(activeId, props) {
         switch (activeId) {
-            case this.enumFilters.MUSIC:
+            case SEARCH_OPTIONS.MUSIC:
                 return <ItemMusic music={props} />
-            case this.enumFilters.PLAYLIST:
+            case SEARCH_OPTIONS.PLAYLIST:
                 return <ItemPlaylist playlist={props} />
-            case this.enumFilters.ALBUM:
+            case SEARCH_OPTIONS.ALBUM:
                 return <ItemAlbum album={props} />
-            case this.enumFilters.ARTIST:
+            case SEARCH_OPTIONS.ARTIST:
                 return <ItemArtist artist={props} />
         }
     }
@@ -53,24 +45,15 @@ class Search extends Component {
                         (item) => <Item 
                             key={item.id} 
                             item={item}
-                            activeId={this.state.activeId}
+                            activeId={this.props.optionSearch}
                             onClick={(id) => this.setState({activeId: id})} 
                         />)}
                 </div>
                 <div id="content-search">   
-                    {this.state.results.map((item) => this.switchBetweenComponents(this.state.activeId, item))}
+                    {this.props.search_results.map((item) => this.switchBetweenComponents(this.props.optionSearch, item))}
 
-                    <button onClick={() => {
-                        const {dispatch} = this.props
-                        dispatch(actInserirTexto({texto: 'botao 1'}))
-                    }} style={{color: 'black'}}>botao 1</button>
-
-                 
-
-
-                    <h1 style={{color: 'black', backgroundColor: 'white'}}>
-                    {this.props.text_filter}
-
+                    <h1 style={{color: 'black', backgroundColor : 'white'}}>
+                        {this.props.text_filter}
                     </h1>
                 </div>
             </div>
@@ -80,8 +63,9 @@ class Search extends Component {
 }
 const mapStateToProps = (state) => {
     return ({
-        texto: state.myReducer.texto,
-        text_filter: state.searchReducer.text_filter
+        text_filter: state.searchReducer.text_filter,
+        search_results: state.searchReducer.search_results,
+        optionSearch: state.searchReducer.optionSearch
     })
 }
 

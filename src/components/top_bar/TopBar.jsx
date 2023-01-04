@@ -5,6 +5,9 @@ import { doLogout} from "../services/auth"
 import Service from "./Service"
 import { connect } from "react-redux"
 import { actInsertTextSearch, actRefreshResultsOfSearch } from "../../store/actions/searchActions"
+import { enumComponents } from "../../utils/enumComponents"
+import addToastMessage from "../addToastMessage"
+import { ToastContainer } from "react-toastify"
 
 
 class TopBar extends Component {
@@ -16,25 +19,19 @@ class TopBar extends Component {
         }
 
         this.currentComponent = ''
-        this.user = {}
         this.Serv = new Service()
     }   
-    
+
     componentDidMount() {
-        this.getUser()
+        this.currentComponent = this.props.midComponentActiveId
     }
 
     componentDidUpdate() {
         this.setFilterComponent()
     }
 
-    async getUser() {
-        await this.Serv.getUser().then(
-            ({ data }) => this.user = data
-        )
-    }
 
-    limpaFiltro = () => this.setState({filter: ''})
+    limpaFiltro = () => this.props.dispatch(actInsertTextSearch({text_filter: ''}))
     
     
     logout() {
@@ -42,80 +39,86 @@ class TopBar extends Component {
         this.setState({logout: true})
     }
 
-    changeMidComponentTo = (keyComponent) =>this.props.changeMidComponentTo(keyComponent)
 
     setFilterComponent = () => {
         if (this.props.text_filter.length == 1) {
-            if (this.currentComponent == 'search') return
+            if (this.currentComponent == enumComponents.SEARCH) return
 
-            this.currentComponent = 'search'
-            this.changeMidComponentTo('search')
+            this.currentComponent = enumComponents.SEARCH
+            this.props.changeMidComponentTo(enumComponents.SEARCH)
         }
         else if (this.props.text_filter.length == 0) {
-            if (this.currentComponent == 'playlists') return
+            if (this.currentComponent == enumComponents.PLAYLISTS) return
 
-            this.currentComponent = 'playlists'
-            this.changeMidComponentTo('playlists')
+            this.currentComponent = enumComponents.PLAYLISTS
+            this.props.changeMidComponentTo(enumComponents.PLAYLISTS)
         }    
     }
 
-    setValueOfSearch(value) {
-        
+    setValueOfSearch = (value) => {
         this.props.dispatch(actInsertTextSearch({text_filter: value}))
+        this.searchResults()
     }
 
-    searchResults(filter) {
-        console.log(filter)
-        this.Serv
+    searchResults(){
+        this.Serv.search(this.props.text_filter, this.props.optionSearch).then(
+            ({ data }) => this.props.dispatch(actRefreshResultsOfSearch(data)),
+            () => addToastMessage('error', 'Erro!', `Ocorreu um erro ao buscar pelo termo "${text_filter}"`)
+        )
     }
 
     render() {
         return (
-            <header className="top-bar-container">
-                <div className="left-side-bar">
-                </div>
-                <div className="search-container">
-    
-                    <div className="home-btn-box">
-                        <i className="fa-solid fa-house icon" onClick={() => this.changeMidComponentTo('playlists')}></i>
+            <div>
+                <ToastContainer/>
+
+                <header className="top-bar-container">
+                    <div className="left-side-bar">
                     </div>
-    
-                    <form className="search-box">
-                        <div className="icon-search-box">
-                            <i className="fa-solid icon fa-magnifying-glass"></i>
+                    <div className="search-container">
+                        <div className="home-btn-box">
+                            <i className="fa-solid fa-house icon" onClick={() => this.props.changeMidComponentTo(enumComponents.PLAYLISTS)}></i>
                         </div>
-                        <input 
-                            type="text" 
-                            name="" 
-                            className="input-search"
-                            placeholder="O que você quer ouvir?"
-                            value={this.props.text_filter}
-                            onChange={({ target }) => this.setValueOfSearch(target.value)}
+                        <form className="search-box">
+                            <div className="icon-search-box">
+                                <i className="fa-solid icon fa-magnifying-glass"></i>
+                            </div>
+                            <input
+                                type="text"
+                                name=""
+                                className="input-search"
+                                placeholder="O que você quer ouvir?"
+                                value={this.props.text_filter}
+                                onChange={({ target }) => this.setValueOfSearch(target.value)}
+                            />
+                            <div className="icon-remove-text-box">
+                                {
+                                    this.props.text_filter && (<i onClick={() => this.limpaFiltro()
+                                   } className="fa-solid fa-xmark icon-remove-text"></i>)
+                                }
+                            </div>
+                        </form>
+                    </div>
+                    <div className="icon-profile-container">
+                        <img
+                            src={this.props.user.image}
+                            alt=""
+                            className="img-profile"
+                            onClick={() => this.logout()}
                         />
-                        <div className="icon-remove-text-box">
-                            {
-                                this.state.filter && (<i onClick={() => this.limpaFiltro()
-                               } className="fa-solid fa-xmark icon-remove-text"></i>) 
-                            }
-                        </div>
-                    </form>
-                </div>
-                <div className="icon-profile-container">
-                    <img 
-                        src={this.user.image} 
-                        alt=""
-                        className="img-profile" 
-                        onClick={() => this.logout()}
-                    />
-                </div>
-                {this.state.logout && (<Navigate to="/login"/>)}
-            </header>
+                    </div>
+                    {this.state.logout && (<Navigate to="/login"/>)}
+                </header>
+            </div>
         )
     }
 }
 const mapStateToProps = (state)  => {
     return ({
-        text_filter: state.searchReducer.text_filter
+        text_filter: state.searchReducer.text_filter,
+        midComponentActiveId: state.coreReducer.midComponentActiveId,
+        user: state.coreReducer.user,
+        optionSearch: state.searchReducer.optionSearch
     })
 }
 
