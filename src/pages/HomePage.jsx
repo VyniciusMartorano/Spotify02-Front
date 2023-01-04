@@ -8,7 +8,6 @@ import { Component } from 'react'
 import switchBetweenComponents from '../utils/SwitchBetweenComp'
 import { connect } from 'react-redux'
 import { enumComponents, COMPONENTS } from '../utils/enumComponents'
-import { actChangeMidComponent } from '../store/actions/coreActions'
 
 
 
@@ -22,7 +21,7 @@ class HomePage extends Component {
   render() {
     return (
       <section className="container-master">
-        <TopBar changeMidComponentTo={(keyComp) => this.props.dispatch(actChangeMidComponent({midComponentActiveId: keyComp}))} />
+        <TopBar />
         <main id='mid-content'>
 
           <LeftBar />
@@ -31,8 +30,8 @@ class HomePage extends Component {
           </section>
           
         </main>
-        <Player/>
-        <ToastContainer/>
+        <Player />
+        <ToastContainer />
       </section>
     )
   }

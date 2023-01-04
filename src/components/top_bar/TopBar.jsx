@@ -67,6 +67,10 @@ class TopBar extends Component {
         )
     }
 
+    changeMidComponentTo(keyComp) {
+        this.props.dispatch(actChangeMidComponent({midComponentActiveId: keyComp}))
+    }
+
     render() {
         return (
             <div>
@@ -77,7 +81,7 @@ class TopBar extends Component {
                     </div>
                     <div className="search-container">
                         <div className="home-btn-box">
-                            <i className="fa-solid fa-house icon" onClick={() => this.props.changeMidComponentTo(enumComponents.PLAYLISTS)}></i>
+                            <i className="fa-solid fa-house icon" onClick={() => this.changeMidComponentTo(enumComponents.PLAYLISTS)}></i>
                         </div>
                         <form className="search-box">
                             <div className="icon-search-box">
