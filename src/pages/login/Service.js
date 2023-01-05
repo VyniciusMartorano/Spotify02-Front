@@ -1,4 +1,4 @@
-import api from "../../components/services/api"
+import api from "../../services/api"
 
 
 

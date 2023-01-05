@@ -1,6 +1,6 @@
 import React from "react"
 import { Navigate, Route } from "react-router-dom"
-import { getToken } from "./services/auth"
+import { getToken } from "./../services/auth"
 
 
  function PrivateRoute ({ children }) {

@@ -1,5 +1,4 @@
-import axios from "axios"
-import Api from "../services/api"
+import Api from "../../services/api"
 
 
 

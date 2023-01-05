@@ -7,7 +7,7 @@ import { ToastContainer } from "react-toastify"
 import { Component } from 'react'
 import switchBetweenComponents from '../../utils/SwitchBetweenComp'
 import { connect } from 'react-redux'
-import { enumComponents, COMPONENTS } from '../../utils/enumComponents'
+import { enumComponents, COMPONENTS } from '../../utils/enums/enumComponents'
 
 
 

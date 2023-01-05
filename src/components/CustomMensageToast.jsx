@@ -1,7 +1,7 @@
 import React from "react"
 
 
-function CustomMessage({title, bodyMsg}) {
+function CustomMessage({ title, bodyMsg }) {
     return (
         <div>
             <h2>{title}</h2>

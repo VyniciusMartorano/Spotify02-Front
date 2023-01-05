@@ -6,7 +6,7 @@ import ItemArtist from "../searched_itens/ItemArtist"
 import ItemMusic from "../searched_itens/ItemMusic"
 import ItemPlaylist from "../searched_itens/ItemPlaylist"
 import { connect } from "react-redux"
-import SEARCH_OPTIONS from "../../../utils/enumSearchOptions"
+import SEARCH_OPTIONS from "../../../utils/enums/enumSearchOptions"
 import { actSetOptionSearch } from "../../../store/actions/searchActions"
 
 

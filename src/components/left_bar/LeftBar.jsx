@@ -1,7 +1,7 @@
 import { Component, React } from "react"
 import '../../assets/css/LeftBar.css'
 import LeftBarService from './Service'
-import { enumComponents } from "../../utils/enumComponents"
+import { enumComponents } from "../../utils/enums/enumComponents"
 import { actChangeMidComponent } from "../../store/actions/coreActions"
 import { connect } from "react-redux"
 

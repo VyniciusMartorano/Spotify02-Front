@@ -6,7 +6,7 @@ import MusicRegistrationService from "./Service"
 import listHaveEmptyItem from "../../utils/isEmpty"
 import {ToastContainer, toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
-import CustomMessage from "../../utils/CustomMensageToast"
+import CustomMessage from "../../components/CustomMensageToast"
 import getFileExtension from "../../utils/getFileExtension"
 
 

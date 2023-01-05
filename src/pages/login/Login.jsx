@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify"
 import LoginService from "./Service"
 import { Navigate } from "react-router-dom"
 import addToastMessage from "../../components/addToastMessage"
-import { setToken, setRefreshToken, getToken } from "../../components/services/auth"
+import { setToken, setRefreshToken, getToken } from "../../services/auth"
 
 
 

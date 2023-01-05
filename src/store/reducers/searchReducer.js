@@ -1,5 +1,5 @@
 import { INSERT_TEXT_IN_SEARCH, REFRESH_RESULTS_OF_SEARCH, SET_OPTION_SEARCH } from "../actions/actionTypes"
-import SEARCH_OPTIONS from "../../utils/enumSearchOptions"
+import SEARCH_OPTIONS from "../../utils/enums/enumSearchOptions"
 
 const initialState = {
     text_filter: '',

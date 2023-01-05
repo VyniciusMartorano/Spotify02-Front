@@ -5,7 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import store, { persistor } from './store'
 
 import getPrivateRoute from './components/PrivateRoute'
-import getDefaultRoute from "./utils/getDefaultRoute"
+import getDefaultRoute from "./components/getDefaultRoute"
 
 import MusicRegistration  from "./pages/music_registration/MusicRegistration"
 import Login  from "./pages/login/Login"

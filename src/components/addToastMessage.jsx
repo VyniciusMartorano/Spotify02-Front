@@ -1,5 +1,5 @@
 import React from "react"
-import CustomMessage from "../utils/CustomMensageToast"
+import CustomMessage from "./CustomMensageToast"
 import { toast } from "react-toastify"
 
 
