@@ -52,6 +52,47 @@ class Search extends Component {
                 </div>
                 <div id="content-search">   
                     {this.props.search_results.map((item) => this.switchBetweenComponents(this.props.optionSearch, item))}                    
+
+                    <table id="table-searched-itens" cellpadding="5">
+                        <thead>
+                            <tr id="tr-header">
+                                <th class="item-thead align-center">#</th>
+                                <th style="width: 50%;" class="item-thead align-left pad-l-20">TÍTULO</th>
+                                <th class="item-thead align-left">ÁLBUM</th>
+                                <th  class="align-right"></th>
+                                <th class="item-thead align-right"><i class="fas fa-clock"></i></th>
+                                <th class="align-left"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="item-table-search">
+                                <td class="align-left">                        
+                                    <div class="btn-play-box">
+                                        <i class="fa fa-play"></i>
+                                    </div>
+                                </td>
+                                <td class="left-side-item-table align-left pad-40">
+                                    <img class="img-item-table-searched" src="image.jfif" width="45" height="45" alt="" />
+                                    <div class="box-description-item-searched">
+                                        <span>É Sal</span>
+                                        <span>Matuê</span>
+                                    </div>
+                                </td>
+                                <td class="mid-item-table-search align-left">
+                                    <div>Máquina do tempo</div>
+                                </td>
+                                <td class="align-right">
+                                    <i class="fa fa-heart"></i>
+                                </td>
+                                <td class="align-right">2:20</td>
+                                <td class="align-center">
+                                    <i  class="fa-solid fa-ellipsis"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
                 </div>
             </div>
         )
