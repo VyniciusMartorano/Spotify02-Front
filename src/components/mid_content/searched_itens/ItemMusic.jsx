@@ -1,7 +1,10 @@
 import React, { useState } from "react"
+import { Item } from "../../ItemHeaderSearch"
 
 
 const ItemMusic = ({ music }) => {
+    const core_api = process.env.REACT_APP_API_CORE_URL
+    const url = `${core_api.substring(0, core_api.length - 1)}`
 
     return (
         <tr className="item-table-search not-selection">
@@ -11,14 +14,20 @@ const ItemMusic = ({ music }) => {
                 </div>
             </td>
             <td className="left-side-item-table align-left pad-40">
-                <img className="img-item-table-searched" src={require('./image.jfif')} width="45" height="45" alt="" />
+                <img 
+                    className="img-item-table-searched" 
+                    src={url + music.image} 
+                    width="45" 
+                    height="45"
+                    alt="" 
+                />
                 <div className="box-description-item-searched">
-                    <span className="bold title-music-table">É Sal</span>
-                    <span className="color-white">Matuê</span>
+                    <span className="bold title-music-table">{music.music_name}</span>
+                    <span className="color-white">{music.artist_name}</span>
                 </div>
             </td>
             <td className="mid-item-table-search align-left color-white">
-                <div>{music.tltle}</div>
+                <div>{music.music_name}</div>
             </td>
             <td className="align-right color-white">
                 <i className="fa fa-heart"></i>

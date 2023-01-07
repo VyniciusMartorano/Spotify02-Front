@@ -4,7 +4,7 @@ import ItemAlbum from "../searched_itens/ItemAlbum"
 import ItemArtist from "../searched_itens/ItemArtist"
 import ItemMusic from "../searched_itens/ItemMusic"
 import ItemPlaylist from "../searched_itens/ItemPlaylist"
-
+import SEARCH_OPTIONS from "../../../utils/enums/enumSearchOptions"
 
 
 
@@ -47,7 +47,7 @@ class TableSearch extends Component {
                 <tr style={{height: '25px'}}></tr>
 
                 {this.props.search_results.map((item) => this.switchBetweenComponents(this.props.optionSearch, item))}
-                
+
             </tbody>
         </table>
         )

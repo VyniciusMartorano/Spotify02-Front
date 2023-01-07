@@ -2,7 +2,8 @@ import React from "react"
 import './../assets/css/CardPlaylist.css'
 
 const Card = ({ title, description, thumbnail }) => {
-    const url = `http://127.0.0.1:10000`
+    const core_api = process.env.REACT_APP_API_CORE_URL
+    const url = `${core_api.substring(0, core_api.length - 1)}`
 
     return (
         <div>
