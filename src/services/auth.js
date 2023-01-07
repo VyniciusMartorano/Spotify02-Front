@@ -1,9 +1,9 @@
 import axios from "axios"
 
 
-
 export const TOKEN_KEY = "token"
 export const REFRESH_TOKEN_KEY = "refresh_token"
+
 
 export const isAuthenticated = () => localStorage.getItem(TOKEN_KEY) !== null
 export const getToken = () => localStorage.getItem(TOKEN_KEY)
