@@ -70,8 +70,6 @@ td:last-child {
 .box-description-item-searched {
     display: flex;
     flex-direction: column;
-    align-content: center;
-    align-items: center;
 }
 
 .btn-play-box {

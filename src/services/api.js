@@ -15,9 +15,8 @@
       })
       
       this.axios.interceptors.response.use(
-        (response) => {
-          return response
-        },
+        (response) => response,
+        
         async (error) => {
           if (error.response.status === 401 && getToken()) {
             const response = await refreshToken(error)

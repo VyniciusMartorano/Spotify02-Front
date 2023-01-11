@@ -9,7 +9,6 @@ import SEARCH_OPTIONS from "../../../utils/enums/enumSearchOptions"
 
 
 
-
 class TableSearch extends Component {
     constructor(props) {
         super(props)
