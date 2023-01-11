@@ -4,11 +4,11 @@ import Slider from "../Slider"
 import IconHeart from "../IconHeart"
 import VolumeBar from "../VolumeBar"
 import IconVolume from '../IconVolume'
+import { useSelector } from "react-redux"
 
 
 
-
-const Player = () => {
+const Player = (props) => {
     const [percentage, setPercentage] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
     const [duration, setDuration] = useState(0)
@@ -17,8 +17,14 @@ const Player = () => {
     const [shuffleMode, setShuffleMode] = useState(true)
     const [repeatMode, setRepeatMode] = useState(false)
     const [volume, setVolume] = useState(0.5)
+
+    const core_api = process.env.REACT_APP_API_CORE_URL
+    const url = `${core_api.substring(0, core_api.length - 1)}`
   
     const audioRef = useRef()
+
+    const currentMusic = useSelector(state => state.musicReducer.currentMusic)
+
   
     const onChangeMusic = (e) => {
       const audio = audioRef.current
@@ -51,8 +57,10 @@ const Player = () => {
     const getCurrDuration = (e) => {
       const percent = ((e.currentTarget.currentTime / e.currentTarget.duration) * 100).toFixed(2)
       const time = e.currentTarget.currentTime
+      
+      console.log(time)
   
-      setPercentage(+percent)
+      setPercentage(+ percent)
       setCurrentTime(time.toFixed(2))
     }
 
@@ -62,10 +70,17 @@ const Player = () => {
             <div className="box-player">
                 <div id="left-item-player-bar" className="item-player">
                     <div id="box-image-player">
+                    <img 
+                        className="" 
+                        src={url + currentMusic.image} 
+                        width="65" 
+                        height="65"
+                        alt="" 
+                    />
                     </div>
                     <div className="texts-content-player">
-                        <h3 className="title-music-player">Rockstar</h3>
-                        <span className="autor-music-player">Post Malone</span>
+                        <h3 className="title-music-player">{currentMusic.music_name}</h3>
+                        <span className="autor-music-player">{currentMusic.artist_name}</span>
                     </div>
                     <div className="fav-div-icon">
                         <IconHeart 
@@ -109,7 +124,7 @@ const Player = () => {
                       ref={audioRef}
                       onTimeUpdate={getCurrDuration}
                       onLoadedData={e => setDuration(e.currentTarget.duration.toFixed(2))}
-                      src={require('./../../utils/teste.mp3')}
+                      src={url + currentMusic.file}
                     />
                     <div id="slider-container-external">
                       <span className="span-time-slider">0:30</span>
@@ -134,5 +149,6 @@ const Player = () => {
         </div>
     )
 }
+
 
 export default Player

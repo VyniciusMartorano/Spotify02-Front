@@ -49,10 +49,6 @@
 
 #box-image-player {
     display: flex;
-    justify-content: space-between;
-    width: 68px;
-    width: 68px;
-    background: url('../images/capa_post.jpg');
     box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.336);
 }
 

@@ -1,14 +1,18 @@
 import React, { useState } from "react"
+import { useDispatch } from "react-redux"
+import { actSetCurrentMusic } from "../../../store/actions/musicActions"
 
 
 
 const ItemMusic = ({ music }) => {
+    const dispatch = useDispatch()
+
     const core_api = process.env.REACT_APP_API_CORE_URL
     const url = `${core_api.substring(0, core_api.length - 1)}`
 
 
     const playMusic = () => {
-        
+        dispatch(actSetCurrentMusic({currentMusic: music}))
     }
 
     return (
