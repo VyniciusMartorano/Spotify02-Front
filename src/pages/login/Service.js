@@ -1,15 +1,13 @@
-import api from "../../services/api"
-
+import axios from "axios"
 
 
 class LoginService {
     constructor() {
-        this.api = new api()
+        this.baseUrl = process.env.REACT_APP_API_CORE_URL
     }
     
-    
     Logar({ username, password }) {
-        return this.api.axios.post(`token/`, {username, password})
+        return axios.post(`${this.baseUrl}token/`, {username, password})
     }
     
 }

@@ -6,11 +6,16 @@ const ItemMusic = ({ music }) => {
     const core_api = process.env.REACT_APP_API_CORE_URL
     const url = `${core_api.substring(0, core_api.length - 1)}`
 
+
+    const playMusic = () => {
+        
+    }
+
     return (
         <tr className="item-table-search not-selection">
             <td className="align-left color-white">                        
                 <div className="btn-play-box">
-                    <i className="fa fa-play"></i>
+                    <i className="fa fa-play" onClick={() => playMusic()}></i>
                 </div>
             </td>
             <td className="left-side-item-table align-left pad-40">

@@ -18,6 +18,7 @@
         (response) => response,
         
         async (error) => {
+          console.log("oiii")
           if (error.response.status === 401 && getToken()) {
             const response = await refreshToken(error)
             return response
