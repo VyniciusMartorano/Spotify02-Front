@@ -40,6 +40,8 @@ const Player = (props) => {
   
   
     const play = () => {
+
+      //setar volume no redux
       const audio = audioRef.current
       audio.volume = 1
   
