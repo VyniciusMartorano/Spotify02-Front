@@ -4,7 +4,8 @@ import Slider from "../Slider"
 import IconHeart from "../IconHeart"
 import VolumeBar from "../VolumeBar"
 import IconVolume from '../IconVolume'
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { actSetVolume } from "../../store/actions/musicActions"
 
 
 
@@ -16,14 +17,15 @@ const Player = (props) => {
     const [currentTime, setCurrentTime] = useState(0)
     const [shuffleMode, setShuffleMode] = useState(true)
     const [repeatMode, setRepeatMode] = useState(false)
-    const [volume, setVolume] = useState(0.5)
 
     const core_api = process.env.REACT_APP_API_CORE_URL
     const url = `${core_api.substring(0, core_api.length - 1)}`
   
     const audioRef = useRef()
+    const dispatch = useDispatch()
 
     const currentMusic = useSelector(state => state.musicReducer.currentMusic)
+    const volume = useSelector(state => state.musicReducer.volume)
 
   
     const onChangeMusic = (e) => {
@@ -32,18 +34,10 @@ const Player = (props) => {
       setPercentage(e.target.value)
     }
 
-    const onChangeVolume = () => {
-      const audio = audioRef.current
-      audio.volume = volume / 100
-    }
-
-  
   
     const play = () => {
 
       //setar volume no redux
-      const audio = audioRef.current
-      audio.volume = 1
   
       if (!isPlaying) {
         setIsPlaying(true)
@@ -126,6 +120,7 @@ const Player = (props) => {
                       ref={audioRef}
                       onTimeUpdate={getCurrDuration}
                       onLoadedData={e => setDuration(e.currentTarget.duration.toFixed(2))}
+                      volume={volume}
                       src={url + currentMusic.file}
                     />
                     <div id="slider-container-external">
@@ -141,8 +136,7 @@ const Player = (props) => {
                     <IconVolume/>
                     <VolumeBar
                       onChange={value => {
-                        setVolume(value)
-                        onChangeVolume()
+                        dispatch(actSetVolume({volume: value}))
                       }}
                     />
                 </div>

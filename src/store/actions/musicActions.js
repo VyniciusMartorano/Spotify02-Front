@@ -1,4 +1,4 @@
-import { SET_CURRENT_MUSIC } from "./actionTypes"
+import { SET_CURRENT_MUSIC, SET_VOLUME } from "./actionTypes"
 
 
 
@@ -14,3 +14,9 @@ export const actSetCurrentMusic = (payload) => {
         payload
     })
 }
+
+
+export const actSetVolume = (payload) => ({
+    type: SET_VOLUME,
+    payload
+})
