@@ -7,13 +7,12 @@ export const actSetCurrentMusic = (payload) => {
     const url = `${core_api.substring(0, core_api.length - 1)}`
 
     const audio = new Audio(url + payload.currentMusic.file)
-    audio.addEventListener('loadedmetadata', ({ target }) => payload.currentMusic.duration = target.duration)
+
+    audio.addEventListener(
+        'loadedmetadata', 
+        ({ target }) => payload.currentMusic.duration = target.duration
+    )
     
-    console.log(payload)
-
-    
-
-
     return ({
         type: SET_CURRENT_MUSIC,
         payload

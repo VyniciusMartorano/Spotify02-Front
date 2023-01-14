@@ -6,6 +6,7 @@ import VolumeBar from "../VolumeBar"
 import IconVolume from '../IconVolume'
 import { useSelector, useDispatch } from "react-redux"
 import getTimeInMinutesFormated from "../../utils/getTimeInMinutes"
+import { actSetVolume } from "../../store/actions/musicActions"
 
 
 
@@ -17,44 +18,35 @@ const Player = (props) => {
     const [currentTime, setCurrentTime] = useState(0)
     const [shuffleMode, setShuffleMode] = useState(true)
     const [repeatMode, setRepeatMode] = useState(false)
-    const [volume, setVolume] = useState(0.5)
 
     const core_api = process.env.REACT_APP_API_CORE_URL
     const url = `${core_api.substring(0, core_api.length - 1)}`
   
     const audioRef = useRef()
+    const dispatch = useDispatch()
 
     const currentMusic = useSelector(state => state.musicReducer.currentMusic)
-    // const volume = useSelector(state => state.musicReducer.currentMusic)
+    const volume = useSelector(state => state.musicReducer.volume)
 
   
-    const onChangeMusic = (e) => {
-      const audio = audioRef.current
-      audio.currentTime = (audio.duration / 100) * e.target.value
-      setPercentage(e.target.value)
-    }
+    const onChangeMusic = ({ target }) => {
+      audioRef.current.currentTime = (audioRef.current.duration / 100) * target.value
 
-    const onChangeVolume = () => {
-      const audio = audioRef.current
-      audio.volume = volume / 100
+      setPercentage(target.value)
     }
 
   
   
     const play = () => {
 
-      //setar volume no redux
-      const audio = audioRef.current
-      audio.volume = 1
-  
       if (!isPlaying) {
         setIsPlaying(true)
-        audio.play()
+        audioRef.current.play()
       }
   
       if (isPlaying) {
         setIsPlaying(false)
-        audio.pause()
+        audioRef.current.pause()
       }
     }
   
@@ -125,11 +117,12 @@ const Player = (props) => {
                     <audio
                       ref={audioRef}
                       onTimeUpdate={getCurrDuration}
+                      volume={volume}
                       onLoadedData={e => setDuration(e.currentTarget.duration.toFixed(2))}
                       src={url + currentMusic.file}
                     />
                     <div id="slider-container-external">
-                      <span className="span-time-slider">0:30</span>
+                      <span className="span-time-slider">{getTimeInMinutesFormated(currentTime)}</span>
                       <Slider
                         percentage={percentage}
                         onChange={onChangeMusic}
@@ -138,13 +131,8 @@ const Player = (props) => {
                     </div>
                 </div>
                 <div id="right-item-player-bar" className="item-player">
-                    <IconVolume/>
-                    <VolumeBar
-                      onChange={value => {
-                        setVolume(value)
-                        onChangeVolume()
-                      }}
-                    />
+                    <IconVolume />
+                    <VolumeBar />
                 </div>
             </div>
         

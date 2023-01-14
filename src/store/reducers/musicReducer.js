@@ -3,7 +3,7 @@ import { SET_CURRENT_MUSIC, SET_VOLUME } from "../actions/actionTypes"
 
 const initialState = {
     currentMusic: {},
-    volume: 0.3,
+    volume: 30,
 }
 
 

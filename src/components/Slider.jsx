@@ -2,6 +2,8 @@ import {React, useState, useRef, useEffect} from "react"
 import '../assets/css/Slider.css'
 
 
+
+
 export default function TimeBar ({percentage = 0, onChange}){
     const [position, setPosition] = useState(0)
     const [marginLeft, setMarginLeft] = useState(0)
