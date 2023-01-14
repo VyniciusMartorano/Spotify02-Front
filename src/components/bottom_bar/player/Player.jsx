@@ -4,6 +4,7 @@ import Slider from "../../Slider"
 import IconHeart from "../iconHeart/IconHeart"
 import VolumeBar from "../../VolumeBar"
 import IconVolume from '../../IconVolume'
+import IconShuffle from "../iconShuffle/IconShuffle"
 import { useSelector, useDispatch } from "react-redux"
 import getTimeInMinutesFormated from "../../../utils/getTimeInMinutes"
 
@@ -14,7 +15,6 @@ const Player = (props) => {
     const [isPlaying, setIsPlaying] = useState(false)
     const [duration, setDuration] = useState(0)
     const [currentTime, setCurrentTime] = useState(0)
-    const [shuffleMode, setShuffleMode] = useState(true)
     const [repeatMode, setRepeatMode] = useState(false)
 
     const core_api = process.env.REACT_APP_API_CORE_URL
@@ -78,15 +78,7 @@ const Player = (props) => {
                 </div>
                 <div id="center-item-player-bar" className="item-player">
                     <div className="player-buttons-container">
-                        <div className=" icon-button i-tiny">
-                          <i
-                            onClick={() => setShuffleMode(!shuffleMode)}
-                            id={`${shuffleMode ? 'icon-btn-active' : ''}`}
-                            className={
-                              `fa-solid fa-shuffle ${shuffleMode ? ' shuffle-mode-style-active': ''}`
-                              }>
-                          </i>
-                        </div>
+                        <IconShuffle />
                         <div className="icon-button i-normal"><i className="fa-solid fa-backward-step"></i></div>
                     
                         <div className="icon-button-pp i-larger">

@@ -1,7 +1,7 @@
 import React from "react"
 import './IconHeart.css'
 import { useDispatch, useSelector } from "react-redux"
-import { actSetCurrentMusicIsLiked } from "../../../store/actions/musicActions"
+import { actSetCurrentMusicIsLiked } from "../../../store/actions/coreActions"
 
 
 
