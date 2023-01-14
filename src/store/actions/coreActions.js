@@ -1,4 +1,9 @@
-import { SET_SHUFFLE_MODE, CHANGE_MID_COMPONENT, SET_CURRENT_MUSIC_LIKED } from "./actionTypes"
+import { 
+    SET_SHUFFLE_MODE, 
+    CHANGE_MID_COMPONENT, 
+    SET_CURRENT_MUSIC_LIKED, 
+    SET_REPEAT_MODE,
+} from "./actionTypes"
 
 
 export const actChangeMidComponent = (payload) => ({
@@ -13,5 +18,10 @@ export const actSetCurrentMusicIsLiked = (payload) => ({
 
 export const actSetShuffleMode = (payload) => ({
     type: SET_SHUFFLE_MODE,
+    payload
+})
+
+export const actSetRepeatMode = (payload) => ({
+    type: SET_REPEAT_MODE,
     payload
 })

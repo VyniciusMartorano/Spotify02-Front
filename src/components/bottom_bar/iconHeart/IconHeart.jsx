@@ -12,9 +12,8 @@ export default function IconHeart (props) {
     return (
         <div className="icon-heart">             
             <i 
-            className={liked ? 
-                "fa-solid fa-heart"
-                : "fa-regular fa-heart " 
+            className={
+                liked ? "fa-solid fa-heart":"fa-regular fa-heart" 
             }
             onClick={() => dispatch(actSetCurrentMusicIsLiked({liked: !liked}))}
             >

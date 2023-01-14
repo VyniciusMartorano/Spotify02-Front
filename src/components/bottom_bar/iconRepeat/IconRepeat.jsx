@@ -1,21 +1,19 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { actSetShuffleMode } from "../../../store/actions/coreActions"
+import { actSetRepeatMode } from "../../../store/actions/coreActions"
 
 
-export default function IconShuffle (props) {
+export default function IconRepeat (props) {
     const dispatch = useDispatch()
-    const shuffleMode = useSelector(state => state.coreReducer.repeatMode)
+    const repeatMode = useSelector(state => state.coreReducer.repeatMode)
 
 
     return (
-        <div className=" icon-button i-tiny">
+        <div className="icon-button i-tiny">
             <i
-                onClick={() => dispatch(actSetShuffleMode({shuffleMode: !shuffleMode}))}
-                id={`${shuffleMode ? 'icon-btn-active' : ''}`}
-                className={
-                    `fa-solid fa-shuffle ${shuffleMode ? ' shuffle-mode-style-active': ''}`
-                }
+                onClick={() => dispatch(actSetRepeatMode({repeatMode: !repeatMode}))}
+                id={`${repeatMode ? 'icon-btn-active' : ''}`}
+                className={`fa-solid fa-repeat`}
             >
             </i>
         </div>

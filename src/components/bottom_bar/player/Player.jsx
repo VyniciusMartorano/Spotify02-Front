@@ -2,10 +2,11 @@ import React, { useRef, useState } from "react"
 import './Player.css'
 import Slider from "../../Slider"
 import IconHeart from "../iconHeart/IconHeart"
+import IconShuffle from "../iconShuffle/IconShuffle"
+import IconRepeat from "../iconRepeat/IconRepeat"
 import VolumeBar from "../../VolumeBar"
 import IconVolume from '../../IconVolume'
-import IconShuffle from "../iconShuffle/IconShuffle"
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 import getTimeInMinutesFormated from "../../../utils/getTimeInMinutes"
 
 
@@ -15,13 +16,11 @@ const Player = (props) => {
     const [isPlaying, setIsPlaying] = useState(false)
     const [duration, setDuration] = useState(0)
     const [currentTime, setCurrentTime] = useState(0)
-    const [repeatMode, setRepeatMode] = useState(false)
 
     const core_api = process.env.REACT_APP_API_CORE_URL
     const url = `${core_api.substring(0, core_api.length - 1)}`
   
     const audioRef = useRef()
-    const dispatch = useDispatch()
 
     const currentMusic = useSelector(state => state.musicReducer.currentMusic)
     const volume = useSelector(state => state.musicReducer.volume)
@@ -89,14 +88,11 @@ const Player = (props) => {
                           />
                         </div>
 
-                        <div><i className="fa-solid fa-forward-step icon-button i-normal"></i></div>
-                        <div className="icon-button i-tiny">
-                          <i
-                            onClick={() => setRepeatMode(!repeatMode)}
-                            id={`${repeatMode ? 'icon-btn-active' : ''}`}
-                            className={`fa-solid fa-repeat`}>
+                        <div>
+                          <i className="fa-solid fa-forward-step icon-button i-normal">
                           </i>
                         </div>
+                        <IconRepeat />
                     </div>
                     
                     <audio
