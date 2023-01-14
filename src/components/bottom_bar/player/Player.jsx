@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import './Player.css'
 import Slider from "../../Slider"
 import IconHeart from "../iconHeart/IconHeart"
@@ -31,6 +31,15 @@ const Player = (props) => {
 
       setPercentage(target.value)
     }
+
+
+    useEffect(
+      () => {
+          audioRef.current.volume = volume / 100
+      }, [volume]
+  )
+
+  
 
   
   
@@ -98,7 +107,6 @@ const Player = (props) => {
                     <audio
                       ref={audioRef}
                       onTimeUpdate={getCurrDuration}
-                      volume={volume}
                       onLoadedData={e => setDuration(e.currentTarget.duration.toFixed(2))}
                       src={url + currentMusic.file}
                     />
