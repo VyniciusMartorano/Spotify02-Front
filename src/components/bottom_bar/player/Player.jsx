@@ -12,58 +12,48 @@ import getTimeInMinutesFormated from "../../../utils/getTimeInMinutes"
 
 
 const Player = (props) => {
-    const [percentage, setPercentage] = useState(0)
-    const [isPlaying, setIsPlaying] = useState(false)
-    const [duration, setDuration] = useState(0)
-    const [currentTime, setCurrentTime] = useState(0)
-
+    const audioRef = useRef()
     const core_api = process.env.REACT_APP_API_CORE_URL
     const url = `${core_api.substring(0, core_api.length - 1)}`
-  
-    const audioRef = useRef()
+
+    const [percentage, setPercentage] = useState(0)
+    const [isPlaying, setIsPlaying] = useState(false)
+    const [currentTime, setCurrentTime] = useState(0)
 
     const currentMusic = useSelector(state => state.musicReducer.currentMusic)
     const volume = useSelector(state => state.musicReducer.volume)
 
+    useEffect(
+      () => {
+          audioRef.current.volume = volume / 100
+      }, [volume]
+    )
   
     const onChangeMusic = ({ target }) => {
       audioRef.current.currentTime = (audioRef.current.duration / 100) * target.value
 
       setPercentage(target.value)
     }
-
-
-    useEffect(
-      () => {
-          audioRef.current.volume = volume / 100
-      }, [volume]
-  )
-
+    
+    const getCurrDuration = () => {
+      const percent = ((audioRef.current.currentTime / audioRef.current.duration) * 100).toFixed(2)
+      const time = audioRef.current.currentTime
+      
+      setPercentage(+ percent)
+      setCurrentTime(time.toFixed(2))
+    }
   
-
-  
-  
-    const play = () => {
-
+    const playMusic = () => {
       if (!isPlaying) {
         setIsPlaying(true)
         audioRef.current.play()
       }
   
-      if (isPlaying) {
+      else if (isPlaying) {
         setIsPlaying(false)
         audioRef.current.pause()
       }
     }
-  
-    const getCurrDuration = (e) => {
-      const percent = ((e.currentTarget.currentTime / e.currentTarget.duration) * 100).toFixed(2)
-      const time = e.currentTarget.currentTime
-      
-      setPercentage(+ percent)
-      setCurrentTime(time.toFixed(2))
-    }
-
 
     return (
         <div className="player-container">
@@ -90,7 +80,7 @@ const Player = (props) => {
                         <div className="icon-button i-normal"><i className="fa-solid fa-backward-step"></i></div>
                     
                         <div className="icon-button-pp i-larger">
-                          <i onClick={play}
+                          <i onClick={playMusic}
                           className={isPlaying
                             ? "fa-solid fa-circle-pause"
                             : "fa-solid fa-circle-play"}
@@ -103,11 +93,9 @@ const Player = (props) => {
                         </div>
                         <IconRepeat />
                     </div>
-                    
                     <audio
                       ref={audioRef}
                       onTimeUpdate={getCurrDuration}
-                      onLoadedData={e => setDuration(e.currentTarget.duration.toFixed(2))}
                       src={url + currentMusic.file}
                     />
                     <div id="slider-container-external">
