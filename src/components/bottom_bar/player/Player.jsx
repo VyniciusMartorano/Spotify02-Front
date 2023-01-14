@@ -1,12 +1,11 @@
 import React, { useRef, useState } from "react"
-import '../../assets/css/Player.css'
-import Slider from "../Slider"
-import IconHeart from "../IconHeart"
-import VolumeBar from "../VolumeBar"
-import IconVolume from '../IconVolume'
+import './Player.css'
+import Slider from "../../Slider"
+import IconHeart from "../iconHeart/IconHeart"
+import VolumeBar from "../../VolumeBar"
+import IconVolume from '../../IconVolume'
 import { useSelector, useDispatch } from "react-redux"
-import getTimeInMinutesFormated from "../../utils/getTimeInMinutes"
-import { actSetVolume } from "../../store/actions/musicActions"
+import getTimeInMinutesFormated from "../../../utils/getTimeInMinutes"
 
 
 
@@ -14,7 +13,6 @@ const Player = (props) => {
     const [percentage, setPercentage] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
     const [duration, setDuration] = useState(0)
-    const [isLiked, setIsLiked] = useState(false)
     const [currentTime, setCurrentTime] = useState(0)
     const [shuffleMode, setShuffleMode] = useState(true)
     const [repeatMode, setRepeatMode] = useState(false)
@@ -65,11 +63,9 @@ const Player = (props) => {
                 <div id="left-item-player-bar" className="item-player">
                     <div id="box-image-player">
                     <img 
-                        className="" 
                         src={url + currentMusic.image} 
                         width="65" 
                         height="65"
-                        alt="" 
                     />
                     </div>
                     <div className="texts-content-player">
@@ -77,10 +73,7 @@ const Player = (props) => {
                         <span className="autor-music-player">{currentMusic.artist_name}</span>
                     </div>
                     <div className="fav-div-icon">
-                        <IconHeart 
-                          onChange={(value) => setIsLiked(value)}
-                          liked={isLiked}
-                        />
+                        <IconHeart />
                     </div>
                 </div>
                 <div id="center-item-player-bar" className="item-player">

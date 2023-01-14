@@ -18,6 +18,7 @@ export default function TimeBar ({percentage = 0, onChange}){
         const thumbWidth = thumbRef.current.getBoundingClientRect().width
         const centerThumb = (thumbWidth / 100) * percentage * -1
         const centerProgressBar = thumbWidth + (rangeWidth / 100) * percentage - (thumbWidth / 100) * percentage
+        
         setPosition(percentage)
         setMarginLeft(centerThumb) 
         setprogressBarWidth(centerProgressBar)

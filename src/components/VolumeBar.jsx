@@ -7,26 +7,30 @@ import { useEffect } from 'react'
 
 const VolumeBar = (props) =>  {
     const volumeRef = useRef()
-    const currentVolume = useSelector(state => state.musicReducer.currentVolume)
+    const volume = useSelector(state => state.musicReducer.volume)
     const dispatch = useDispatch()
 
     useEffect(
         () => {
-            const valPercent = (currentVolume / volumeRef.current.max) * 100
-            volumeRef.current.style.background = `linear-gradient(to right, rgb(249,249,249) ${valPercent}%, rgb(94, 94, 94) ${valPercent}%)`
-            
-        }, [currentVolume]
+            onChange(volume)   
+        }, [volume]
     )
  
+    const onChange = (value) => {
+        const valPercent = (value / volumeRef.current.max) * 100
+        volumeRef.current.style.background = `linear-gradient(to right, rgb(249,249,249) ${valPercent}%, rgb(94, 94, 94) ${valPercent}%)`
+
+        dispatch(actSetVolume({volume: value}))        
+    }
 
     return (
         <div className="volume-bar-container">
             <input 
                 id='range-volume'
                 ref={volumeRef}
+                value={volume}
                 type="range" 
-                value={currentVolume}
-                onInput={({ target }) => dispatch(actSetVolume({volume: target.value}))}
+                onInput={e => onChange(e.target.value)}
                 min={0}
                 max={100}
             />
