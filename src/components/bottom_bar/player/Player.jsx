@@ -11,6 +11,7 @@ import getTimeInMinutesFormated from "../../../utils/getTimeInMinutes"
 
 
 
+
 const Player = (props) => {
     const audioRef = useRef()
     const core_api = process.env.REACT_APP_API_CORE_URL

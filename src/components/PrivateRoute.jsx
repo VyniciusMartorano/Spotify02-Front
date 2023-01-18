@@ -1,12 +1,11 @@
 import React from "react"
 import { Navigate, Route } from "react-router-dom"
-import { getToken } from "./../services/auth"
-
+import { useSelector } from "react-redux"
 
  function PrivateRoute ({ children }) {
-    const tokenIsValid = getToken() ? true : false
-    
-    return tokenIsValid ? children : <Navigate to="/login" />
+    const isLogged = useSelector(state => state.coreReducer.isLogged)
+
+    return isLogged ? children : <Navigate to="/login" />
 }
 
 

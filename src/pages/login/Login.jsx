@@ -5,8 +5,9 @@ import { ToastContainer } from "react-toastify"
 import LoginService from "./Service"
 import { Navigate } from "react-router-dom"
 import addToastMessage from "../../components/addToastMessage"
-import { setToken, setRefreshToken, getToken } from "../../services/auth"
-
+import { setToken, setRefreshToken } from "../../services/auth"
+import { connect } from "react-redux"
+import { actSetIsLogged } from "../../store/actions/coreActions"
 
 
 
@@ -16,17 +17,11 @@ class Login extends Component {
         this.state = {
             login: null,
             password: null,
-            loginIsValid: false,
             inPromise: false,
-            isLogged: false,
         }
         this.LogServ = new LoginService()
     }
-    componentDidMount() {
-        if (getToken()) {
-            this.setState({isLogged: true})
-        }
-    }
+
 
     handleChange(event, func) {
         if (event.key == 'Enter') {
@@ -37,25 +32,23 @@ class Login extends Component {
     formIsValid(){
         const formFields = [this.state.login, this.state.password]
         if (listHaveEmptyItem(formFields)) {
-            
+            addToastMessage('error', 'Existem campos incompletos', 'Preencha todos os campos e tente novamente')
             return false
         }
         return true
     }
 
     sendForm = () => {
-        if (!this.formIsValid()) {
-            addToastMessage('error', 'Existem campos incompletos', 'Preencha todos os campos e tente novamente')
-            return
-        }
+        if (!this.formIsValid()) return
 
         this.setState({inPromise: true})
         this.LogServ.Logar({username: this.state.login, password: this.state.password}).then(
             ({ data }) => {
                 addToastMessage('success', 'Sucesso!', 'Login realizado com sucesso')
+
                 setToken(data.access)
                 setRefreshToken(data.refresh)
-                this.setState({loginIsValid: true})                
+                this.props.dispatch(actSetIsLogged({isLogged: true}))
             },
             () => addToastMessage('error', 'Erro!', 'Ocorreu um erro ao fazer login')
             ).finally(
@@ -68,7 +61,7 @@ class Login extends Component {
         return (
             <div id="container-login" >
                 <ToastContainer/>
-                {(this.state.loginIsValid || this.state.isLogged) && (<Navigate to={'/'} state={{fromLogin: true}} />)}
+                {this.props.isLogged && (<Navigate to={'/'} state={{fromLogin: true}} />)}
              
 
                 <header className="header-login-container">
@@ -126,6 +119,10 @@ class Login extends Component {
     }
 
 }
+const mapStateToProps = (state) => {
+    return {
+        isLogged: state.coreReducer.isLogged
+    }
+}
 
-
-export default Login
+export default connect(mapStateToProps)(Login)

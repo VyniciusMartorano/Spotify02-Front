@@ -8,6 +8,7 @@ import { Component } from 'react'
 import switchBetweenComponents from '../../utils/SwitchBetweenComp'
 import { connect } from 'react-redux'
 import { COMPONENTS } from '../../utils/enums/enumComponents'
+import { Navigate } from 'react-router-dom'
 
 
 
@@ -32,6 +33,7 @@ class HomePage extends Component {
         </main>
         <Player />
         <ToastContainer />
+        {!this.props.isLogged && (<Navigate to={'/login'} />)}
       </section>
     )
   }
@@ -42,7 +44,8 @@ const mapStateToProps = (state) => {
 
   return ({
       user: state.coreReducer.user,
-      midComponentActiveId: state.coreReducer.midComponentActiveId
+      midComponentActiveId: state.coreReducer.midComponentActiveId,
+      isLogged: state.coreReducer.isLogged
     })
 }
 
