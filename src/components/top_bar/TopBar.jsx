@@ -8,17 +8,13 @@ import { actInsertTextSearch, actRefreshResultsOfSearch } from "../../store/acti
 import { enumComponents } from "../../utils/enums/enumComponents"
 import addToastMessage from "../addToastMessage"
 import { ToastContainer } from "react-toastify"
-import { actChangeMidComponent } from "../../store/actions/coreActions"
+import { actChangeMidComponent, actSetIsLogged } from "../../store/actions/coreActions"
+
 
 
 class TopBar extends Component {
     constructor(props) {
         super(props)
-
-        this.state = {
-            logout: false
-        }
-
         this.currentComponent = ''
         this.Serv = new Service()
     }   
@@ -36,8 +32,7 @@ class TopBar extends Component {
     
     
     logout() {
-        doLogout()
-        this.setState({logout: true})
+        this.props.dispatch(actSetIsLogged({isLogged: false}))
     }
 
 
@@ -112,7 +107,6 @@ class TopBar extends Component {
                             onClick={() => this.logout()}
                         />
                     </div>
-                    {this.state.logout && (<Navigate to="/login"/>)}
                 </header>
             </div>
         )

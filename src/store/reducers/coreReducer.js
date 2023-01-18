@@ -1,5 +1,5 @@
 import { CHANGE_USER, CHANGE_MID_COMPONENT, SET_SHUFFLE_MODE, SET_REPEAT_MODE, SET_IS_LOGGED } from "../actions/actionTypes"
-import { getToken } from "../../services/auth"
+import { doLogout, getToken } from "../../services/auth"
 
 const initialState = {
 
@@ -17,6 +17,8 @@ const searchReducer = (state = initialState, action)  => {
             return {...state, user: action.payload.user}
         
         case SET_IS_LOGGED:
+            if (action.payload.isLogged == false)  doLogout()
+            
             return {...state, isLogged: action.payload.isLogged}
         
         case CHANGE_MID_COMPONENT:
