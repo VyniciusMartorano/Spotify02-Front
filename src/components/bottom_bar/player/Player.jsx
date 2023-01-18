@@ -10,7 +10,7 @@ import { useSelector } from "react-redux"
 import getTimeInMinutesFormated from "../../../utils/getTimeInMinutes"
 
 
-
+//TODO: resetar o time da musica quando for setada outra musica
 
 const Player = (props) => {
     const audioRef = useRef()
