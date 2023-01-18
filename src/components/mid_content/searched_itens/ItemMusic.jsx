@@ -10,16 +10,35 @@ const ItemMusic = ({ music }) => {
     const core_api = process.env.REACT_APP_API_CORE_URL
     const url = `${core_api.substring(0, core_api.length - 1)}`
 
+    const getMusicWithFormated = async () => {
+        const audio = new Audio(url + music.file)
+        const formated = {...music}
 
-    const playMusic = () => {
-        dispatch(actSetCurrentMusic({currentMusic: music}))
+        await new Promise(resolve => {
+            audio.addEventListener(
+                'loadedmetadata', 
+
+                ({ target }) => {
+                    formated.duration = target.duration
+                    resolve()
+                }
+            )
+        }) 
+
+        return formated
+    }
+
+    const setCurrentMusic = async () => {
+
+
+        dispatch(actSetCurrentMusic({currentMusic: await getMusicWithFormated()}))
     }
 
     return (
         <tr className="item-table-search not-selection">
             <td className="align-left color-white">                        
                 <div className="btn-play-box">
-                    <i className="fa fa-play" onClick={() => playMusic()}></i>
+                    <i className="fa fa-play" onClick={() => setCurrentMusic()}></i>
                 </div>
             </td>
             <td className="left-side-item-table align-left pad-40">

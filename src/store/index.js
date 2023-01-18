@@ -5,7 +5,6 @@ import persistedReducers from './reduxPersist'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 
-
 const store = createStore(persistedReducers(rootReducer), composeWithDevTools())
 
 export const persistor = persistStore(store)

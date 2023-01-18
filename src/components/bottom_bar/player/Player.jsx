@@ -84,7 +84,8 @@ const Player = (props) => {
                           <i onClick={playMusic}
                           className={isPlaying
                             ? "fa-solid fa-circle-pause"
-                            : "fa-solid fa-circle-play"}
+                            : "fa-solid fa-circle-play"
+                          }
                           />
                         </div>
 

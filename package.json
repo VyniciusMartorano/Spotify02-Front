@@ -25,6 +25,7 @@
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.4.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

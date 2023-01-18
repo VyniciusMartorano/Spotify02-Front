@@ -12,13 +12,12 @@ export const actSetCurrentMusic = (payload) => {
         'loadedmetadata', 
         ({ target }) => payload.currentMusic.duration = target.duration
     )
-    
+
     return ({
         type: SET_CURRENT_MUSIC,
         payload
     })
 }
-
 
 
 export const actSetVolume = (payload) => ({
