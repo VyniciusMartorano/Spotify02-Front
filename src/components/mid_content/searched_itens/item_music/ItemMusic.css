@@ -11,6 +11,7 @@
     display: none;
     color: white;
     font-size: 0.95em;
+    cursor: pointer;
 }
 
 .item-table-search:hover .index-searched-music {
@@ -19,6 +20,7 @@
 
 .item-table-search:hover .icon-play-music-searched {
     display: block;
+    color: rgb(209, 207, 207);
 }
 
 .item-table-search:hover .icon-reticencias {

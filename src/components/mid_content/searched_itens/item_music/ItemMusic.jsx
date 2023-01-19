@@ -5,7 +5,7 @@ import { actSetCurrentMusic } from "../../../../store/actions/musicActions"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 
-const ItemMusic = ({ music }) => {
+const ItemMusic = ({ music, index }) => {
     const dispatch = useDispatch()
 
     const core_api = process.env.REACT_APP_API_CORE_URL
@@ -37,7 +37,7 @@ const ItemMusic = ({ music }) => {
             <td style={{width: '40px'}} className="align-left color-white">                        
                 <div className="btn-play-box">
                     <div className="index-searched-music">
-                        {music.id}
+                        {index + 1}
                     </div>
                     <i className="fa-solid fa-play icon-play-music-searched" onClick={() => setCurrentMusic()} />
                 </div>

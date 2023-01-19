@@ -15,10 +15,10 @@ class TableSearch extends Component {
     }
 
 
-    switchBetweenComponents(activeId, props) {
+    switchBetweenComponents(activeId, props, index) {
         switch (activeId) {
             case SEARCH_OPTIONS.MUSIC:
-                return <ItemMusic key={props.id} music={props} />
+                return <ItemMusic key={props.id} index={index} music={props} />
             case SEARCH_OPTIONS.PLAYLIST:
                 return <ItemPlaylist key={props.id} playlist={props} />
             case SEARCH_OPTIONS.ALBUM:
@@ -45,7 +45,7 @@ class TableSearch extends Component {
             <tbody>
                 <tr style={{height: '25px'}}></tr>
 
-                {this.props.search_results.map((item) => this.switchBetweenComponents(this.props.optionSearch, item))}
+                {this.props.search_results.map((item, index) => this.switchBetweenComponents(this.props.optionSearch, item, index))}
 
             </tbody>
         </table>
