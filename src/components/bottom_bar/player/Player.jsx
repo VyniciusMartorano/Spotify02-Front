@@ -36,7 +36,9 @@ const Player = (props) => {
       setPercentage(target.value)
     }
 
-    const newMusicIsSetted = (percentage) =>isNaN(percentage)
+    const newMusicIsSetted = (percentage) => isNaN(percentage)
+
+    
     const setNewMusic = () => {
       setPercentage(0)
       setIsPlaying(true)
@@ -99,8 +101,7 @@ const Player = (props) => {
                         </div>
 
                         <div>
-                          <i className="fa-solid fa-forward-step icon-button i-normal">
-                          </i>
+                          <i className="fa-solid fa-forward-step icon-button i-normal"></i>
                         </div>
                         <IconRepeat />
                     </div>

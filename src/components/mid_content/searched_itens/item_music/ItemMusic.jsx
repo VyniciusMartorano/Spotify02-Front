@@ -59,7 +59,7 @@ const ItemMusic = ({ music, index }) => {
                 <div>{music.music_name}</div>
             </td>
             <td className="align-right color-white">
-                <i className="fa fa-heart"></i>
+                <i className="icon-heart-item-searched fa-regular fa-heart"></i>
             </td>
             <td className="align-right color-white">2:20</td>
             <td className="align-center color-white">

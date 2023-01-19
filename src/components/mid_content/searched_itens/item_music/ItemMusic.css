@@ -7,6 +7,16 @@
     display: none;
 }
 
+.icon-heart-item-searched {
+    display: none;
+    color: rgba(255, 255, 255, 0.611);
+    font-size: 1.1em;
+}
+
+.icon-heart-item-searched:hover {
+    color: rgb(228, 224, 224);
+}
+
 .icon-play-music-searched {
     display: none;
     color: white;
@@ -16,6 +26,10 @@
 
 .item-table-search:hover .index-searched-music {
     display: none;
+}
+
+.item-table-search:hover .icon-heart-item-searched {
+    display: block;
 }
 
 .item-table-search:hover .icon-play-music-searched {
