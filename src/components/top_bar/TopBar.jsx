@@ -1,7 +1,5 @@
 import React, { Component } from "react"
 import "./../../assets/css/TopBar.css"
-import { Navigate } from "react-router-dom" 
-import { doLogout} from "../../services/auth"
 import Service from "./Service"
 import { connect } from "react-redux"
 import { actInsertTextSearch, actRefreshResultsOfSearch } from "../../store/actions/searchActions"

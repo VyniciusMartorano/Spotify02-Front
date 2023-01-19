@@ -1,0 +1,26 @@
+
+
+.index-searched-music {
+    font-size: 1.07em;
+}
+.icon-reticencias {
+    display: none;
+}
+
+.icon-play-music-searched {
+    display: none;
+    color: white;
+    font-size: 0.95em;
+}
+
+.item-table-search:hover .index-searched-music {
+    display: none;
+}
+
+.item-table-search:hover .icon-play-music-searched {
+    display: block;
+}
+
+.item-table-search:hover .icon-reticencias {
+    display: block;
+}

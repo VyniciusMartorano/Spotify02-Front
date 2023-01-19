@@ -1,7 +1,8 @@
 import React from "react"
+import "./ItemMusic.css"
 import { useDispatch } from "react-redux"
-import { actSetCurrentMusic } from "../../../store/actions/musicActions"
-
+import { actSetCurrentMusic } from "../../../../store/actions/musicActions"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 
 const ItemMusic = ({ music }) => {
@@ -17,7 +18,6 @@ const ItemMusic = ({ music }) => {
         await new Promise(resolve => {
             audio.addEventListener(
                 'loadedmetadata', 
-
                 ({ target }) => {
                     formated.duration = target.duration
                     resolve()
@@ -34,9 +34,12 @@ const ItemMusic = ({ music }) => {
 
     return (
         <tr className="item-table-search not-selection">
-            <td className="align-left color-white">                        
+            <td style={{width: '40px'}} className="align-left color-white">                        
                 <div className="btn-play-box">
-                    <i className="fa fa-play" onClick={() => setCurrentMusic()}></i>
+                    <div className="index-searched-music">
+                        {music.id}
+                    </div>
+                    <i className="fa-solid fa-play icon-play-music-searched" onClick={() => setCurrentMusic()} />
                 </div>
             </td>
             <td className="left-side-item-table align-left pad-40">
@@ -60,7 +63,7 @@ const ItemMusic = ({ music }) => {
             </td>
             <td className="align-right color-white">2:20</td>
             <td className="align-center color-white">
-                <i className="fa-solid fa-ellipsis"></i>
+                <i className="icon-reticencias fa-solid fa-ellipsis"></i>
             </td>
         </tr>
     )

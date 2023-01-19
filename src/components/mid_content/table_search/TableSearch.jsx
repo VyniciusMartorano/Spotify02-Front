@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import './style.css'
 import ItemAlbum from "../searched_itens/ItemAlbum"
 import ItemArtist from "../searched_itens/ItemArtist"
-import ItemMusic from "../searched_itens/ItemMusic"
+import ItemMusic from "../searched_itens/item_music/ItemMusic"
 import ItemPlaylist from "../searched_itens/ItemPlaylist"
 import SEARCH_OPTIONS from "../../../utils/enums/enumSearchOptions"
 
