@@ -35,13 +35,21 @@ const Player = (props) => {
 
       setPercentage(target.value)
     }
+
+    const newMusicIsSetted = (percentage) =>isNaN(percentage)
+    
     
     const getCurrDuration = () => {
       const percent = ((audioRef.current.currentTime / audioRef.current.duration) * 100).toFixed(2)
       const time = audioRef.current.currentTime
+
+      setCurrentTime(time.toFixed(2))    
       
-      setPercentage(+ percent)
-      setCurrentTime(time.toFixed(2))
+      if (newMusicIsSetted(percent)) {
+        setIsPlaying(false)
+        setPercentage(0)
+      }
+      else setPercentage(+ percent)
     }
   
     const playMusic = () => {
