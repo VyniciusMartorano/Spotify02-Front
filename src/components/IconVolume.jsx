@@ -1,15 +1,36 @@
 import React, { Component } from "react"
+import { connect } from "react-redux"
 import '../assets/css/IconVolume.css'
 
 
-export default class IconVolume extends Component {
+ class IconVolume extends Component {
+
+    getStringVolume(string) {
+        const BASE_STRING = 'fa-solid fa-volume-'
+
+        return BASE_STRING + string
+    }
+
+
+    switchBetweenVolumeIcon = (volume) => {
+        if (volume == 0) return this.getStringVolume('xmark') 
+        else if (volume < 60) return this.getStringVolume('low') 
+        else return this.getStringVolume('high') 
+    }
+
+
     render () {
         return (
             <div style={{display: 'flex'}}>
-                <i style={{display: 'none'}} className="fa-solid fa-volume-xmark icon-volume"></i>
-                <i style={{display: 'none'}} className="fa-solid fa-volume-low icon-volume"></i>
-                <div className="icon-volume"><i className="fa-solid fa-volume-high"></i></div>
+                <div className="icon-volume"><i className={this.switchBetweenVolumeIcon(this.props.volume)}></i></div>
             </div>
         )
     }
 }
+const mapStateToProps = (state) => {
+    return ({
+        volume: state.musicReducer.volume
+    })
+}
+
+export default connect(mapStateToProps)(IconVolume)
