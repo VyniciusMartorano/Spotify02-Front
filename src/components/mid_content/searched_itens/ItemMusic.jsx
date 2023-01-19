@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { useDispatch } from "react-redux"
 import { actSetCurrentMusic } from "../../../store/actions/musicActions"
 
@@ -29,8 +29,6 @@ const ItemMusic = ({ music }) => {
     }
 
     const setCurrentMusic = async () => {
-
-
         dispatch(actSetCurrentMusic({currentMusic: await getMusicWithFormated()}))
     }
 

@@ -1,5 +1,5 @@
 import axios from "axios"
-import { doLogout, getToken, refreshToken } from "./auth"
+import {getToken, refreshToken } from "./auth"
 
 class api {
   constructor() {
@@ -16,17 +16,11 @@ class api {
       (response) => response,
       async (error) => {
         if (error.response.status === 401 && getToken()) {
-          const { data } = await refreshToken(error)
-          setToken(data.access)
           
-          //make request again with new token
-          const originalRequest = error.config;
-          originalRequest.headers["Authorization"] = `Bearer ${data.access}`;
-          return this.axios(originalRequest)
+          return Promise.resolve(await refreshToken(error)) 
         }
         else if ((error.response.status === 403 && getToken())) {
           //mandar pro login
-          doLogout()
           return Promise.error.reject()
         }
       }
