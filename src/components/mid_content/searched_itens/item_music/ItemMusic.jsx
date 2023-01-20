@@ -1,12 +1,15 @@
-import React from "react"
+import React, { useState } from "react"
 import "./ItemMusic.css"
 import { useDispatch } from "react-redux"
 import { actSetCurrentMusic } from "../../../../store/actions/musicActions"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import Service from "./Service"
 
 
 const ItemMusic = ({ music, index }) => {
     const dispatch = useDispatch()
+    const Serv = new Service()
+
+    const [setMusicIsLiked, musicIsLiked] = useState(music.is_liked) 
 
     const core_api = process.env.REACT_APP_API_CORE_URL
     const url = `${core_api.substring(0, core_api.length - 1)}`
@@ -30,6 +33,11 @@ const ItemMusic = ({ music, index }) => {
 
     const setCurrentMusic = async () => {
         dispatch(actSetCurrentMusic({currentMusic: await getMusicWithFormated()}))
+    }
+
+    const setMusicLiked = () => {
+        Serv.setMusicLiked(music.id)
+
     }
 
     return (
@@ -59,7 +67,10 @@ const ItemMusic = ({ music, index }) => {
                 <div>{music.music_name}</div>
             </td>
             <td className="align-right color-white">
-                <i className="icon-heart-item-searched fa-regular fa-heart"></i>
+                <i 
+                    className="icon-heart-item-searched fa-regular fa-heart" 
+                    onClick={() => setMusicLiked()}
+                ></i>
             </td>
             <td className="align-right color-white">2:20</td>
             <td className="align-center color-white">
