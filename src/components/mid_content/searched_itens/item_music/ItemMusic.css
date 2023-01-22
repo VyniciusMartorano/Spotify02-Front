@@ -7,7 +7,7 @@
     display: none;
 }
 
-.icon-heart-item-searched {
+.icon-heart-item-searched.dont-liked {
     display: none;
     color: rgba(255, 255, 255, 0.611);
     font-size: 1.1em;

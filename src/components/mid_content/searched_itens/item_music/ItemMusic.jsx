@@ -3,13 +3,15 @@ import "./ItemMusic.css"
 import { useDispatch } from "react-redux"
 import { actSetCurrentMusic } from "../../../../store/actions/musicActions"
 import Service from "./Service"
+import addToastMessage from "./../../../addToastMessage"
+
 
 
 const ItemMusic = ({ music, index }) => {
     const dispatch = useDispatch()
     const Serv = new Service()
 
-    const [setMusicIsLiked, musicIsLiked] = useState(music.is_liked) 
+    const [isLiked, setIsLiked] = useState(music.is_liked) 
 
     const core_api = process.env.REACT_APP_API_CORE_URL
     const url = `${core_api.substring(0, core_api.length - 1)}`
@@ -36,7 +38,10 @@ const ItemMusic = ({ music, index }) => {
     }
 
     const setMusicLiked = () => {
-        Serv.setMusicLiked(music.id)
+        Serv.setMusicLiked(music.id).then(
+            () => setIsLiked(!isLiked),
+            () => addToastMessage('error', 'Erro!', `Ocorreu um erro ao curtir a musica ${music.music_name}`)
+        )
 
     }
 
@@ -68,7 +73,11 @@ const ItemMusic = ({ music, index }) => {
             </td>
             <td className="align-right color-white">
                 <i 
-                    className="icon-heart-item-searched fa-regular fa-heart" 
+                    className={
+                        `icon-heart-item-searched ${isLiked ? '':'dont-liked'} 
+                        fa-${isLiked ? 'solid':'regular' } 
+                        fa-heart`
+                    } 
                     onClick={() => setMusicLiked()}
                 ></i>
             </td>
