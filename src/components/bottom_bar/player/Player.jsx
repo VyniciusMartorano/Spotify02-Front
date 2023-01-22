@@ -23,12 +23,24 @@ const Player = (props) => {
 
     const currentMusic = useSelector(state => state.musicReducer.currentMusic)
     const volume = useSelector(state => state.musicReducer.volume)
+    const repeatMode = useSelector(state => state.coreReducer.repeatMode)
+    
 
     useEffect(
       () => {
           audioRef.current.volume = volume / 100
       }, [volume]
     )
+
+
+    const finishedAudio = () => {
+      if (repeatMode) audioRef.current.load()
+      else {
+        setPercentage(0)
+        playPauseMusic()
+      }
+
+    }
   
     const onChangeMusic = ({ target }) => {
       audioRef.current.currentTime = (audioRef.current.duration / 100) * target.value
@@ -45,7 +57,7 @@ const Player = (props) => {
       audioRef.current.play()
     }
 
-    const equalsTime = () => (currentMusic.duration - currentTime) < 0.5
+    const audioIsFinished = () => (currentMusic.duration - currentTime) < 0.5
     
     const getCurrDuration = () => {
       const percent = ((audioRef.current.currentTime / audioRef.current.duration) * 100).toFixed(2)
@@ -55,9 +67,8 @@ const Player = (props) => {
       
       if (newMusicIsSetted(percent)) setNewMusic()
       else {
-        if (equalsTime()) {
-          setPercentage(0)
-          playMusic()
+        if (audioIsFinished()) {
+          finishedAudio()
           return
         }
         setPercentage(+ percent)
@@ -65,7 +76,7 @@ const Player = (props) => {
 
     }
   
-    const playMusic = () => {
+    const playPauseMusic = () => {
       if (!isPlaying) {
         setIsPlaying(true)
         audioRef.current.play()
@@ -102,7 +113,7 @@ const Player = (props) => {
                         <div className="icon-button i-normal"><i className="fa-solid fa-backward-step"></i></div>
                     
                         <div className="icon-button-pp i-larger">
-                          <i onClick={playMusic}
+                          <i onClick={playPauseMusic}
                           className={isPlaying
                             ? "fa-solid fa-circle-pause"
                             : "fa-solid fa-circle-play"

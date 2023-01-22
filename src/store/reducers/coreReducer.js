@@ -11,7 +11,7 @@ const initialState = {
 }
 
 
-const searchReducer = (state = initialState, action)  => {
+const coreReducer = (state = initialState, action)  => {
     switch (action.type) {
         case CHANGE_USER:
             return {...state, user: action.payload.user}
@@ -36,4 +36,4 @@ const searchReducer = (state = initialState, action)  => {
 }
 
 
-export default searchReducer
+export default coreReducer
