@@ -12,7 +12,7 @@ export const getRefreshToken = () => localStorage.getItem(REFRESH_TOKEN_KEY)
 export const doLogout = () => localStorage.removeItem(TOKEN_KEY)
 
 
-export const refreshToken = async (error) => {
+export const refreshToken = async () => {
 
     const refresh_token = getRefreshToken()
 

@@ -16,8 +16,9 @@ class api {
       (response) => response,
       async (error) => {
         if (error.response.status === 401 && getToken()) {
-          
-          return Promise.resolve(await refreshToken(error)) 
+          await refreshToken()
+          //alterado pra reject
+          return Promise.reject() 
         }
         else if ((error.response.status === 403 && getToken())) {
           //mandar pro login
