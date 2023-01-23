@@ -5,7 +5,6 @@ import { connect } from "react-redux"
 import { actInsertTextSearch, actRefreshResultsOfSearch } from "../../store/actions/searchActions"
 import { enumComponents } from "../../utils/enums/enumComponents"
 import addToastMessage from "../addToastMessage"
-import { ToastContainer } from "react-toastify"
 import { actChangeMidComponent, actSetIsLogged } from "../../store/actions/coreActions"
 
 
@@ -15,6 +14,7 @@ class TopBar extends Component {
         super(props)
         this.currentComponent = ''
         this.Serv = new Service()
+
     }   
 
     componentDidMount() {
@@ -68,7 +68,6 @@ class TopBar extends Component {
     render() {
         return (
             <div>
-                <ToastContainer/>
 
                 <header className="top-bar-container">
                     <div className="left-side-bar">
@@ -99,7 +98,7 @@ class TopBar extends Component {
                     </div>
                     <div className="icon-profile-container">
                         <img
-                            src={this.props.user.image}
+                            src={process.env.REACT_APP_API_CORE_URL + this.props.user.image}
                             alt=""
                             className="img-profile"
                             onClick={() => this.logout()}

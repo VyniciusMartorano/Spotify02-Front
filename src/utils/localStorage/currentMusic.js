@@ -1,4 +1,5 @@
-const CURRENT_MUSIC = 'CURRENT_MUSIC'
+import { CURRENT_MUSIC } from "./keysLocalStorage"
+
 
 export const setCurrentMusic = (music) => localStorage.setItem(CURRENT_MUSIC, JSON.stringify(music)) 
 

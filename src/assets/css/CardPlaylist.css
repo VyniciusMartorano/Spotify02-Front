@@ -59,13 +59,10 @@
     height: 55px;
     background-color: rgb(30, 215, 96);
     cursor: default;
-    transition: 0.4s ease;
 }
 
 .btn-play-playlist:hover {
-    width: 56px;
-    height: 56px;
-    background-color: rgb(31, 223, 100);
+    background-color: rgb(45, 240, 113);
 }
 
 .icon-play-playlist {

@@ -9,6 +9,7 @@ import switchBetweenComponents from '../../utils/SwitchBetweenComp'
 import { connect } from 'react-redux'
 import { COMPONENTS } from '../../utils/enums/enumComponents'
 import { Navigate } from 'react-router-dom'
+import Service from './Service'
 
 
 
@@ -17,7 +18,10 @@ import { Navigate } from 'react-router-dom'
 class HomePage extends Component {
   constructor(props) {
     super(props)
+
+    this.Serv = new Service()
   }
+
 
   render() {
     return (

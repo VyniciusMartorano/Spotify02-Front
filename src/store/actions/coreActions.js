@@ -4,6 +4,7 @@ import {
     SET_CURRENT_MUSIC_LIKED, 
     SET_REPEAT_MODE,
     SET_IS_LOGGED,
+    CHANGE_USER,
 } from "./actionTypes"
 
 
@@ -28,6 +29,11 @@ export const actSetRepeatMode = (payload) => ({
 })
 
 export const actSetIsLogged = (payload) => ({
+    type: SET_IS_LOGGED,
+    payload
+})
+
+export const actSetUser = (payload) => ({
     type: SET_IS_LOGGED,
     payload
 })

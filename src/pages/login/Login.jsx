@@ -5,9 +5,10 @@ import { ToastContainer } from "react-toastify"
 import LoginService from "./Service"
 import { Navigate } from "react-router-dom"
 import addToastMessage from "../../components/addToastMessage"
-import { setToken, setRefreshToken } from "../../services/auth"
+import { setToken, setRefreshToken } from "../../utils/localStorage/auth"
 import { connect } from "react-redux"
-import { actSetIsLogged } from "../../store/actions/coreActions"
+import { actSetIsLogged, actSetUser } from "../../store/actions/coreActions"
+import { setCurrentUser } from "../../utils/localStorage/user"
 
 
 
@@ -38,6 +39,25 @@ class Login extends Component {
         return true
     }
 
+    async getUser() {
+        await this.LogServ.getUser().then(
+            ({ data }) => {
+                setCurrentUser(data)
+                this.props.dispatch(actSetUser(data))
+            },
+            () => addToastMessage('error', 'Erro!', 'Ocorreu um erro ao setar o úsuario!')
+        )
+    }
+
+
+    async setNewUser(token, refresh_token) {
+        setToken(token)
+        setRefreshToken(refresh_token)
+        
+        await this.getUser()
+        this.props.dispatch(actSetIsLogged({isLogged: true}))
+    }
+
     sendForm = () => {
         if (!this.formIsValid()) return
 
@@ -45,10 +65,7 @@ class Login extends Component {
         this.LogServ.Logar({username: this.state.login, password: this.state.password}).then(
             ({ data }) => {
                 addToastMessage('success', 'Sucesso!', 'Login realizado com sucesso')
-
-                setToken(data.access)
-                setRefreshToken(data.refresh)
-                this.props.dispatch(actSetIsLogged({isLogged: true}))
+                this.setNewUser(data.access, data.refresh)
             },
             () => addToastMessage('error', 'Erro!', 'Ocorreu um erro ao fazer login')
             ).finally(

@@ -1,5 +1,5 @@
 import axios from "axios"
-import {getToken, refreshToken } from "./auth"
+import { getToken } from "../utils/localStorage/auth"
 
 class api {
   constructor() {

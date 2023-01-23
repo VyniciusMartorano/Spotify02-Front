@@ -1,4 +1,4 @@
-const VOLUME = 'VOLUME'
+import { VOLUME } from "./keysLocalStorage"
 
 
 export const setVolume = (value) => localStorage.setItem(VOLUME, value)
