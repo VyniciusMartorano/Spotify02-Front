@@ -1,5 +1,5 @@
 import axios from "axios"
-import { getRefreshToken } from "../utils/localStorage/auth"
+import { getRefreshToken, setToken } from "../utils/localStorage/auth"
 import resetLocalStorage from "../utils/localStorage/resetLocalStorage"
 
 export const refreshToken = async () => {

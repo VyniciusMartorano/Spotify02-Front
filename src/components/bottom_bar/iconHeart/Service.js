@@ -1,11 +1,11 @@
-import Api from "./../../../../services/api"
+import api from "../../../services/api"
 
 
 
 class Service {
     
     constructor() {
-        this.api = new Api()
+        this.api = new api()
     }
 
     async setMusicLiked(music_id) {

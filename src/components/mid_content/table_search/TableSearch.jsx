@@ -5,6 +5,7 @@ import ItemArtist from "../searched_itens/ItemArtist"
 import ItemMusic from "../searched_itens/item_music/ItemMusic"
 import ItemPlaylist from "../searched_itens/ItemPlaylist"
 import SEARCH_OPTIONS from "../../../utils/enums/enumSearchOptions"
+import { connect } from "react-redux"
 
 
 
@@ -49,6 +50,10 @@ class TableSearch extends Component {
         )
     }
 }
+const mapStateToProps = (state) => {
+    return ({
+        search_results: state.searchReducer.search_results
+    })
+}
 
-
-export default TableSearch
+export default connect(mapStateToProps)(TableSearch)

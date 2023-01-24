@@ -24,7 +24,6 @@ const Player = (props) => {
     const currentMusic = useSelector(state => state.musicReducer.currentMusic)
     const volume = useSelector(state => state.musicReducer.volume)
     const repeatMode = useSelector(state => state.coreReducer.repeatMode)
-    
 
     useEffect(
       () => {

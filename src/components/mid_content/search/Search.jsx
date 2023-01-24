@@ -36,7 +36,6 @@ class Search extends Component {
                 </div>
                 <div id="content-search">   
                     <TableSearch 
-                        search_results={this.props.search_results} 
                         optionSearch={this.props.optionSearch}
                     />
 
@@ -44,8 +43,8 @@ class Search extends Component {
             </div>
         )
     }
-
 }
+
 const mapStateToProps = (state) => {
     return ({
         text_filter: state.searchReducer.text_filter,

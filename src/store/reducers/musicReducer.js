@@ -23,8 +23,8 @@ const musicReducer = (state = initialState, action) => {
 
         case SET_CURRENT_MUSIC_LIKED:
             let newState = {...state}
-            newState.currentMusic.liked = action.payload.liked
-            
+            newState.currentMusic.is_liked = action.payload.is_liked
+            setCurrentMusic(newState.currentMusic)
             return newState
 
         default:

@@ -1,15 +1,16 @@
 import React, { useState } from "react"
 import "./ItemMusic.css"
 import { useDispatch } from "react-redux"
-import { actSetCurrentMusic } from "../../../../store/actions/musicActions"
+import { actSetCurrentMusic, actSetMusicLiked } from "../../../../store/actions/musicActions"
 import Service from "./Service"
 import addToastMessage from "./../../../addToastMessage"
-
+import { useSelector } from "react-redux"
 
 
 const ItemMusic = ({ music, index }) => {
     const dispatch = useDispatch()
     const Serv = new Service()
+    const currentMusic = useSelector(state => state.musicReducer.currentMusic)
 
     const [isLiked, setIsLiked] = useState(music.is_liked) 
 
@@ -39,7 +40,11 @@ const ItemMusic = ({ music, index }) => {
 
     const setMusicLiked = () => {
         Serv.setMusicLiked(music.id).then(
-            () => setIsLiked(!isLiked),
+            () => {
+                if (music.id == currentMusic.id)
+                    dispatch(actSetMusicLiked({is_liked: !isLiked}))
+                setIsLiked(!isLiked)
+            },
             () => addToastMessage('error', 'Erro!', `Ocorreu um erro ao curtir a musica ${music.music_name}`)
         )
 
