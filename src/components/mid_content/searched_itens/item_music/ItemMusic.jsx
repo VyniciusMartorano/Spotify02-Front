@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import "./ItemMusic.css"
 import { useDispatch } from "react-redux"
 import { actSetCurrentMusic, actSetMusicLiked } from "../../../../store/actions/musicActions"
@@ -16,6 +16,11 @@ const ItemMusic = ({ music, index }) => {
 
     const core_api = process.env.REACT_APP_API_CORE_URL
     const url = `${core_api.substring(0, core_api.length - 1)}`
+
+    useEffect(() => {
+        console.log(music)
+        setIsLiked(music.is_liked);
+        }, [music])
 
     const getMusicWithFormated = async () => {
         const audio = new Audio(url + music.file)
@@ -41,8 +46,7 @@ const ItemMusic = ({ music, index }) => {
     const setMusicLiked = () => {
         Serv.setMusicLiked(music.id).then(
             () => {
-                if (music.id == currentMusic.id)
-                    dispatch(actSetMusicLiked({is_liked: !isLiked}))
+                if (music.id == currentMusic.id) dispatch(actSetMusicLiked({is_liked: !isLiked}))
                 setIsLiked(!isLiked)
             },
             () => addToastMessage('error', 'Erro!', `Ocorreu um erro ao curtir a musica ${music.music_name}`)

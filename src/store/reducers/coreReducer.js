@@ -19,10 +19,7 @@ const coreReducer = (state = initialState, action)  => {
             return {...state, user: action.payload.user}
         
         case SET_IS_LOGGED:
-            if (action.payload.isLogged == false)  {
-                doLogout()
-                resetLocalStorage()
-            }
+            if (action.payload.isLogged == false) resetLocalStorage()
             
             return {...state, isLogged: action.payload.isLogged}
         

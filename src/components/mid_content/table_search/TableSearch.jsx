@@ -18,7 +18,7 @@ class TableSearch extends Component {
     switchBetweenComponents(activeId, props, index) {
         switch (activeId) {
             case SEARCH_OPTIONS.MUSIC:
-                return <ItemMusic key={props.id} index={index} music={props} />
+                return <ItemMusic key={`${props.id}${props.is_liked}`} index={index} music={props} />
             case SEARCH_OPTIONS.PLAYLIST:
                 return <ItemPlaylist key={props.id} playlist={props} />
             case SEARCH_OPTIONS.ALBUM:

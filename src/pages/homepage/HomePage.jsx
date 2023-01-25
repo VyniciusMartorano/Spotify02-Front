@@ -27,6 +27,7 @@ class HomePage extends Component {
     return (
       <section className="container-master">
         <TopBar />
+        {/* {this.props.search_results.map(item => <p style={{color: 'white'}} key={item.id}>{`${item.id} ${item.music_name}  ${item.is_liked}`}</p>)} */}
         <main id='mid-content'>
 
           <LeftBar />
@@ -49,7 +50,8 @@ const mapStateToProps = (state) => {
   return ({
       user: state.coreReducer.user,
       midComponentActiveId: state.coreReducer.midComponentActiveId,
-      isLogged: state.coreReducer.isLogged
+      isLogged: state.coreReducer.isLogged,
+      search_results: state.searchReducer.search_results
     })
 }
 

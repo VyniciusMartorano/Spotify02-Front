@@ -26,11 +26,9 @@ export default function IconHeart (props) {
     const setIsLikedInItemSearchResults = () => {
         const musicIndex = search_results.findIndex(music => music.id == currentMusic.id)
         
-        if (musicIndex != -1) {
-            const array = [...search_results]
-            array[musicIndex].is_liked = !is_liked
-
-            dispatch(actRefreshResultsOfSearch({search_results: array}))
+        if (musicIndex != -1) { 
+            search_results[musicIndex].is_liked = !search_results[musicIndex].is_liked
+            dispatch(actRefreshResultsOfSearch({search_results: [...search_results]}))
         }
     }
 

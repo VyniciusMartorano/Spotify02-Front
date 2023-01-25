@@ -1,5 +1,6 @@
 import axios from "axios"
 import { getToken } from "../utils/localStorage/auth"
+import resetLocalStorage from "../utils/localStorage/resetLocalStorage"
 import { refreshToken } from "./auth"
 
 
@@ -24,6 +25,7 @@ class api {
         }
         else if ((error.response.status === 403 && getToken())) {
           //mandar pro login
+          resetLocalStorage()
           return Promise.error.reject()
         }
       }

@@ -43,7 +43,7 @@ class Login extends Component {
         await this.LogServ.getUser().then(
             ({ data }) => {
                 setCurrentUser(data)
-                this.props.dispatch(actSetUser(data))
+                this.props.dispatch(actSetUser({user: data}))
             },
             () => addToastMessage('error', 'Erro!', 'Ocorreu um erro ao setar o úsuario!')
         )
