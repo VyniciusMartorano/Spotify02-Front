@@ -17,10 +17,6 @@ const ItemMusic = ({ music, index }) => {
     const core_api = process.env.REACT_APP_API_CORE_URL
     const url = `${core_api.substring(0, core_api.length - 1)}`
 
-    useEffect(() => {
-        console.log(music)
-        setIsLiked(music.is_liked);
-        }, [music])
 
     const getMusicWithFormated = async () => {
         const audio = new Audio(url + music.file)

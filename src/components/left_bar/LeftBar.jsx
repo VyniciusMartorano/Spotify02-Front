@@ -47,6 +47,20 @@ class LeftBar extends Component {
                    <span className="left-bar-item-nav">
                        <div id="add-playlist-icon" className="icon-left-bar ">
                             <i 
+                                onClick={() => this.changeMidComponentTo(enumComponents.ADD_MUSIC)} 
+                                className="fa-solid fa-plus add-playlist-icon">
+                            </i>
+                       </div>
+                       <h3 
+                            onClick={() => this.changeMidComponentTo(enumComponents.ADD_MUSIC)} 
+                            className="text-item-nav"
+                        >
+                            Adicionar Música
+                        </h3>
+                   </span>
+                   <span className="left-bar-item-nav">
+                       <div id="add-playlist-icon" className="icon-left-bar ">
+                            <i 
                                 onClick={() => this.changeMidComponentTo(enumComponents.CREATE_PLAYLIST)} 
                                 className="fa-solid fa-plus add-playlist-icon">
                             </i>

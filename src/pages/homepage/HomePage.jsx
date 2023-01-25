@@ -27,7 +27,6 @@ class HomePage extends Component {
     return (
       <section className="container-master">
         <TopBar />
-        {/* {this.props.search_results.map(item => <p style={{color: 'white'}} key={item.id}>{`${item.id} ${item.music_name}  ${item.is_liked}`}</p>)} */}
         <main id='mid-content'>
 
           <LeftBar />

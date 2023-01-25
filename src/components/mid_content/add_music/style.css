@@ -5,14 +5,12 @@
     outline: none;
     border: none;
 }
+
 :root {
     --title-page: 'roboto';
 }
 
 
-body {
-    background-color: rgb(6, 6, 6);
-}
 
 .page-title {
     font: 32px var(--title-page);

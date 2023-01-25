@@ -136,7 +136,7 @@ const Player = (props) => {
                         percentage={percentage}
                         onChange={onChangeMusic}
                       />
-                      <span className="span-time-slider">{getTimeInMinutesFormated(currentMusic.duration)}</span>
+                      <span className="span-time-slider">{getTimeInMinutesFormated(currentMusic.duration - currentTime)}</span>
                     </div>
                 </div>
                 <div id="right-item-player-bar" className="item-player">
