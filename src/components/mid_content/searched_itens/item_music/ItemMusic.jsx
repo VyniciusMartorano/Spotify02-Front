@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import "./ItemMusic.css"
 import { useDispatch } from "react-redux"
 import { actSetCurrentMusic, actSetMusicLiked } from "../../../../store/actions/musicActions"
@@ -13,6 +13,7 @@ const ItemMusic = ({ music, index }) => {
     const currentMusic = useSelector(state => state.musicReducer.currentMusic)
 
     const [isLiked, setIsLiked] = useState(music.is_liked) 
+    const [menuReticenciasIsOpen, setMenuReticenciasIsOpen] = useState(false) 
 
     const core_api = process.env.REACT_APP_API_CORE_URL
     const url = `${core_api.substring(0, core_api.length - 1)}`
@@ -50,8 +51,12 @@ const ItemMusic = ({ music, index }) => {
 
     }
 
+    const openMenuReticencias = () => {
+        setMenuReticenciasIsOpen(true)
+    }
+
     return (
-        <tr className="item-table-search not-selection">
+        <tr className={`item-table-search not-selection ${menuReticenciasIsOpen ? 'bg-active-item-search':''}`}>
             <td style={{width: '40px'}} className="align-left color-white">                        
                 <div className="btn-play-box">
                     <div className="index-searched-music">
@@ -87,8 +92,15 @@ const ItemMusic = ({ music, index }) => {
                 ></i>
             </td>
             <td className="align-right color-white">2:20</td>
-            <td className="align-center color-white">
-                <i className="icon-reticencias fa-solid fa-ellipsis"></i>
+            <td className="align-center color-white pos-relative">
+                <i 
+                    onClick={() => openMenuReticencias()} 
+                    className={`icon-reticencias fa-solid fa-ellipsis ${menuReticenciasIsOpen ? 'd-block': ''}`}
+                >
+                </i>
+                <div className={`${menuReticenciasIsOpen ? 'open-menu-reticencias': 'd-none'} `}>
+
+                </div>
             </td>
         </tr>
     )

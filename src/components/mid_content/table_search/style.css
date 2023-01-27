@@ -50,13 +50,6 @@ td:last-child {
     text-align: left;
 }
 
-.item-table-search {
-    margin-bottom: 10px;
-}
-.item-table-search:hover {
-    background-color: rgba(255, 255, 255, 0.244);
-}
-
 .left-side-item-table {
     display: flex;
     align-content: center;
@@ -87,7 +80,7 @@ td:last-child {
 }
 
 .color-white {
-    color: rgba(255, 255, 255, 0.659);
+    color: rgba(255, 255, 255, 0.759);
 }
 
 .border-thead {

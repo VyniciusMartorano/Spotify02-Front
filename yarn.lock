@@ -7292,6 +7292,11 @@
     "ansi-styles" "^5.0.0"
     "react-is" "^18.0.0"
 
+"primeflex@^3.3.0":
+  "integrity" "sha512-4hvyIO7lERN5bnyURn67Qpozghins8Jq/GSXO6tymc3oa2ADHWuiYBti8ZptPwHu+uD/HTEisS26NEmeIGfPZQ=="
+  "resolved" "https://registry.npmjs.org/primeflex/-/primeflex-3.3.0.tgz"
+  "version" "3.3.0"
+
 "process-nextick-args@~2.0.0":
   "integrity" "sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag=="
   "resolved" "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-2.0.1.tgz"

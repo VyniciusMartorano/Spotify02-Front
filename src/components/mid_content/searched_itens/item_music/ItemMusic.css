@@ -1,4 +1,14 @@
 
+.item-table-search {
+    margin-bottom: 10px;
+}
+.item-table-search:hover {
+    background-color: rgba(255, 255, 255, 0.224);
+}
+
+.bg-active-item-search {
+    background-color: rgba(255, 255, 255, 0.344);
+}
 
 .index-searched-music {
     font-size: 1.07em;
@@ -39,4 +49,26 @@
 
 .item-table-search:hover .icon-reticencias {
     display: block;
+}
+
+.pos-relative {
+    position: relative;
+}
+
+.d-none {
+    display: none;
+}
+
+.d-block {
+    display: block;
+}
+
+.open-menu-reticencias {
+    display: flex;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: antiquewhite;
+    left: 30px;
+    bottom: -10px;
 }

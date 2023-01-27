@@ -19,7 +19,7 @@ class api {
       (response) => response,
       async (error) => {
         if (error.response.status === 401 && getToken()) {
-          await refreshToken()
+          await refreshToken(error)
           //alterado pra reject
           return Promise.reject() 
         }

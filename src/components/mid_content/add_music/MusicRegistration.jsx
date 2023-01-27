@@ -4,7 +4,6 @@ import Dropdown from "../../DropDown"
 import InputMusic from "../../InputMusic"
 import MusicRegistrationService from "./Service"
 import listHaveEmptyItem from "../../../utils/isEmpty"
-import {ToastContainer, toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 import CustomMessage from "../../CustomMensageToast"
 import getFileExtension from "../../../utils/getFileExtension"
@@ -66,11 +65,10 @@ class MusicRegistration extends Component {
     musicFormatIsValid () {
         if (
             !this.ACCEPTED_MUSIC_EXTENSIONS.includes(
-            getFileExtension(this.state.music_file[0].name)
+                getFileExtension(this.state.music_file[0].name)
             )
-        ) {
-            return false
-        }
+        ) return false
+        
         return true
     }
 
@@ -122,28 +120,30 @@ class MusicRegistration extends Component {
 
     render () {
         return (
-            <div>
-                <ToastContainer/>
-                <h1 className="page-title">Bem vindo a o cadastro de musicas do Spotify 2</h1>
-                <section className="container">
-                    <div className="form-box">
+            
+            <section className="mt-4">
+                <div className="grid mb-3">
+                    <div className="col-3">
                         <label htmlFor="name" className="label">Nome</label>
-                        <input 
-                            id="name" 
-                            type="text" 
+                        <input
+                            id="name"
+                            type="text"
                             className="text-input"
-                            value={this.state.nameMusic} 
+                            value={this.state.nameMusic}
                             onChange={({ target }) => this.setState({nameMusic: target.value})}
                         />
-                        <label htmlFor="artist" className="label">Artistas</label>
-                        <Dropdown 
-                            IdforSelectLabel="artist" 
+                    </div>
+                    <div className="col-3">
+                        <label htmlFor="artist" className="label">Artista</label>
+                        <Dropdown
+                            IdforSelectLabel="artist"
                             data={this.state.artists}
                             optionLabel="name"
                             optionValue="id"
                             onChange={(value) => this.setState({artist: value})}
                         />
-    
+                    </div>
+                    <div className="col-3">
                         <label className="label" htmlFor="genero">Genero</label>
                         <Dropdown 
                             IdforSelectLabel="genero" 
@@ -152,20 +152,31 @@ class MusicRegistration extends Component {
                             optionValue="id"
                             onChange={(value) => this.setState({genero: value})}
                         />
+                    </div>
+                </div>
+
+               
+                <div className="grid mb-3">
     
+                    <div className="col-2">
                         <label htmlFor="image" className="label">Imagem</label>
-                        <input 
-                            type="file" 
-                            id="image" 
+                        <input
+                            type="file"
+                            id="image"
                             className="input-file-mode"
                             onChange={({ target }) => this.setState({image: target.files[0] ? target.files[0] : ''}) }
                             accept="image/*"
                         />
-    
+                    </div>
+                   
+                </div>
+
+                <div className="grid mb-3">
+                    <div className="col-2"> 
                         <label htmlFor="downloadMode" className="label">Música</label>
-                        <Dropdown 
+                        <Dropdown
                             onChange={(value) => this.setState({downloadMode: value})}
-                            IdforSelectLabel="downloadMode" 
+                            IdforSelectLabel="downloadMode"
                             optionLabel="option"
                             optionValue="id"
                             data={[
@@ -173,41 +184,45 @@ class MusicRegistration extends Component {
                                 {id: 1, option: 'Por link'}
                             ]}
                         />
-    
+                    </div>
+                </div>
+
+                <div className="grid mb-3">
+                    <div className="col-4">
                         <label htmlFor="music" className="label label-input-file">
                                 {this.state.downloadMode == 1 ? 'Digite a url da música' : 'Enviar arquivo' }
                         </label>
-    
                         <div className={this.state.downloadMode == 1 ? 'input-music-container' : ''}>
-                            <InputMusic 
-                                downloadMode={this.state.downloadMode} 
+                            <InputMusic
+                                downloadMode={this.state.downloadMode}
                                 onChange={
                                     (value) => {
                                     if (typeof value == typeof '') {
                                         this.setState({music_url: value})
                                         this.setState({music_file: null})
                                     }
-                                    else {        
+                                    else {
                                         this.setState({music_file: value})
                                         this.setState({music_url: null})
                                     }
                                 }
                                 }
                             />
-    
-                        
-                            <button 
-                                onClick={this.saveMusic} 
-                                className={`button-download ${this.state.responseIsLoading ? "disabled" : ""}`}
-                            >
-                                Salvar Música
-                            </button>
-                        
                         </div>
-    
                     </div>
-                </section>
-            </div>
+                </div>
+                <div className="grid">
+                    <div className="col-2">
+                        <button
+                            onClick={this.saveMusic}
+                            className={`w-8 button-download ${this.state.responseIsLoading ? "disabled" : ""}`}
+                        >
+                            Salvar Música
+                        </button>
+                    </div>
+                </div>
+            </section>
+           
         )
     }
     
