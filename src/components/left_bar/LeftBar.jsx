@@ -44,20 +44,7 @@ class LeftBar extends Component {
                        </div>
                        <h3 onClick={() => this.changeMidComponentTo(enumComponents.MY_LIBRARY)} className="text-item-nav">Sua Biblioteca</h3>
                    </span>
-                   <span className="left-bar-item-nav">
-                       <div id="add-playlist-icon" className="icon-left-bar ">
-                            <i 
-                                onClick={() => this.changeMidComponentTo(enumComponents.ADD_MUSIC)} 
-                                className="fa-solid fa-plus add-playlist-icon">
-                            </i>
-                       </div>
-                       <h3 
-                            onClick={() => this.changeMidComponentTo(enumComponents.ADD_MUSIC)} 
-                            className="text-item-nav"
-                        >
-                            Adicionar Música
-                        </h3>
-                   </span>
+
                    <span className="left-bar-item-nav">
                        <div id="add-playlist-icon" className="icon-left-bar ">
                             <i 
@@ -73,6 +60,20 @@ class LeftBar extends Component {
                         </h3>
                    </span>
                    <span className="left-bar-item-nav">
+                       <div id="add-playlist-icon" className="icon-left-bar ">
+                            <i 
+                                onClick={() => this.changeMidComponentTo(enumComponents.ADD_MUSIC)} 
+                                className="fa-solid fa-plus add-playlist-icon">
+                            </i>
+                       </div>
+                       <h3 
+                            onClick={() => this.changeMidComponentTo(enumComponents.ADD_MUSIC)} 
+                            className="text-item-nav"
+                        >
+                            Adicionar Música
+                        </h3>
+                   </span>
+                   <span className="left-bar-item-nav">
                        <div id="bookmark" className="icon-left-bar ">
                             <i className="fa-solid fa-bookmark bookmark" ></i>
                        </div>
@@ -82,7 +83,7 @@ class LeftBar extends Component {
                        <div id="liked-musics-button" className="icon-left-bar ">
                             <i className="fa-solid fa-heart"></i>
                        </div>
-                       <h3 className="text-item-nav">Seus episódios</h3>
+                       <h3 className="text-item-nav">Músicas Curtidas</h3>
                    </span>
                 </div>
                 <div className="line"></div>

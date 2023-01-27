@@ -1,5 +1,5 @@
 import axios from "axios"
-import { getRefreshToken, setToken } from "../utils/localStorage/auth"
+import { doLogout, getRefreshToken, setToken } from "../utils/localStorage/auth"
 import resetLocalStorage from "../utils/localStorage/resetLocalStorage"
 
 export const refreshToken = async () => {
@@ -13,7 +13,7 @@ export const refreshToken = async () => {
         },
         (error) => {
             //usar state redux aqui pra quando o token expirar
-            resetLocalStorage()
+            doLogout()
             return Promise.reject(error)
         }
     )

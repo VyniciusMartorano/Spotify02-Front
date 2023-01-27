@@ -18,7 +18,3 @@ function listHaveEmptyItem(listItens) {
 }
 
 export default listHaveEmptyItem
-
-
-
-

@@ -76,6 +76,8 @@ const Player = (props) => {
     }
   
     const playPauseMusic = () => {
+      if (!currentMusic.id) return
+
       if (!isPlaying) {
         setIsPlaying(true)
         audioRef.current.play()
@@ -92,18 +94,20 @@ const Player = (props) => {
             <div className="box-player">
                 <div id="left-item-player-bar" className="item-player">
                     <div id="box-image-player">
-                    <img 
-                        src={url + currentMusic.image} 
-                        width="65" 
-                        height="65"
-                    />
+                      {currentMusic.id && (
+                        <img 
+                            src={url + currentMusic.image} 
+                            width="65" 
+                            height="65"
+                        />
+                      )}
                     </div>
                     <div className="texts-content-player">
                         <h3 className="title-music-player">{currentMusic.music_name}</h3>
                         <span className="autor-music-player">{currentMusic.artist_name}</span>
                     </div>
                     <div className="fav-div-icon">
-                        <IconHeart />
+                        {currentMusic.id && (<IconHeart />)}
                     </div>
                 </div>
                 <div id="center-item-player-bar" className="item-player">
@@ -136,7 +140,7 @@ const Player = (props) => {
                         percentage={percentage}
                         onChange={onChangeMusic}
                       />
-                      <span className="span-time-slider">{getTimeInMinutesFormated(currentMusic.duration - currentTime)}</span>
+                      <span className="span-time-slider">{getTimeInMinutesFormated((currentMusic.duration - currentTime) || 0)}</span>
                     </div>
                 </div>
                 <div id="right-item-player-bar" className="item-player">
