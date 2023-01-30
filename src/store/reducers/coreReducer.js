@@ -1,11 +1,9 @@
 import { CHANGE_USER, CHANGE_MID_COMPONENT, SET_SHUFFLE_MODE, SET_REPEAT_MODE, SET_IS_LOGGED } from "../actions/actionTypes"
-import { doLogout, getToken } from "../../utils/localStorage/auth"
-import { getCurrentUser } from "../../utils/localStorage/user"
+import { getToken } from "../../utils/localStorage/auth"
 import resetLocalStorage from "../../utils/localStorage/resetLocalStorage"
 
 const initialState = {
-
-    user: getCurrentUser() || {image: ''},
+    user: {image: ''},
     midComponentActiveId: 1,
     shuffleMode: false,
     repeatMode: false,
@@ -20,7 +18,6 @@ const coreReducer = (state = initialState, action)  => {
         
         case SET_IS_LOGGED:
             if (action.payload.isLogged == false) resetLocalStorage()
-            
             return {...state, isLogged: action.payload.isLogged}
         
         case CHANGE_MID_COMPONENT:

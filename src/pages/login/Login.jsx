@@ -8,7 +8,6 @@ import addToastMessage from "../../components/addToastMessage"
 import { setToken, setRefreshToken } from "../../utils/localStorage/auth"
 import { connect } from "react-redux"
 import { actSetIsLogged, actSetUser } from "../../store/actions/coreActions"
-import { setCurrentUser } from "../../utils/localStorage/user"
 
 
 
@@ -42,7 +41,6 @@ class Login extends Component {
     async getUser() {
         await this.LogServ.getUser().then(
             ({ data }) => {
-                setCurrentUser(data)
                 this.props.dispatch(actSetUser({user: data}))
             },
             () => addToastMessage('error', 'Erro!', 'Ocorreu um erro ao setar o úsuario!')

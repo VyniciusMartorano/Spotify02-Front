@@ -34,6 +34,6 @@ export const actSetIsLogged = (payload) => ({
 })
 
 export const actSetUser = (payload) => ({
-    type: SET_IS_LOGGED,
+    type: CHANGE_USER,
     payload
 })

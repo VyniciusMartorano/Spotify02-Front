@@ -6,7 +6,6 @@ export default (reducers) => {
         {
             key: 'Spotify02',
             storage,
-            whitelist: ['127.0.0.1']
         }, reducers
     )
 
