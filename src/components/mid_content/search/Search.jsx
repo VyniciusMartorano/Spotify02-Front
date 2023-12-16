@@ -17,7 +17,6 @@ class Search extends Component {
             {id: SEARCH_OPTIONS.ALBUM, description: 'Álbuns'}, 
             {id: SEARCH_OPTIONS.ARTIST, description: 'Artistas'}
         ]
-
     }
 
     render() {
