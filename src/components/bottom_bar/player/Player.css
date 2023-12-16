@@ -37,7 +37,7 @@
 
 #right-item-player-bar {
     display: flex;
-    width: 10rem;
+    width: 14rem;
     flex-direction: row;
     align-items: center;
     justify-content: center;
