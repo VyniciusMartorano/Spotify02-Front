@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import './../../../assets/css/Search.css'
-import { Item } from "../../ItemHeaderSearch"
+import { Item } from "../../itemheadersearch/ItemHeaderSearch"
 import { connect } from "react-redux"
 import SEARCH_OPTIONS from "../../../utils/enums/enumSearchOptions"
 import { actSetOptionSearch } from "../../../store/actions/searchActions"
@@ -20,9 +20,7 @@ class Search extends Component {
 
     }
 
-
     render() {
-
         return (
             <div id="search-box-section">
                 <div id="header-filters-box">

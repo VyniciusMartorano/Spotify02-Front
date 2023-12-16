@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import '../assets/css/IconVolume.css'
+import './style.css'
 
 
  class IconVolume extends Component {

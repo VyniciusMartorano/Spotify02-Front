@@ -2,7 +2,7 @@ import React from 'react'
 import Player from '../../components/bottom_bar/player/Player'
 import TopBar from '../../components/top_bar/TopBar'
 import LeftBar from '../../components/left_bar/LeftBar'
-import '../../assets/css/HomePage.css'
+import './style.css'
 import { ToastContainer } from "react-toastify"
 import { Component } from 'react'
 import switchBetweenComponents from '../../utils/SwitchBetweenComp'

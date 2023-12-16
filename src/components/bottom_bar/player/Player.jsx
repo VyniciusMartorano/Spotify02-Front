@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect } from "react"
 import './Player.css'
-import Slider from "../../Slider"
+import Slider from "../../slider/Slider"
 import IconHeart from "../iconHeart/IconHeart"
 import IconShuffle from "../iconShuffle/IconShuffle"
 import IconRepeat from "../iconRepeat/IconRepeat"
-import VolumeBar from "../../VolumeBar"
-import IconVolume from '../../IconVolume'
+import VolumeBar from "../../volumebar/VolumeBar"
+import IconVolume from '../../iconvolume/IconVolume'
 import { useSelector } from "react-redux"
 import getTimeInMinutesFormated from "../../../utils/getTimeInMinutes"
 

@@ -1,5 +1,5 @@
 import React from "react"
-import './../assets/css/ItemHeaderSearch.css'
+import './style.css'
 
 
 const Item = ({ item, activeId, onClick }) => {

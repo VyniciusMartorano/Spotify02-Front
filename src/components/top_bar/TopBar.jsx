@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import "./../../assets/css/TopBar.css"
+import "./style.css"
 import Service from "./Service"
 import { connect } from "react-redux"
 import { actInsertTextSearch, actRefreshResultsOfSearch } from "../../store/actions/searchActions"

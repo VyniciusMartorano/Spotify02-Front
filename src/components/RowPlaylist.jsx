@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "./CardPlaylist"
+import Card from "./cardplaylist/CardPlaylist"
 
 
 const RowPlaylists = ({ title, playlists, mode }) => {

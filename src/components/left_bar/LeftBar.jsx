@@ -1,5 +1,5 @@
 import { Component, React } from "react"
-import '../../assets/css/LeftBar.css'
+import './style.css'
 import LeftBarService from './Service'
 import { enumComponents } from "../../utils/enums/enumComponents"
 import { actChangeMidComponent } from "../../store/actions/coreActions"

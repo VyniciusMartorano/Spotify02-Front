@@ -1,5 +1,5 @@
 import React from "react"
-import './../assets/css/CardPlaylist.css'
+import './style.css'
 
 const Card = ({ title, description, thumbnail }) => {
     const core_api = process.env.REACT_APP_API_CORE_URL

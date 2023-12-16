@@ -1,7 +1,7 @@
-import '../assets/css/VolumeBar.css'
+import './style.css'
 import { React, useRef } from "react"
 import { useDispatch, useSelector } from 'react-redux'
-import { actSetVolume } from '../store/actions/musicActions'
+import { actSetVolume } from '../../store/actions/musicActions'
 import { useEffect } from 'react'
 
 

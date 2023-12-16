@@ -1,5 +1,5 @@
 import { Component, React } from "react"
-import './../../assets/css/Login.css'
+import './style.css'
 import listHaveEmptyItem from "../../utils/isEmpty"
 import { ToastContainer } from "react-toastify"
 import LoginService from "./Service"
