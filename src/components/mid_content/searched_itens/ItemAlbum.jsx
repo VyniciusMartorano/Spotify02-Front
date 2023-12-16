@@ -15,8 +15,8 @@ const ItemAlbum = ({ album }) => {
                 </div>
                 <img src={album} alt="" />
                 <div className="box-description-item-searched">
-                    <h3>{album.title}</h3>
-                    <span>{item.nome_artista}</span>
+                    {/* <h3>{album.title}</h3> */}
+                    {/* <span>{item.nome_artista}</span> */}
                 </div>
             </div>
             <div className="right-side-searched-item">

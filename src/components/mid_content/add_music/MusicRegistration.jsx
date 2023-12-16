@@ -7,7 +7,7 @@ import listHaveEmptyItem from "../../../utils/isEmpty"
 import 'react-toastify/dist/ReactToastify.css'
 import CustomMessage from "../../CustomMensageToast"
 import getFileExtension from "../../../utils/getFileExtension"
-
+import { ToastContainer } from "react-toastify"
 
 class MusicRegistration extends Component {
     constructor(props) {
@@ -221,6 +221,7 @@ class MusicRegistration extends Component {
                         </button>
                     </div>
                 </div>
+                <ToastContainer />
             </section>
            
         )
