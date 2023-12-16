@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import './../../../assets/css/Search.css'
+import './style.css'
 import { Item } from "../../itemheadersearch/ItemHeaderSearch"
 import { connect } from "react-redux"
 import SEARCH_OPTIONS from "../../../utils/enums/enumSearchOptions"

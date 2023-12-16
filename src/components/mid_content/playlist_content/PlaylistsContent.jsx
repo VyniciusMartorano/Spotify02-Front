@@ -1,5 +1,5 @@
 import { Component, React } from "react"
-import '../../../assets/css/PlaylistsContent.css'
+import './style.css'
 import PlaylistsContentService from "./Service"
 import RowPlaylists from "../../RowPlaylist"
 import { connect } from "react-redux"
