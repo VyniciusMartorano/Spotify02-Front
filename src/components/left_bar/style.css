@@ -46,7 +46,7 @@
 #left-bar-container {
     display: flex;
     flex-direction: column;
-    width: 340px;
+    width: 18rem;
     height: 100%;
 }
 
@@ -102,7 +102,7 @@
 .left-bar-item-nav {
     display: flex;
     width: 100%;
-    margin-top: 15px;
+    margin-top: 7px;
     height: 30px;
     padding: 2px;
     cursor: pointer;
@@ -133,7 +133,7 @@
     font-family: 'Roboto';
     letter-spacing: 0.6px;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
     color: rgba(230, 230, 230);
     transition: .5s ease;
 }

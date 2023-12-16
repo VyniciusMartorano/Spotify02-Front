@@ -9,7 +9,7 @@
 .player-container {
     display: flex;
     width: 100%;
-    height: 100px;
+    height: 89px;
     background-color: rgba(0, 0, 0);
     bottom: 0;
 }
@@ -18,8 +18,8 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 100px;
-    padding: 16px;
+    height: 89px;
+    padding: 0px 20px 0px 20px;
 }
 
 .item-player {
@@ -30,12 +30,14 @@
 
 
 #left-item-player-bar {
-    width: 280px;
+    width: 14rem;
+    display: flex;
+    align-items: center;
 }
 
 #right-item-player-bar {
     display: flex;
-    width: 280px;
+    width: 10rem;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -43,6 +45,8 @@
 
 #center-item-player-bar {
     display: flex;
+    /* align-items: center; */
+    justify-content: center;
     flex-direction: column;
     width: 600px;
 }
@@ -50,14 +54,20 @@
 #box-image-player {
     display: flex;
     box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.336);
+    
+}
+#box-image-player > img {
+    border-radius: 6px;
 }
 
 .texts-content-player {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
     width: 160px;
-    padding: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    /* padding: 10px; */
 }
 
 
@@ -123,10 +133,10 @@
 
 
 .title-music-player {
-    font-size: 1em;
+    font-size: 0.8em;
     font-family: var(--font-title-music), sans-serif;
     font-weight: bold;
-    letter-spacing: 0.4px;
+    letter-spacing: 0.5px;
     color: var(--color-text);
 }
 

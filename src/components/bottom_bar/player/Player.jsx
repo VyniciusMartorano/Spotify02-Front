@@ -97,8 +97,8 @@ const Player = (props) => {
                       {currentMusic.id && (
                         <img 
                             src={url + currentMusic.image} 
-                            width="65" 
-                            height="65"
+                            width="50" 
+                            height="50"
                         />
                       )}
                     </div>
