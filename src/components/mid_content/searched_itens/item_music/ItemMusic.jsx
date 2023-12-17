@@ -79,7 +79,7 @@ const ItemMusic = ({ music, index }) => {
                 </div>
             </td>
             <td className="mid-item-table-search align-left color-white">
-                <div className="album-name-item-searched">{music.music_name}</div>
+                <div className="album-name-item-searched">{music.album_name}</div>
             </td>
             <td className="align-right color-white">
                 <i 
