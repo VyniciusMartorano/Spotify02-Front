@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import "./ItemMusic.css"
+import "./style.css"
 import { useDispatch } from "react-redux"
 import { actSetCurrentMusic, actSetMusicLiked } from "../../../../store/actions/musicActions"
 import Service from "./Service"
@@ -69,17 +69,17 @@ const ItemMusic = ({ music, index }) => {
                 <img 
                     className="img-item-table-searched" 
                     src={url + music.image} 
-                    width="45" 
-                    height="45"
+                    width="35" 
+                    height="35"
                     alt="" 
                 />
                 <div className="box-description-item-searched">
                     <span className="bold title-music-table">{music.music_name}</span>
-                    <span className="color-white">{music.artist_name}</span>
+                    <span className="color-white artist-name">{music.artist_name}</span>
                 </div>
             </td>
             <td className="mid-item-table-search align-left color-white">
-                <div>{music.music_name}</div>
+                <div className="album-name-item-searched">{music.music_name}</div>
             </td>
             <td className="align-right color-white">
                 <i 

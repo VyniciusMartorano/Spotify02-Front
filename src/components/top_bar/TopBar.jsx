@@ -55,10 +55,12 @@ class TopBar extends Component {
     }
 
     searchResults(value){
-        this.Serv.search(value, this.props.optionSearch).then(
-            ({ data }) => this.props.dispatch(actRefreshResultsOfSearch({search_results: data})),
-            () => addToastMessage('error', 'Erro!', `Ocorreu um erro ao buscar pelo termo "${text_filter}"`)
-        )
+        setTimeout(() => {
+            this.Serv.search(value, this.props.optionSearch).then(
+              ({ data }) => this.props.dispatch(actRefreshResultsOfSearch({ search_results: data })),
+              () => addToastMessage('error', 'Erro!', `Ocorreu um erro ao buscar pelo termo "${text_filter}"`)
+            )
+        }, 500)
     }
 
     changeMidComponentTo(keyComp) {

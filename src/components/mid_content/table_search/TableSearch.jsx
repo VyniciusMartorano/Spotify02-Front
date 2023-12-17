@@ -42,7 +42,7 @@ class TableSearch extends Component {
                 </tr>
             </thead>
             <tbody>
-                <tr style={{height: '25px'}}></tr>
+                <tr style={{height: '10px'}}></tr>
                 {this.props.search_results.map((item, index) => this.switchBetweenComponents(this.props.optionSearch, item, index))}
 
             </tbody>

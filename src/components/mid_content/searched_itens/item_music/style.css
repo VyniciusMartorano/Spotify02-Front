@@ -11,7 +11,7 @@
 }
 
 .index-searched-music {
-    font-size: 1.07em;
+    font-size: 1.04em;
 }
 .icon-reticencias {
     display: none;
@@ -37,6 +37,15 @@
 .item-table-search:hover .index-searched-music {
     display: none;
 }
+
+.artist-name {
+    font-size: 12px;
+}
+
+.album-name-item-searched {
+    font-size: 13px;
+}
+
 
 .item-table-search:hover .icon-heart-item-searched {
     display: block;

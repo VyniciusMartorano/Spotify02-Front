@@ -58,6 +58,7 @@ td:last-child {
 
 .img-item-table-searched {
     margin: 0px 12px 0px 12px;
+    border-radius: 6px;
 }
 
 .box-description-item-searched {
@@ -98,6 +99,7 @@ td:last-child {
 
 .title-music-table {
     color: rgba(255, 255, 255, 0.77);
+    font-size: 13px;
 }
 
 .not-selection {
