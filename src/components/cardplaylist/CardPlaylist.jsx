@@ -10,8 +10,8 @@ const Card = ({ title, description, thumbnail }) => {
             <div className="card-main-container">
                 <img
                     className="img-card"
-                    width={"195px"}
-                    height={"195px"}
+                    width={"155px"}
+                    height={"155px"}
                     src={url + thumbnail}
                     alt=""
                 />

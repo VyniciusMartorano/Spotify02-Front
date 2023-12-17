@@ -3,8 +3,8 @@
     display: flex;
     position: relative;
     flex-direction: column;
-    width: 225px;
-    height: 329px;
+    width: 185px;
+    height: 289px;
     border-radius: 8px;
     padding: 15px;
     background-color: var(--background-color-card);
@@ -50,13 +50,13 @@
 .btn-play-playlist {
     display: none;
     position: absolute;
-    left: 145px;
+    left: 125px;
     top: 145px;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
     background-color: rgb(30, 215, 96);
     cursor: default;
 }
